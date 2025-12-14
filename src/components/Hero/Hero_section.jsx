@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Hero_section.css";
-import { useEffect, useState } from "react";
 import paymentImg from "../../assets/payment.jpg";
 import cook from "../../assets/cooking.png";
 import food1 from "../../assets/kfc.png";
@@ -17,18 +16,18 @@ import food11 from "../../assets/chole.png";
 import food12 from "../../assets/fish.png";
 
 const LOGOS = [
-  { name: "zapier", src: food1 },
-  { name: "hubspot", src: food2 },
-  { name: "notion", src: food3 },
-  { name: "slack", src: food4 },
-  { name: "drive", src: food5 },
-  { name: "dropbox", src: food6 },
-  { name: "figma", src: food7 },
-  { name: "linear", src: food8 },
-  { name: "zapier", src: food9 },
-  { name: "hubspot", src: food10 },
-  { name: "notion", src: food11 },
-  { name: "slack", src: food12 },
+  { name: "kfc", src: food1 },
+  { name: "pasta", src: food2 },
+  { name: "rice-bowl", src: food3 },
+  { name: "naan", src: food4 },
+  { name: "tomato", src: food5 },
+  { name: "soup", src: food6 },
+  { name: "ots", src: food7 },
+  { name: "onion-ring", src: food8 },
+  { name: "momo", src: food9 },
+  { name: "burger", src: food10 },
+  { name: "chole", src: food11 },
+  { name: "fish", src: food12 },
 ];
 
 export default function OrbitingSection() {
@@ -37,10 +36,10 @@ export default function OrbitingSection() {
   const [isDeleting, setIsDeleting] = useState(false);
 
   const rotatingTexts = [
-    "Meals that feels like a hug💝",
+    "Meals that feel like a hug💝",
     "Flavours that remind you of home.",
     "Meals that make a new city feel familiar",
-    "Eat just not to fill you stomach, but to celebrate heart!",
+    "Eat just not to fill your stomach, but to celebrate heart!",
     "Made with Love",
     "Support a kitchen, nourish your soul",
     "Always Fresh, Always Delicious",
@@ -72,14 +71,11 @@ export default function OrbitingSection() {
     }
 
     return () => clearTimeout(timer);
-  }, [displayedText, isDeleting, textIndex, rotatingTexts]);
-
-  const RADIUS = 350;
-  const DURATION = 60;
+  }, [displayedText, isDeleting, textIndex]);
 
   const orbitingLogos = LOGOS.map((logo, index) => {
-    const delay = -(DURATION / LOGOS.length) * index;
-    return { ...logo, delay };
+    const delay = -(60 / LOGOS.length) * index;
+    return { ...logo, delay, key: logo.name + index };
   });
 
   return (
@@ -88,26 +84,27 @@ export default function OrbitingSection() {
         <div className="orbit-container">
           <div
             className="guide-ring"
-            style={{ width: `${RADIUS * 2}px`, height: `${RADIUS * 2}px` }}
+            style={{
+              width: "var(--orbit-size)",
+              height: "var(--orbit-size)",
+            }}
           />
 
           {orbitingLogos.map((logo, index) => (
             <div
-              key={index}
+              key={logo.key}
               className="orbit-ring"
               style={{
-                animation: `orbit-cw ${DURATION}s linear infinite`,
+                animation: `orbit-cw 60s linear infinite`,
                 animationDelay: `${logo.delay}s`,
+                "--angle": `${(index / LOGOS.length) * 360}deg`,
               }}
             >
-              <div
-                className="orbit-positioner"
-                style={{ transform: `translateX(${RADIUS}px)` }}
-              >
+              <div className="orbit-positioner">
                 <div
                   className="logo-tile"
                   style={{
-                    animation: `counter-orbit-cw ${DURATION}s linear infinite`,
+                    animation: `counter-orbit-cw 60s linear infinite`,
                     animationDelay: `${logo.delay}s`,
                   }}
                 >
@@ -136,27 +133,6 @@ export default function OrbitingSection() {
         <div className="fade-gradient-top" />
         <div className="fade-gradient-bottom" />
       </section>
-
-      {/* Next Section
-            <section className="next-section">
-                <div className="section-content">
-                    <p className="section-label">Simple Process</p>
-                    <h2 className="section-title">From Our Home to Yours</h2>
-
-                    <div className="steps-grid">
-                        {[1, 2, 3, 4].map((step) => (
-                            <div key={step} className="step-card">
-                                <div className="step-icon">{step}</div>
-                                <h3 className="step-title">Step {step}</h3>
-                                <p className="step-desc">
-                                    Description of the step goes here. It is safe from orbiting
-                                    icons now.
-                                </p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section> */}
 
       <section
         className="section_container"
