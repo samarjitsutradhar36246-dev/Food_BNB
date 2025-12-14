@@ -2,19 +2,19 @@ import React from "react";
 import "./Hero_section.css";
 import { useEffect, useState } from "react";
 import paymentImg from "../../assets/payment.jpg";
-import cook from '../../assets/cooking.png';
-import food1 from '../../assets/kfc.png';
-import food2 from '../../assets/pasta.jpg';
-import food3 from '../../assets/rice_bowl_new.png';
-import food4 from '../../assets/naan.png';
-import food5 from '../../assets/tomato.jpg';
-import food6 from '../../assets/soup_veggies.jpg';
-import food7 from '../../assets/ots.png';
-import food8 from '../../assets/Onion_ring.jpg';
-import food9 from '../../assets/momo.png';
-import food10 from '../../assets/burger.png';
-import food11 from '../../assets/chole.png';
-import food12 from '../../assets/fish.png';
+import cook from "../../assets/cooking.png";
+import food1 from "../../assets/kfc.png";
+import food2 from "../../assets/pasta.jpg";
+import food3 from "../../assets/rice_bowl_new.png";
+import food4 from "../../assets/naan.png";
+import food5 from "../../assets/tomato.jpg";
+import food6 from "../../assets/soup_veggies.jpg";
+import food7 from "../../assets/ots.png";
+import food8 from "../../assets/Onion_ring.jpg";
+import food9 from "../../assets/momo.png";
+import food10 from "../../assets/burger.png";
+import food11 from "../../assets/chole.png";
+import food12 from "../../assets/fish.png";
 
 const LOGOS = [
   { name: "zapier", src: food1 },
@@ -31,10 +31,7 @@ const LOGOS = [
   { name: "slack", src: food12 },
 ];
 
-
-
 export default function OrbitingSection() {
-
   const [textIndex, setTextIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -53,23 +50,22 @@ export default function OrbitingSection() {
     const currentText = rotatingTexts[textIndex];
     const typingSpeed = isDeleting ? 30 : 50;
     const pauseTime = 2000;
-
     let timer;
 
     if (!isDeleting && displayedText === currentText) {
-      // Pause before deleting
-      timer = setTimeout(() => setIsDeleting(true), pauseTime);
+      timer = setTimeout(() => {
+        setIsDeleting(true);
+      }, pauseTime);
     } else if (isDeleting && displayedText === "") {
-      // Move to next text
-      setIsDeleting(false);
-      setTextIndex((prevIndex) => (prevIndex + 1) % rotatingTexts.length);
+      timer = setTimeout(() => {
+        setIsDeleting(false);
+        setTextIndex((prevIndex) => (prevIndex + 1) % rotatingTexts.length);
+      }, 50);
     } else if (isDeleting) {
-      // Delete character
       timer = setTimeout(() => {
         setDisplayedText(currentText.substring(0, displayedText.length - 1));
       }, typingSpeed);
     } else {
-      // Type character
       timer = setTimeout(() => {
         setDisplayedText(currentText.substring(0, displayedText.length + 1));
       }, typingSpeed);
@@ -89,7 +85,6 @@ export default function OrbitingSection() {
   return (
     <div className="orbit-wrapper">
       <section className="hero-section">
-       
         <div className="orbit-container">
           <div
             className="guide-ring"
@@ -165,7 +160,7 @@ export default function OrbitingSection() {
 
       <section
         className="section_container"
-        style={{ paddingTop: "40px", paddingBottom: "80px", }}
+        style={{ paddingTop: "40px", paddingBottom: "80px" }}
       >
         <div className="top_text">
           <span className="section-subtitle">SIMPLE PROCESS</span>
@@ -195,11 +190,7 @@ export default function OrbitingSection() {
           {/* Step 2 */}
           <div className="step-item">
             <div className="step-image-wrapper">
-              <img
-                src={cook}
-                alt="Choose Kitchen"
-                className="step-image"
-              />
+              <img src={cook} alt="Choose Kitchen" className="step-image" />
               <div className="step-badge badge-dark">2</div>
             </div>
             <h3 className="step-title">Choose Kitchen</h3>
@@ -240,8 +231,6 @@ export default function OrbitingSection() {
           </div>
         </div>
       </section>
-
-
     </div>
   );
 }
