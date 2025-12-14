@@ -1,0 +1,354 @@
+/* Wrapper */
+.ctaX-section {
+  position: relative;
+  padding: 0;
+  margin-top: -50px;
+  overflow: hidden;
+
+}
+
+/* Background gradient */
+.ctaX-bg-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #c90900, #ff865a);
+  opacity: 0.95;
+}
+
+/* Decorative shapes */
+.ctaX-decor-wrapper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.ctaX-circle {
+  position: absolute;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.ctaX-circle-1 {
+  top: 40px;
+  left: 40px;
+  width: 160px;
+  height: 160px;
+}
+
+.ctaX-circle-2 {
+  bottom: 40px;
+  right: 40px;
+  width: 240px;
+  height: 240px;
+}
+
+.ctaX-blur {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.08);
+  filter: blur(30px);
+  border-radius: 50%;
+}
+
+.ctaX-blur-1 {
+  top: 50%;
+  left: 25%;
+  width: 80px;
+  height: 80px;
+}
+
+.ctaX-blur-2 {
+  right: 33%;
+  bottom: 30%;
+  width: 130px;
+  height: 130px;
+}
+
+/* Floating icons */
+@keyframes floatUpDown {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.ctaX-floating-icon {
+  position: absolute;
+  opacity: 0.2;
+  animation: floatUpDown 4s infinite ease-in-out;
+}
+
+.ctaX-float-1 {
+  top: 60px;
+  right: 60px;
+}
+
+.ctaX-float-2 {
+  bottom: 60px;
+  left: 60px;
+  animation-delay: 1.5s;
+}
+
+.ctaX-icon {
+  width: 70px;
+  height: 70px;
+  color: white;
+}
+
+/* Container */
+.ctaX-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+  position: relative;
+  z-index: 5;
+}
+
+.ctaX-content-box {
+  text-align: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Badge */
+/* .ctaX-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  padding: 12px 24px;
+  border-radius: 999px;
+  color: white;
+  font-size: 15px;
+  margin-bottom: 35px;
+  backdrop-filter: blur(5px);
+  font-family: "Geom", sans-serif;
+  font-size: larger;
+}
+
+.ctaX-badge-dot {
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+  animation: pulseBadge 1.5s infinite;
+} */
+/* .ctaX-phone-image-container{
+ 
+  display: flex;
+  justify-content: left;
+  margin-top: 40px;
+  
+} */
+
+@keyframes pulseBadge {
+  0% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.2;
+  }
+}
+
+/* Heading */
+.ctaX-title {
+  font-size: 72px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 30px;
+  line-height: 1.2;
+  font-family: "Geom", sans-serif;
+}
+
+.ctaX-description {
+  font-size: 22px;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 700px;
+  margin: 0 auto 60px auto;
+  font-family: "Geom", sans-serif;
+}
+
+/* Buttons */
+.ctaX-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  
+  
+}
+
+.ctaX-btn-primary,
+.ctaX-btn-secondary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 50px;
+  font-size: 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  width: 240px;
+  justify-content: center;
+}
+
+/* Primary */
+.ctaX-btn-primary {
+  background: white;
+  color: #ff4c24;
+  border: none;
+  font-family: "Geom", sans-serif;
+}
+
+.ctaX-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Secondary */
+.ctaX-btn-secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  font-family: "Geom", sans-serif;
+}
+
+.ctaX-btn-secondary:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Info Cards */
+.ctaX-launch-info {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.ctaX-info-card {
+  background: rgba(255, 255, 255, 0.12);
+  padding: 14px 26px;
+  border-radius: 14px;
+  backdrop-filter: blur(4px);
+  text-align: center;
+}
+
+.ctaX-info-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 4px;
+  font-family: "Geom", sans-serif;
+}
+
+.ctaX-info-value {
+  font-size: 18px;
+  color: white;
+  font-weight: 600;
+  font-family: "Geom", sans-serif;
+}
+/* Bottom Wave Divider */
+.ctaX-bottom-divider {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.ctaX-bottom-svg {
+  width: 100%;
+  height: 110px;
+  display: block;
+}
+
+.ctaX-wave-fill {
+  fill: rgb(1, 1, 1);
+}
+
+/* doted background texture */
+.ctaX-dotted-bg {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.ctaX-dotted-grid {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.3) 1.5px, transparent 1.5px);
+  background-size: 20px 20px;
+  background-position: center center;
+}
+/* ============================= */
+/* Layout: text left + image right */
+/* ============================= */
+
+.ctaX-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  position: relative;
+  z-index: 5;
+    
+}
+
+/* Left content stays left aligned */
+.ctaX-content-box {
+  text-align: left;
+  flex: 1;
+  
+}
+
+/* Right phone image */
+.ctaX-phone-image-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+/* Make image responsive */
+.ctaX-phone-img {
+  max-width: 100%;
+  height: auto;
+}
+.ctaX-phone-img :hover{
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+}
+
+
+/* ==================== */
+/* Responsive Breakpoint */
+/* ==================== */
+
+@media (max-width: 992px) {
+  .ctaX-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .ctaX-content-box {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .ctaX-phone-image-wrapper {
+    justify-content: center;
+  }
+}

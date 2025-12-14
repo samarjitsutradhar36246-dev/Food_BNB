@@ -1,0 +1,86 @@
+
+/* Section */
+.why-section {
+  background-color: #F9FAFB;
+  text-align: center;
+  padding: 80px 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Header */
+.why-header {
+  max-width: 800px;
+  margin: 0 auto 64px auto;
+}
+
+.section-subtitle {
+  font-size: 1.5rem;
+  color: #ff4c24;
+  font-weight: 600;
+  font-family: "Geom", sans-serif;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 24px;
+  font-weight: 700;
+  font-family: "Geom", sans-serif;
+}
+
+.why-description {
+  color: #717171;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  font-family: "Geom", sans-serif;
+}
+
+/* Grid */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 48px;
+  align-items: start;
+}
+
+/* Card */
+.why-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Icon */
+.feature-icon {
+  width: 64px;
+  height: 64px;
+  background: white;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+}
+/* icon hover effect */
+.feature-icon:hover {
+  box-shadow: 0 6px 16px rgba(203, 85, 85, 0.1);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+  color: #ff4c24;
+}
+
+/* Titles & Text */
+.why-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  font-family: "Geom", sans-serif;
+}
+
+.why-text {
+  font-size: 0.95rem;
+  color: #717171;
+  line-height: 1.6;
+  max-width: 350px;
+  font-family: "Geom", sans-serif;
+}

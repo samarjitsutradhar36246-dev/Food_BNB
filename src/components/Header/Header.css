@@ -1,0 +1,388 @@
+/* HeroSection.css */
+
+.hero-container {
+  position: relative;
+  display: flex;
+  height: 100vh;
+  min-height: max-content;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.hero-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to top, black, transparent);
+}
+
+.hero-content {
+  z-index: 20;
+  display: flex;
+  max-height: 75%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 1rem;
+  /* nudge the hero text slightly downward for better visual spacing */
+  transform: translateY(4.75rem);
+}
+
+.hero-text-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.hero-title {
+  font-size: 8.25rem;
+  margin-bottom: 1.25rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.main-title {
+  font-size: 5em !important;
+  font-family: 'Bungee Tint', cursive !important;
+  color: #ff4c35 !important;
+  text-shadow: 0 0 10px rgba(255, 76, 53, 0.7);
+  transition: font-size 0.3s ease;
+}
+
+.hero-subtitle {
+  font-size: 2.125rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  text-align: center;
+  font-weight: 400;
+}
+
+.hero-subtitle-text {
+  font-weight: bold;
+  font-size: 2.5rem;
+  font-family: "Geom", sans-serif;
+  text-align: center;
+  transition: font-size 0.3s ease;
+}
+
+.hero-subtitle-highlight {
+  color: rgb(255, 76, 53);
+  font-weight: bold;
+  font-size: 1.5rem !important;
+  font-family: "Geom", sans-serif;
+  transition: font-size 0.3s ease;
+}
+
+.hero-buttons {
+  margin: 1rem;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-bottom: -1rem;
+}
+
+.hero-buttons-inner {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 1.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.hero-app-link img {
+  height: 3rem;
+  transition: transform 0.3s;
+}
+
+.hero-app-link img:hover {
+  transform: scale(1.1);
+}
+
+.hero-scroll {
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  animation: bounce 1s infinite;
+}
+
+.hero-scroll-text {
+  font-size: 0.875rem;
+  color: white;
+  font-size: 30px;
+  font-family: "Geom", sans-serif;
+  margin-left: 2rem;
+  margin-top: 4rem;
+}
+
+.hero-scroll-icon {
+  display: inline;
+  margin-left: 1rem;
+  vertical-align: middle;
+}
+.main_icon {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, calc(-50% + 20px));
+  width: 160px;
+  height: 160px;
+  z-index: 30;
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+/* Responsive styles - Mobile First Approach */
+
+/* Extra Small devices (phones, 320px and up) */
+@media (max-width: 480px) {
+  .main_icon {
+    width: 80px;
+    height: 80px;
+  }
+
+  .main-title {
+    font-size: 2em !important;
+  }
+
+  .hero-subtitle-text {
+    font-size: 1rem;
+  }
+
+  .hero-subtitle-highlight {
+    font-size: 1.5rem;
+  }
+
+  .hero-content {
+    transform: translateY(2rem);
+  }
+
+  .hero-scroll-text {
+    font-size: 18px !important;
+    margin-top: 2rem;
+  }
+
+  .hero-app-link img {
+    height: 2.5rem;
+  }
+}
+
+/* Small devices (phones, 481px and up) */
+@media (min-width: 481px) and (max-width: 767px) {
+  .main_icon {
+    width: 100px;
+    height: 100px;
+  }
+
+  .main-title {
+    font-size: 2.5em !important;
+  }
+
+  .hero-subtitle-text {
+    font-size: 1.2rem;
+  }
+
+  .hero-subtitle-highlight {
+    font-size: 2rem;
+  }
+
+  .hero-content {
+    transform: translateY(3rem);
+  }
+
+  .hero-scroll-text {
+    font-size: 22px !important;
+    margin-top: 3rem;
+  }
+
+  .hero-app-link img {
+    height: 2.75rem;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .main_icon {
+    width: 120px;
+    height: 120px;
+  }
+
+  .main-title {
+    font-size: 3em !important;
+  }
+
+  .hero-subtitle-text {
+    font-size: 1.3rem;
+  }
+
+  .hero-subtitle-highlight {
+    font-size: 2.2rem;
+  }
+
+  .hero-content {
+    transform: translateY(4rem);
+  }
+
+  .hero-scroll-text {
+    font-size: 26px !important;
+    margin-top: 3.5rem;
+  }
+
+  .hero-app-link img {
+    height: 3rem;
+  }
+}
+
+/* Large devices (desktops, 1024px and up) */
+@media (min-width: 1024px) {
+  .main_icon {
+    width: 140px;
+    height: 140px;
+  }
+
+  .main-title {
+    font-size: 4em !important;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+  }
+
+  .hero-subtitle-text {
+    font-size: 1.4rem;
+  }
+
+  .hero-subtitle-highlight {
+    font-size: 2.3rem;
+  }
+
+  .hero-app-link img {
+    height: 3.5rem;
+  }
+
+  .hero-content {
+    transform: translateY(4.75rem);
+  }
+}
+
+/* Extra large devices (large desktops, 1280px and up) */
+@media (min-width: 1280px) {
+  .main_icon {
+    width: 160px;
+    height: 160px;
+  }
+
+  .main-title {
+    font-size: 8em !important;
+  }
+
+  .hero-subtitle-text {
+    font-size: 1.5rem;
+  }
+
+  .hero-subtitle-highlight {
+    font-size: 2.5rem;
+  }
+
+  .hero-app-link img {
+    height: 4rem;
+  }
+
+  .hero-scroll-text {
+    font-size: 30px !important;
+  }
+
+  /* slightly larger downward nudge on very wide screens */
+  .hero-content {
+    transform: translateY(10.25rem);
+  }
+}
+
+/* Ultra wide screens (1920px and up) */
+@media (min-width: 1920px) {
+  .main_icon {
+    width: 180px;
+    height: 180px;
+  }
+
+  .main-title {
+    font-size: 8em !important;
+  }
+
+  .hero-subtitle-text {
+    font-size: 1.75rem;
+  }
+
+  .hero-subtitle-highlight {
+    font-size: 3rem;
+  }
+}
+
+/* Bounce animation */
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+
+/* 
+circulat text */
+/* .circular-text{
+  position:absolute;
+  top: 90px; 
+  left: 90px; 
+  width: 150px;
+  height: 150px;
+  animation: rotate 10s linear infinite;
+}
+
+.circular-char {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: 0 0;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 5px rgba(255, 76, 53, 0.5);
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
