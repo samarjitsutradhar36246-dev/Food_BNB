@@ -396,7 +396,7 @@ circulat text */
   }
 
   .main-title {
-    font-size: 2.5em !important;
+    font-size: 7rem !important;
   }
 
   .hero-subtitle-text {
@@ -408,7 +408,7 @@ circulat text */
   }
 
   .hero-content {
-    transform: translateY(1rem);
+    transform: translateY(8rem);
   }
 
   .hero-scroll-text {
