@@ -809,71 +809,8 @@
 }
 
 /* Landscape tablets and small laptops - 1024px+ width, max 700px height */
-@media (min-width: 1024px) and (max-height: 700px) {
-  .ctaX-section {
-    min-height: 500px;
-    padding: 50px 40px 100px;
-  }
-
-  .ctaX-container {
-    gap: 40px;
-  }
-
-  .ctaX-title {
-    font-size: 40px;
-  }
-
-  .ctaX-description {
-    font-size: 16px;
-    max-width: 400px;
-  }
-
-  .ctaX-btn-primary,
-  .ctaX-btn-secondary {
-    padding: 12px 24px;
-    font-size: 14px;
-  }
-
-  .ctaX-btn-icon {
-    width: 18px;
-    height: 18px;
-  }
-
-  .ctaX-phone-img {
-    max-width: 300px;
-  }
-
-  .ctaX-info-card {
-    padding: 12px 20px;
-  }
-
-  .ctaX-info-value {
-    font-size: 16px;
-  }
-
-  .ctaX-floating-icon {
-    padding: 12px;
-  }
-
-  .ctaX-icon {
-    width: 26px;
-    height: 26px;
-  }
-
-  .ctaX-circle-1 {
-    width: 250px;
-    height: 250px;
-  }
-
-  .ctaX-circle-2 {
-    width: 180px;
-    height: 180px;
-  }
-
-  .ctaX-bottom-svg {
-    height: 65px;
-  }
-}
+/* Landscape tablets and small laptops - 1024px+ width, max 700px height */
+/* Landscape tablets and small laptops - 1024px+ width, max 700px height */
 
 /* Small mobile devices */
 @media (max-width: 320px) {
@@ -903,3 +840,59 @@
     height: 50px;
   }
 }
+
+
+/* Surface Duo - 540x720 */
+@media (min-width: 535px) and (max-width: 545px) and (min-height: 715px) and (max-height: 725px) {
+  .ctaX-section {
+    min-height: 580px;
+    padding: 55px 28px 100px;
+  }
+
+  .ctaX-title {
+    font-size: 38px;
+  }
+
+  .ctaX-description {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .ctaX-btn-primary,
+  .ctaX-btn-secondary {
+    padding: 14px 28px;
+    font-size: 15px;
+  }
+
+  .ctaX-btn-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .ctaX-info-card {
+    padding: 14px 20px;
+  }
+
+  .ctaX-info-value {
+    font-size: 16px;
+  }
+
+  .ctaX-phone-img {
+    max-width: 350px;
+  }
+
+  .ctaX-floating-icon {
+    padding: 14px;
+  }
+
+  .ctaX-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .ctaX-bottom-svg {
+    height: 68px;
+  }
+}
+
+
