@@ -352,3 +352,554 @@
     justify-content: center;
   }
 }
+
+
+
+
+/* Tablet and Desktop */
+@media (min-width: 768px) {
+  .ctaX-section {
+    padding: 100px 40px 120px;
+  }
+
+  .ctaX-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+  }
+
+  .ctaX-buttons {
+    flex-direction: row;
+  }
+
+  .ctaX-btn-primary,
+  .ctaX-btn-secondary {
+    width: auto;
+  }
+}
+
+/* Large Desktop */
+@media (min-width: 1024px) {
+  .ctaX-section {
+    min-height: 700px;
+  }
+
+  .ctaX-title {
+    font-size: 56px;
+  }
+
+  .ctaX-description {
+    font-size: 20px;
+  }
+}
+
+/* iPhone SE - 375x667 */
+@media (max-width: 375px) and (max-height: 667px) {
+  .ctaX-section {
+    min-height: 500px;
+    padding: 40px 16px 100px;
+  }
+
+  .ctaX-title {
+    font-size: 32px;
+  }
+
+  .ctaX-description {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .ctaX-btn-primary,
+  .ctaX-btn-secondary {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+
+  .ctaX-btn-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .ctaX-info-card {
+    padding: 12px 16px;
+  }
+
+  .ctaX-info-label {
+    font-size: 10px;
+  }
+
+  .ctaX-info-value {
+    font-size: 14px;
+  }
+
+  .ctaX-phone-img {
+    max-width: 280px;
+  }
+
+  .ctaX-floating-icon {
+    padding: 12px;
+  }
+
+  .ctaX-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .ctaX-circle-1 {
+    width: 200px;
+    height: 200px;
+  }
+
+  .ctaX-circle-2 {
+    width: 150px;
+    height: 150px;
+  }
+
+  .ctaX-bottom-svg {
+    height: 60px;
+  }
+}
+
+/* iPhone XR / 11 - 414x896 */
+@media (min-width: 376px) and (max-width: 414px) and (min-height: 800px) {
+  .ctaX-section {
+    min-height: 550px;
+    padding: 50px 20px 100px;
+  }
+
+  .ctaX-title {
+    font-size: 36px;
+  }
+
+  .ctaX-description {
+    font-size: 15px;
+  }
+
+  .ctaX-btn-primary,
+  .ctaX-btn-secondary {
+    padding: 14px 28px;
+    font-size: 15px;
+  }
+
+  .ctaX-phone-img {
+    max-width: 320px;
+  }
+
+  .ctaX-bottom-svg {
+    height: 65px;
+  }
+}
+
+/* iPhone 12/13 - 390x844 */
+@media (min-width: 385px) and (max-width: 395px) and (min-height: 840px) {
+  .ctaX-section {
+    min-height: 550px;
+    padding: 50px 20px 100px;
+  }
+
+  .ctaX-title {
+    font-size: 38px;
+  }
+
+  .ctaX-description {
+    font-size: 16px;
+  }
+
+  .ctaX-btn-primary,
+  .ctaX-btn-secondary {
+    padding: 14px 28px;
+    font-size: 15px;
+  }
+
+  .ctaX-phone-img {
+    max-width: 330px;
+  }
+
+  .ctaX-bottom-svg {
+    height: 65px;
+  }
+}
+
+/* iPhone 14 Pro Max - 430x932 */
+@media (min-width: 425px) and (max-width: 430px) and (min-height: 925px) {
+  .ctaX-section {
+    min-height: 600px;
+    padding: 60px 24px 100px;
+  }
+
+  .ctaX-title {
+    font-size: 40px;
+  }
+
+  .ctaX-description {
+    font-size: 16px;
+  }
+
+  .ctaX-btn-primary,
+  .ctaX-btn-secondary {
+    padding: 15px 30px;
+    font-size: 16px;
+  }
+
+  .ctaX-phone-img {
+    max-width: 350px;
+  }
+
+  .ctaX-bottom-svg {
+    height: 70px;
+  }
+}
+
+/* Samsung Galaxy S8+ - 360x740 */
+@media (max-width: 360px) and (min-height: 700px) and (max-height: 750px) {
+  .ctaX-section {
+    min-height: 480px;
+    padding: 40px 16px 90px;
+  }
+
+  .ctaX-title {
+    font-size: 30px;
+  }
+
+  .ctaX-description {
+    font-size: 14px;
+  }
+
+  .ctaX-btn-primary,
+  .ctaX-btn-secondary {
+    padding: 12px 20px;
+    font-size: 13px;
+  }
+
+  .ctaX-btn-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .ctaX-info-card {
+    padding: 10px 14px;
+  }
+
+  .ctaX-info-value {
+    font-size: 14px;
+  }
+
+  .ctaX-phone-img {
+    max-width: 260px;
+  }
+
+  .ctaX-bottom-svg {
+    height: 55px;
+  }
+}
+
+/* Samsung Galaxy S20 Ultra - 412x915 */
+@media (min-width: 411px) and (max-width: 415px) and (min-height: 900px) {
+  .ctaX-section {
+    min-height: 580px;
+    padding: 55px 22px 100px;
+  }
+
+  .ctaX-title {
+    font-size: 39px;
+  }
+
+  .ctaX-description {
+    font-size: 16px;
+  }
+
+  .ctaX-btn-primary,
+  .ctaX-btn-secondary {
+    padding: 15px 30px;
+    font-size: 15px;
+  }
+
+  .ctaX-phone-img {
+    max-width: 340px;
+  }
+
+  .ctaX-bottom-svg {
+    height: 68px;
+  }
+}
+
+/* iPad Air - 820x1180 */
+@media (min-width: 768px) and (max-width: 834px) and (min-height: 1000px) {
+  .ctaX-section {
+    min-height: 650px;
+    padding: 80px 40px 120px;
+  }
+
+  .ctaX-container {
+    gap: 50px;
+  }
+
+  .ctaX-title {
+    font-size: 50px;
+  }
+
+  .ctaX-description {
+    font-size: 18px;
+    max-width: 450px;
+  }
+
+  .ctaX-phone-img {
+    max-width: 380px;
+  }
+
+  .ctaX-bottom-svg {
+    height: 75px;
+  }
+}
+
+/* Surface Pro 7 - 912x1368 */
+@media (min-width: 900px) and (max-width: 920px) and (min-height: 1300px) {
+  .ctaX-section {
+    min-height: 700px;
+    padding: 90px 50px 120px;
+  }
+
+  .ctaX-title {
+    font-size: 52px;
+  }
+
+  .ctaX-description {
+    font-size: 19px;
+    max-width: 480px;
+  }
+
+  .ctaX-phone-img {
+    max-width: 400px;
+  }
+
+  .ctaX-bottom-svg {
+    height: 80px;
+  }
+}
+
+/* Galaxy Z Fold 5 - 768x872 */
+@media (min-width: 760px) and (max-width: 780px) and (min-height: 840px) and (max-height: 920px) {
+  .ctaX-section {
+    min-height: 620px;
+    padding: 70px 35px 110px;
+  }
+
+  .ctaX-title {
+    font-size: 46px;
+  }
+
+  .ctaX-description {
+    font-size: 17px;
+  }
+
+  .ctaX-phone-img {
+    max-width: 360px;
+  }
+
+  .ctaX-bottom-svg {
+    height: 72px;
+  }
+}
+
+/* Asus Zenbook Fold - 853x1280 */
+@media (min-width: 853px) and (max-width: 853px) and (min-height: 1280px) {
+  .ctaX-section {
+    min-height: 680px;
+    padding: 85px 45px 120px;
+  }
+
+  .ctaX-title {
+    font-size: 51px;
+  }
+
+  .ctaX-description {
+    font-size: 18px;
+  }
+
+  .ctaX-phone-img {
+    max-width: 390px;
+  }
+
+  .ctaX-bottom-svg {
+    height: 78px;
+  }
+}
+
+/* iPad Pro 12.9" - 1024x1366 */
+@media (min-width: 1020px) and (max-width: 1030px) and (min-height: 1360px) {
+  .ctaX-section {
+    min-height: 750px;
+    padding: 100px 60px 130px;
+  }
+
+  .ctaX-title {
+    font-size: 54px;
+  }
+
+  .ctaX-description {
+    font-size: 20px;
+    max-width: 520px;
+  }
+
+  .ctaX-phone-img {
+    max-width: 420px;
+  }
+
+  .ctaX-bottom-svg {
+    height: 85px;
+  }
+}
+
+/* Nest Hub - 1024x600 */
+@media (min-width: 1020px) and (max-width: 1030px) and (min-height: 595px) and (max-height: 605px) {
+  .ctaX-section {
+    min-height: 500px;
+    padding: 60px 40px 100px;
+  }
+
+  .ctaX-title {
+    font-size: 42px;
+  }
+
+  .ctaX-description {
+    font-size: 16px;
+    max-width: 420px;
+  }
+
+  .ctaX-phone-img {
+    max-width: 300px;
+  }
+
+  .ctaX-bottom-svg {
+    height: 65px;
+  }
+
+  .ctaX-floating-icon {
+    padding: 14px;
+  }
+
+  .ctaX-icon {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Nest Hub Max - 1280x800 */
+@media (min-width: 1275px) and (max-width: 1285px) and (min-height: 795px) and (max-height: 805px) {
+  .ctaX-section {
+    min-height: 650px;
+    padding: 80px 50px 120px;
+  }
+
+  .ctaX-title {
+    font-size: 50px;
+  }
+
+  .ctaX-description {
+    font-size: 18px;
+    max-width: 480px;
+  }
+
+  .ctaX-phone-img {
+    max-width: 380px;
+  }
+
+  .ctaX-bottom-svg {
+    height: 75px;
+  }
+}
+
+/* Landscape tablets and small laptops - 1024px+ width, max 700px height */
+@media (min-width: 1024px) and (max-height: 700px) {
+  .ctaX-section {
+    min-height: 500px;
+    padding: 50px 40px 100px;
+  }
+
+  .ctaX-container {
+    gap: 40px;
+  }
+
+  .ctaX-title {
+    font-size: 40px;
+  }
+
+  .ctaX-description {
+    font-size: 16px;
+    max-width: 400px;
+  }
+
+  .ctaX-btn-primary,
+  .ctaX-btn-secondary {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+
+  .ctaX-btn-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .ctaX-phone-img {
+    max-width: 300px;
+  }
+
+  .ctaX-info-card {
+    padding: 12px 20px;
+  }
+
+  .ctaX-info-value {
+    font-size: 16px;
+  }
+
+  .ctaX-floating-icon {
+    padding: 12px;
+  }
+
+  .ctaX-icon {
+    width: 26px;
+    height: 26px;
+  }
+
+  .ctaX-circle-1 {
+    width: 250px;
+    height: 250px;
+  }
+
+  .ctaX-circle-2 {
+    width: 180px;
+    height: 180px;
+  }
+
+  .ctaX-bottom-svg {
+    height: 65px;
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 320px) {
+  .ctaX-section {
+    padding: 30px 12px 80px;
+  }
+
+  .ctaX-title {
+    font-size: 28px;
+  }
+
+  .ctaX-description {
+    font-size: 13px;
+  }
+
+  .ctaX-btn-primary,
+  .ctaX-btn-secondary {
+    padding: 10px 18px;
+    font-size: 13px;
+  }
+
+  .ctaX-phone-img {
+    max-width: 240px;
+  }
+
+  .ctaX-bottom-svg {
+    height: 50px;
+  }
+}
