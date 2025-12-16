@@ -1,4 +1,3 @@
-/* Full page setup */
 html,
 body,
 #root {
@@ -512,4 +511,13 @@ body,
   .gold-tagline {
     font-size: 1rem;
   }
+}
+
+
+.gold-content, 
+.gold-content * {
+  user-select: none;        /* Standard */
+  -webkit-user-select: none; /* Chrome/Safari */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* IE/Edge */
 }

@@ -7,6 +7,12 @@
     'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
     'Cantarell', sans-serif;
   text-align: left; /* FIXED — left align all columns */
+   position: relative;   /* ensure it’s in normal flow */
+  bottom: 0;            /* optional, aligns footer to bottom if content is short */
+  width: 100%;          /* full width */
+  margin: 0;            /* remove any external margin */
+  padding: 60px 0 50px; /* keep your desired padding */
+  box-sizing: border-box;
 }
 
 /* WIDE LEFT & RIGHT SPACE */
@@ -317,3 +323,18 @@
     max-width: 80px;
   }
 }
+
+
+/* block copy */
+.footer {
+  user-select: none;       /* Prevent text selection */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.footer a {
+  user-select: none;
+  pointer-events: auto;    /* still allow clicks */
+}
+

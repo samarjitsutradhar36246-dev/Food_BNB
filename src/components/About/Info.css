@@ -419,3 +419,15 @@
   color: #777;
   font-family: "Geom", sans-serif;
 }
+
+
+/* Prevent text selection for the entire Info component */
+.heroX-wrapper,
+.heroX-wrapper *,
+.storyX-section,
+.storyX-section * {
+  user-select: none;        /* Standard */
+  -webkit-user-select: none; /* Chrome/Safari */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* IE/Edge */
+}
