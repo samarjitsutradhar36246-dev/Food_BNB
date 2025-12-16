@@ -128,6 +128,8 @@
   max-width: 900px;
   line-height: 1.6;
   font-family: "Geom", sans-serif;
+   word-wrap: break-word;
+  overflow-wrap: anywhere;
 }
 
 /* App Store Badges */
@@ -205,6 +207,7 @@
 
   .footer-social,
   .footer-app-badge-container {
+     flex-wrap: wrap;  /* allow badges to wrap to next line */
     justify-content: center;
   }
 }
@@ -231,4 +234,86 @@
   color: #fff;
   transform: scale(1.1);
   transition: 0.2s ease;
+}
+@media (max-width: 480px) {
+  .footer-bottom p {
+    font-size: 10px;      /* smaller text */
+    max-width: 280px;     /* more narrow container */
+    padding: 0 10px;      /* padding for breathing room */
+    text-align: center;    /* keeps it centered */
+  }
+}
+@media (max-width: 900px) {
+  .footer-app-badge {
+    max-width: 120px;  /* force maximum width */
+    height: auto;      /* maintain aspect ratio */
+    margin: 5px 8px;   /* some spacing */
+  }
+}
+
+
+
+/* Tablets & small desktops */
+@media (max-width: 1200px) {
+  .footer-app-badge {
+    max-width: 110px;  /* smaller on tablets */
+    height: auto;
+    margin: 5px 8px;
+  }
+
+  .footer-app-badge-container {
+    flex-wrap: wrap;   /* allow wrapping if needed */
+    justify-content: center;
+  }
+}
+
+/* Smaller tablets / portrait */
+@media (max-width: 900px) {
+  .footer-app-badge {
+    max-width: 100px;
+  }
+}
+
+/* Large phones */
+@media (max-width: 600px) {
+  .footer-app-badge {
+    max-width: 90px;
+  }
+}
+/* UNIVERSAL FLEX WRAP for badges */
+.footer-app-badge-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Extra large tablets / small desktops (up to ~1400px) */
+@media (max-width: 1400px) {
+  .footer-app-badge {
+    max-width: 115px;
+    height: auto;
+    margin: 4px 6px;
+  }
+}
+
+/* Medium tablets / landscape phones (up to ~1100px) */
+@media (max-width: 1100px) {
+  .footer-app-badge {
+    max-width: 100px;
+  }
+}
+
+/* Smaller tablets / large phones */
+@media (max-width: 850px) {
+  .footer-app-badge {
+    max-width: 90px;
+  }
+}
+
+/* Phones */
+@media (max-width: 600px) {
+  .footer-app-badge {
+    max-width: 80px;
+  }
 }
