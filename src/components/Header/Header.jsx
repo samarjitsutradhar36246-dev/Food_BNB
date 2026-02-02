@@ -11,9 +11,9 @@ const Header = () => (
   <div className="hero-container">
     {/* Logo at top left */}
     <img src={foodbnb} alt="FoodBNB Logo" className="main_icon" />
-      
-      {/* Circular Text around Logo */}
-      {/* <div className="circular-text">
+
+    {/* Circular Text around Logo */}
+    {/* <div className="circular-text">
         {"FOODBNB * FOODBNB * FOODBNB * FOODBNB * "
           .split("")
           .map((char, index) => (
@@ -29,7 +29,6 @@ const Header = () => (
           ))}
       </div> */}
 
-
     {/* Video Background */}
     <video autoPlay loop muted className="hero-video">
       <source src={intro} type="video/mp4" />
@@ -44,8 +43,8 @@ const Header = () => (
         <h1 className="hero-title main-title">FoodBNB</h1>
 
         <div className="hero-subtitle-text">
-          Taste the <span className=" hero-subtitle-highlight  ">comfort</span> of Home
-          
+          Taste the <span className=" hero-subtitle-highlight  ">comfort</span>{" "}
+          of Home
         </div>
       </div>
 
@@ -55,16 +54,14 @@ const Header = () => (
             href="#"
             target="_blank"
             rel="noopener noreferrer"
-            className="hero-app-link"
-          >
+            className="hero-app-link">
             <img src={play_store} alt="Google Play" />
           </a>
           <a
             href="#"
             target="_blank"
             rel="noopener noreferrer"
-            className="hero-app-link"
-          >
+            className="hero-app-link">
             <img src={app_store} alt="App Store" />
           </a>
         </div>

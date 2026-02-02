@@ -98,10 +98,10 @@ export default function OrbitingSection() {
   return (
     <div className="w-full select-none">
       {/* Hero Section with Orbiting Food */}
-      <section className="relative min-h-[650px] lg:min-h-[750px] xl:min-h-[800px] bg-slate-50 overflow-hidden border-b border-gray-200 flex flex-col justify-center items-center px-4">
+      <section className="relative min-h-162.5 lg:min-h-187.5 xl:min-h-200 bg-slate-50 overflow-hidden border-b border-gray-200 flex flex-col justify-center items-center px-4">
         {/* Orbiting Container - with proper containment */}
         <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
-          <div className="relative w-full h-full max-w-[900px] max-h-[900px] flex justify-center items-center">
+          <div className="relative w-full h-full max-w-225 max-h-225 flex justify-center items-center">
             {/* Guide Ring */}
             <div
               className="absolute border border-dashed border-gray-300/50 rounded-full"
@@ -109,8 +109,28 @@ export default function OrbitingSection() {
                 width: "min(700px, 85vw, 85vh)",
                 height: "min(700px, 85vw, 85vh)",
               }}
+              z-10
             />
+            {/* Center Content - with proper text wrapping and overflow prevention */}
+            <div
+              className="relative z-10 max-w-md sm:max-w-lg px-4 sm:px-6 text-center"
+              z-5>
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 leading-tight mb-3 sm:mb-4 md:mb-6">
+                "Better food for <br />
+                <span className="text-red-500">more people"</span>
+              </h1>
 
+              <div className="flex justify-center px-2 sm:px-4">
+                <div className="w-full max-w-xs sm:max-w-sm md:max-w-md">
+                  <p className="text-xs sm:text-sm md:text-base font-bold text-black/60 min-h-[3rem] sm:min-h-[3.5rem] break-words text-center leading-relaxed px-2">
+                    <span className="inline-block max-w-full break-words">
+                      {displayedText}
+                      <span className="animate-pulse ml-0.5">|</span>
+                    </span>
+                  </p>
+                </div>
+              </div>
+            </div>
             {/* Orbiting Food Items */}
             {FOOD_ITEMS.map((item, index) => {
               const delay = -(60 / FOOD_ITEMS.length) * index;
@@ -126,7 +146,7 @@ export default function OrbitingSection() {
                       transform: `translate(-50%, -50%) translateX(min(350px, 42.5vw, 42.5vh))`,
                     }}>
                     <div
-                      className="w-[55px] h-[55px] sm:w-[65px] sm:h-[65px] md:w-[75px] md:h-[75px] lg:w-[85px] lg:h-[85px] bg-white rounded-lg shadow-lg border border-gray-100 flex items-center justify-center p-1.5 sm:p-2 md:p-2.5 transition-transform hover:scale-110 animate-counter-orbit"
+                      className="w-13.75 h-13.75 sm:w-16.25 sm:h-16.25 md:w-18.75 md:h-18.75 lg:w-21.25 lg:h-21.25 bg-white rounded-lg shadow-lg border border-gray-100 flex items-center justify-center p-1.5 sm:p-2 md:p-2.5 transition-transform hover:scale-110 animate-counter-orbit"
                       style={{ animationDelay: `${delay}s` }}>
                       <img
                         src={item.src}
@@ -141,26 +161,9 @@ export default function OrbitingSection() {
           </div>
         </div>
 
-        {/* Center Content - with better text wrapping */}
-        <div className="relative z-10 max-w-2xl px-4 sm:px-6 text-center">
-          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 leading-tight mb-3 sm:mb-4 md:mb-6">
-            "Better food for <br />
-            <span className="text-red-500">more people"</span>
-          </h1>
-
-          <div className="flex justify-center px-2">
-            <p className="text-xs sm:text-sm md:text-base lg:text-lg font-bold text-black/60 min-h-[50px] sm:min-h-[55px] md:min-h-[60px] max-w-[280px] sm:max-w-[350px] md:max-w-[420px] break-words">
-              <span className="inline-block">
-                {displayedText}
-                <span className="animate-pulse ml-0.5">|</span>
-              </span>
-            </p>
-          </div>
-        </div>
-
         {/* Fade Gradients */}
-        <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-slate-50 to-transparent pointer-events-none z-20" />
-        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-slate-50 to-transparent pointer-events-none z-20" />
+        <div className="absolute top-0 left-0 w-full h-32 bg-linear-to-b from-slate-50 to-transparent pointer-events-none z-20" />
+        <div className="absolute bottom-0 left-0 w-full h-32 bg-linear-to-t from-slate-50 to-transparent pointer-events-none z-20" />
       </section>
 
       {/* How It Works Section */}
@@ -206,7 +209,7 @@ export default function OrbitingSection() {
                 <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
                   {step.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-gray-600 max-w-[220px] leading-relaxed">
+                <p className="text-xs sm:text-sm text-gray-600 max-w-55 leading-relaxed">
                   {step.desc}
                 </p>
               </div>
