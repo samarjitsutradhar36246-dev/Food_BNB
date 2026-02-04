@@ -187,20 +187,17 @@ export default function OrbitingSection() {
             {STEPS.map((step, index) => (
               <div
                 key={index}
-                className="relative flex flex-col items-center text-center flex-1 px-4 z-10">
+                className="relative flex flex-col items-center text-center flex-1 px-4 z-10 group">
                 {/* Image Wrapper */}
                 <div className="relative w-32 h-32 sm:w-40 sm:h-40 mb-6 transition-transform hover:-translate-y-1">
                   <img
                     src={step.image}
                     alt={step.title}
-                    className="w-full h-full object-cover rounded-full shadow-lg border-4 border-white"
+                    className="w-full h-full object-cover rounded-full shadow-lg  border-white  hover: border-4  hover:border-red-500"
                   />
 
                   {/* Step Badge */}
-                  <div
-                    className={`absolute -bottom-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full flex items-center justify-center font-bold text-white text-sm border-3 border-white shadow-md ${
-                      index === 3 ? "bg-red-500" : "bg-gray-900"
-                    }`}>
+                  <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full flex items-center justify-center font-bold text-white text-sm border-3 border-white shadow-md bg-gray-900 group-hover:bg-red-500 transition-colors duration-300">
                     {index + 1}
                   </div>
                 </div>
