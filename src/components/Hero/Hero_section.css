@@ -1,1 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Moon+Dance&family=Story+Script&display=swap');
 @import "tailwindcss";
+@theme{
+    --font-storyScript:"Story Script", sans-serif;
+}

@@ -34,7 +34,7 @@ const ROTATING_TEXTS = [
   "Meals that feel like a hug💝",
   "Flavours that remind you of home.",
   "Meals that make a new city feel familiar",
-  "Eat just not to fill your stomach, but to celebrate heart!",
+  "Eat to Celebrate, Not Just Fill.",
   "Made with Love",
   "Support a kitchen, nourish your soul",
   "Always Fresh, Always Delicious",
@@ -109,15 +109,12 @@ export default function OrbitingSection() {
                 width: "min(700px, 85vw, 85vh)",
                 height: "min(700px, 85vw, 85vh)",
               }}
-              z-10
             />
             {/* Center Content - with proper text wrapping and overflow prevention */}
-            <div
-              className="relative z-10 max-w-md sm:max-w-lg px-4 sm:px-6 text-center"
-              z-5>
-              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 leading-tight mb-3 sm:mb-4 md:mb-6">
-                "Better food for <br />
-                <span className="text-red-500">more people"</span>
+            <div className="relative z-10 max-w-md sm:max-w-lg px-4 sm:px-6 text-center">
+              <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 leading-tight mb-3 sm:mb-4 md:mb-6 font-storyScript">
+                Food that brings <br />
+                <span className="text-red-500">us together</span>
               </h1>
 
               <div className="flex justify-center px-2 sm:px-4">
