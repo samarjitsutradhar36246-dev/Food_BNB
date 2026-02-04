@@ -59,11 +59,11 @@ function Footer() {
               For Our Partners
             </h3>
             <div className="flex flex-col gap-1.25 items-start font-['Geom',sans-serif]">
-              <a
-                href="#"
+              <Link
+                to="/partners"
                 className="text-sm text-white no-underline transition-colors duration-200 hover:text-[#ef4f5f] select-none pointer-events-auto max-[600px]:text-sm">
-                Partner With Us
-              </a>
+                Partners
+              </Link>
               <a
                 href="#"
                 className="text-sm text-white no-underline transition-colors duration-200 hover:text-[#ef4f5f] select-none pointer-events-auto max-[600px]:text-sm">
