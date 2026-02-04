@@ -34,22 +34,22 @@ const Premium = () => (
 
     <img
       src="/Coins_4.png"
-      className="coin-top-left rotate-45 contrast-125 w-100 "
+      className="coin-top-left rotate-45 contrast-125 w-100  saturate-130"
       alt="coin"
     />
     <img
       src="/Coins_2.png"
-      className="coin-top-right rotate-[-45deg] contrast-125 "
+      className="coin-top-right rotate-[-45deg] contrast-125 saturate-150 "
       alt="coin"
     />
     <img
       src="/Coins_2.png"
-      className="coin-bottom-left rotate-20 contrast-125"
+      className="coin-bottom-left rotate-20 contrast-125 saturate-150"
       alt="coin"
     />
     <img
       src="/Coins_1.png"
-      className="coin-bottom-right contrast-125 rotate-[-25deg]"
+      className="coin-bottom-right contrast-125 rotate-[-25deg] saturate-150"
       alt="coin"
     />
 
@@ -81,7 +81,7 @@ const Premium = () => (
         </div>
       </div>
 
-      <div className="gold-premium-text">PREMIUM</div>
+      <div className="gold-premium-text saturate-150 contrast-125">PREMIUM</div>
 
       <div className="gold-tagline">
         AUTHENTIC HOME-COOKED MEALS. IDEAL FOR STUDENTS AND PROFESSIONALS
@@ -93,7 +93,7 @@ const Premium = () => (
         <div className="gold-benefit-card">
           <img
             src="https://b.zmtcdn.com/data/o2_assets/bc9d2a579285cbdaa101b8fe2ba68f601741779645.png"
-            className="gold-benefit-icon"
+            className="gold-benefit-icon saturate-150 contrast-125"
             alt="Free Delivery"
           />
           <div>
@@ -104,7 +104,7 @@ const Premium = () => (
         <div className="gold-benefit-card">
           <img
             src="https://b.zmtcdn.com/data/o2_assets/d668ed26c7d4771318d0aa03b3f905e71741779899.png"
-            className="gold-benefit-icon"
+            className="gold-benefit-icon saturate-150 contrast-125"
             alt="Extra Off"
           />
           <div>
