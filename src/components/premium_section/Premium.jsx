@@ -5,19 +5,17 @@ import logo from "../../assets/foodbnb1.svg";
 
 const Premium = () => (
   <div className="gold-container">
-
     {/* doted background texture */}
-      <div className="ctaX-dotted-bg">
-        <div className="ctaX-dotted-grid"></div>
-      </div>
+    <div className="ctaX-dotted-bg">
+      <div className="ctaX-dotted-grid"></div>
+    </div>
 
     {/* Curved Header SVG */}
     <div className="s-page">
       <svg
         className="s-curve"
         viewBox="0 0 1440 800"
-        preserveAspectRatio="none"
-      >
+        preserveAspectRatio="none">
         <path
           d="
             M0,200
@@ -33,10 +31,27 @@ const Premium = () => (
     </div>
 
     {/* Coins */}
-    <img src="/Coins_4.png" className="coin-top-left" alt="coin" />
-    <img src="/Coins_2.png" className="coin-top-right" alt="coin" />
-    <img src="/Coins_2.png" className="coin-bottom-left" alt="coin" />
-    <img src="/Coins_1.png" className="coin-bottom-right" alt="coin" />
+
+    <img
+      src="/Coins_4.png"
+      className="coin-top-left rotate-45 contrast-125 w-100 "
+      alt="coin"
+    />
+    <img
+      src="/Coins_2.png"
+      className="coin-top-right rotate-[-45deg] contrast-125 "
+      alt="coin"
+    />
+    <img
+      src="/Coins_2.png"
+      className="coin-bottom-left rotate-20 contrast-125"
+      alt="coin"
+    />
+    <img
+      src="/Coins_1.png"
+      className="coin-bottom-right contrast-125 rotate-[-25deg]"
+      alt="coin"
+    />
 
     <div className="gold-content">
       {/* Logo with rotating circular text */}
@@ -50,7 +65,8 @@ const Premium = () => (
           </defs>
           <text>
             <textPath href="#circlePath" startOffset="0%">
-              FoodBNB * FoodBNB * FoodBNB * FoodBNB * FoodBNB * FoodBNB * FoodBNB * FoodBNB *
+              FoodBNB * FoodBNB * FoodBNB * FoodBNB * FoodBNB * FoodBNB *
+              FoodBNB * FoodBNB *
             </textPath>
           </text>
         </svg>

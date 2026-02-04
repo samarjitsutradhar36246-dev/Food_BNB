@@ -54,7 +54,7 @@ function Footer() {
           </div>
 
           {/* For Delivery Partners Section */}
-          <div className="flex-[1_1_200px] min-w-45 flex flex-col items-start">
+          <div className="flex-[1_1_200px] min-w-45 flex flex-col items-start ">
             <h3 className="text-sm font-semibold text-white mb-2 uppercase tracking-[1px] font-['Geom',sans-serif] max-[600px]:text-[17px]">
               For Our Partners
             </h3>
