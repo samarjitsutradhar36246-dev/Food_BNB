@@ -8,8 +8,11 @@ import App_moto from "./components/App_moto/App_moto.jsx";
 import CTASection from "./components/CTASection/CTASection.jsx";
 import Info from "./components/About/Info.jsx";
 import PrivacyPolicy from "./components/Moms_Kitchen/PrivacyPolicy.jsx";
-import TermsAndConditions from "./components/Term_and_Condition/TermAndConditions.jsx"; // Your existing Terms & Conditions page
-
+import TermsAndConditions from "./components/Term_and_Condition/TermAndConditions.jsx";
+import FoodbnbSecurity from "./components/Security/Security.jsx";
+import FraudReportPage from "./components/FraudReport/FraudReportPage.jsx";
+import FoodBnBBlog from "./components/Blog/Blog.jsx";
+import Partners from "./components/Partners/Partners.jsx";
 // Home Page Component
 function HomePage() {
   return (
@@ -32,6 +35,10 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-conditions" element={<TermsAndConditions />} />
+        <Route path="/security" element={<FoodbnbSecurity />} />
+        <Route path="/report-fraud" element={<FraudReportPage />} />
+        <Route path="/blog" element={<FoodBnBBlog />} /> {/* Add this route */}
+        <Route path="/partners" element={<Partners />} />
       </Routes>
     </Router>
   );

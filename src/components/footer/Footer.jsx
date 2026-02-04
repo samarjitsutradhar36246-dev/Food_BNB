@@ -38,13 +38,13 @@ function Footer() {
   }, []);
 
   return (
-    <footer className="bg-[#111827] border-t border-[#e8e8e8] pt-[60px] pb-[50px] font-sans text-left relative bottom-0 w-full m-0 box-border select-none">
-      <div className="max-w-[1200px] mx-auto px-0 lg:px-[30px]">
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(100px,0.5fr))] gap-x-[10px] gap-y-[1px] justify-items-start mb-[25px] max-md:grid-cols-[repeat(auto-fit,minmax(120px,1fr))] max-md:gap-y-3 max-[480px]:grid-cols-1 max-[900px]:*:flex-[1_1_100%] max-[900px]:*:text-center">
+    <footer className="bg-[#111827] border-t border-[#e8e8e8] pt-15 pb-12.5 font-sans text-left relative bottom-0 w-full m-0 box-border select-none">
+      <div className="max-w-300 mx-auto px-0 lg:px-7.5">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(100px,0.5fr))] gap-x-2.5 gap-y-px justify-items-start mb-6.25 max-md:grid-cols-[repeat(auto-fit,minmax(120px,1fr))] max-md:gap-y-3 max-[480px]:grid-cols-1 max-[900px]:*:flex-[1_1_100%] max-[900px]:*:text-center">
           {/* Brand Section */}
-          <div className="flex-[1_1_200px] min-w-[180px] flex flex-col items-start">
+          <div className="flex-[1_1_200px] min-w-45 flex flex-col items-start">
             <div>
-              <h1 className="text-[28px] font-bold text-[#ef4f5f] mt-[5px] mb-0 font-['Geom',sans-serif] max-md:text-2xl max-[480px]:text-[22px] max-[600px]:text-2xl">
+              <h1 className="text-[28px] font-bold text-[#ef4f5f] mt-1.25 mb-0 font-['Geom',sans-serif] max-md:text-2xl max-[480px]:text-[22px] max-[600px]:text-2xl">
                 FoodBNB
               </h1>
               <p className="text-xl font-normal text-white m-0 leading-[1.3] font-['Geom',sans-serif] max-md:text-lg max-[480px]:text-base">
@@ -54,11 +54,11 @@ function Footer() {
           </div>
 
           {/* For Delivery Partners Section */}
-          <div className="flex-[1_1_200px] min-w-[180px] flex flex-col items-start">
+          <div className="flex-[1_1_200px] min-w-45 flex flex-col items-start">
             <h3 className="text-sm font-semibold text-white mb-2 uppercase tracking-[1px] font-['Geom',sans-serif] max-[600px]:text-[17px]">
-              For Delivery Partners
+              For Our Partners
             </h3>
-            <div className="flex flex-col gap-[5px] items-start font-['Geom',sans-serif]">
+            <div className="flex flex-col gap-1.25 items-start font-['Geom',sans-serif]">
               <a
                 href="#"
                 className="text-sm text-white no-underline transition-colors duration-200 hover:text-[#ef4f5f] select-none pointer-events-auto max-[600px]:text-sm">
@@ -110,11 +110,11 @@ function Footer() {
                 )}
               </div>
 
-              <a
-                href="#"
+              <Link
+                to="/security"
                 className="text-sm text-white no-underline transition-colors duration-200 hover:text-[#ef4f5f] select-none pointer-events-auto max-[600px]:text-sm">
                 Security
-              </a>
+              </Link>
 
               {/* Terms & Conditions with Dropdown */}
               <div className="relative w-full" ref={termsDropdownRef}>
@@ -156,16 +156,21 @@ function Footer() {
               Help & Support
             </h3>
             <div className="flex flex-col gap-[5px] items-start font-['Geom',sans-serif]">
-              <a
-                href="#"
+              <Link
+                to="/report-fraud"
                 className="text-sm text-white no-underline transition-colors duration-200 hover:text-[#ef4f5f] select-none pointer-events-auto max-[600px]:text-sm">
                 Report a Fraud
-              </a>
-              <a
-                href="#"
+              </Link>
+              <Link
+                to="/blog"
                 className="text-sm text-white no-underline transition-colors duration-200 hover:text-[#ef4f5f] select-none pointer-events-auto max-[600px]:text-sm">
                 Blog
-              </a>
+              </Link>
+              <Link
+                to="/partners"
+                className="text-sm text-white no-underline transition-colors duration-200 hover:text-[#ef4f5f] select-none pointer-events-auto max-[600px]:text-sm">
+                Partners
+              </Link>
             </div>
           </div>
 

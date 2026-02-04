@@ -151,7 +151,7 @@ export default function OrbitingSection() {
                       <img
                         src={item.src}
                         alt={item.name}
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-contain contrast-120 shadow-lg shadow-slate-500"
                       />
                     </div>
                   </div>
