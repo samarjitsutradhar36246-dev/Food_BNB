@@ -37,7 +37,7 @@ const CTASection = () => {
   }, []);
 
   return (
-    <section className="relative -mt-12 overflow-hidden no-select">
+    <section className="relative -mt-12 overflow-hidden no-select border-b-0 border-black">
       {/* Dotted background */}
       <div className="absolute inset-0 w-full h-full pointer-events-none z-[1]">
         <div

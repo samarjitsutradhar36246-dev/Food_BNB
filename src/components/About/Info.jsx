@@ -28,11 +28,6 @@ const Info = () => {
 
         <div className="heroX-container">
           {/* Badge */}
-          <div className="heroX-badge">
-            <span className="heroX-badge-text">
-              <MapPin size={14} /> Coming Soon to Agartala, Tripura
-            </span>
-          </div>
 
           {/* Title */}
           <h1 className="heroX-title">
