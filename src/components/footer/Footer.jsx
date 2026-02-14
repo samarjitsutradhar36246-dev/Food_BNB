@@ -38,14 +38,15 @@ function Footer() {
   }, []);
 
   return (
-    <footer className="bg-[#111827] border-t border-[#e8e8e8] pt-15 pb-12.5 font-sans text-left relative bottom-0 w-full m-0 box-border select-none">
-      <div className="max-w-300 mx-auto px-0 lg:px-7.5">
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(100px,0.5fr))] gap-x-2.5 gap-y-px justify-items-start mb-6.25 max-md:grid-cols-[repeat(auto-fit,minmax(120px,1fr))] max-md:gap-y-3 max-[480px]:grid-cols-1 max-[900px]:*:flex-[1_1_100%] max-[900px]:*:text-center">
-          {/* Brand Section */}
-          <div className="flex-[1_1_200px] min-w-45 flex flex-col items-start">
-            <div>
-              <h1 className="text-[28px] font-bold text-[#ef4f5f] mt-1.25 mb-0 font-['Geom',sans-serif] max-md:text-2xl max-[480px]:text-[22px] max-[600px]:text-2xl">
-                FoodBNB
+    <footer className="bg-[#111827] border-t border-[#e8e8e8] pt-15 pb-12.5 font-sans relative bottom-0 w-full m-0 box-border select-none">
+      <div className="max-w-300 mx-auto px-4 lg:px-7.5">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-x-0 gap-y-8 mb-6">
+          {/* Column 1: Brand Section */}
+          <div className="flex flex-col items-start">
+            <div className="ml-6">
+              <h1 className="text-[28px] font-bold text-[#ef4f5f] mt-1.25 mb-0 font-['Geom',sans-serif] max-md:text-2xl max-[480px]:text-[22px]">
+                foodbnb
               </h1>
               <p className="text-xl font-normal text-white m-0 leading-[1.3] font-['Geom',sans-serif] max-md:text-lg max-[480px]:text-base">
                 Made with ❤️
@@ -53,28 +54,9 @@ function Footer() {
             </div>
           </div>
 
-          {/* For Delivery Partners Section */}
-          <div className="flex-[1_1_200px] min-w-45 flex flex-col items-start ">
-            <h3 className="text-sm font-semibold text-white mb-2 uppercase tracking-[1px] font-['Geom',sans-serif] max-[600px]:text-[17px]">
-              For Our Partners
-            </h3>
-            <div className="flex flex-col gap-1.25 items-start font-['Geom',sans-serif]">
-              <Link
-                to="/partners"
-                className="text-sm text-white no-underline transition-colors duration-200 hover:text-[#ef4f5f] select-none pointer-events-auto max-[600px]:text-sm">
-                Partners
-              </Link>
-              <a
-                href="#"
-                className="text-sm text-white no-underline transition-colors duration-200 hover:text-[#ef4f5f] select-none pointer-events-auto max-[600px]:text-sm">
-                Apps For You
-              </a>
-            </div>
-          </div>
-
-          {/* Learn More Section */}
-          <div className="flex-[1_1_200px] min-w-[180px] flex flex-col items-start">
-            <h3 className="text-sm font-semibold text-white mb-2 uppercase tracking-[1px] font-['Geom',sans-serif] max-[600px]:text-[17px]">
+          {/* Column 2: Learn More Section */}
+          <div className="flex flex-col items-start ml-2">
+            <h3 className="text-sm font-semibold text-white mb-2 uppercase tracking-[1px] font-['Geom',sans-serif]">
               Learn More
             </h3>
             <div className="flex flex-col gap-[5px] items-start font-['Geom',sans-serif] relative">
@@ -82,7 +64,7 @@ function Footer() {
               <div className="relative w-full" ref={privacyDropdownRef}>
                 <span
                   onClick={() => setIsPrivacyOpen(!isPrivacyOpen)}
-                  className="flex items-center gap-1 text-sm text-white no-underline transition-colors duration-200 hover:text-[#ef4f5f] select-none pointer-events-auto max-[600px]:text-sm bg-transparent border-none cursor-pointer p-0">
+                  className="flex items-center gap-1 text-sm text-white no-underline transition-colors duration-200 hover:text-[#ef4f5f] select-none pointer-events-auto bg-transparent border-none cursor-pointer p-0">
                   Privacy
                   <ChevronDown
                     className={`w-4 h-4 transition-transform duration-200 ${isPrivacyOpen ? "rotate-180" : ""}`}
@@ -91,7 +73,7 @@ function Footer() {
 
                 {/* Privacy Dropdown Menu */}
                 {isPrivacyOpen && (
-                  <div className="mt-2 bg-[#1f2937] rounded-md shadow-lg py-2 min-w-[160px] mb-2">
+                  <div className="mt-2 bg-[#1f2937] rounded-md shadow-lg py-2 min-w-[160px] mb-2 z-10">
                     <Link
                       to="/privacy-policy"
                       className="flex items-center gap-2 px-4 py-2 text-sm text-white no-underline transition-colors duration-200 hover:bg-[#ef4f5f] hover:text-white"
@@ -99,20 +81,20 @@ function Footer() {
                       <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
                       Mom's Kitchen
                     </Link>
-                    <a
-                      href="#"
+                    <Link
+                      to="/foodbnb-privacy"
                       className="flex items-center gap-2 px-4 py-2 text-sm text-white no-underline transition-colors duration-200 hover:bg-[#ef4f5f] hover:text-white"
                       onClick={() => setIsPrivacyOpen(false)}>
                       <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
-                      FoodBNB
-                    </a>
+                      foodbnb
+                    </Link>
                   </div>
                 )}
               </div>
 
               <Link
                 to="/security"
-                className="text-sm text-white no-underline transition-colors duration-200 hover:text-[#ef4f5f] select-none pointer-events-auto max-[600px]:text-sm">
+                className="text-sm text-white no-underline transition-colors duration-200 hover:text-[#ef4f5f] select-none pointer-events-auto">
                 Security
               </Link>
 
@@ -120,7 +102,7 @@ function Footer() {
               <div className="relative w-full" ref={termsDropdownRef}>
                 <span
                   onClick={() => setIsTermsOpen(!isTermsOpen)}
-                  className="flex items-center gap-1 text-sm text-white no-underline transition-colors duration-200 hover:text-[#ef4f5f] select-none pointer-events-auto max-[600px]:text-sm bg-transparent border-none cursor-pointer p-0">
+                  className="flex items-center gap-1 text-sm text-white no-underline transition-colors duration-200 hover:text-[#ef4f5f] select-none pointer-events-auto bg-transparent border-none cursor-pointer p-0">
                   Terms & Conditions
                   <ChevronDown
                     className={`w-4 h-4 transition-transform duration-200 ${isTermsOpen ? "rotate-180" : ""}`}
@@ -129,7 +111,7 @@ function Footer() {
 
                 {/* Terms & Conditions Dropdown Menu */}
                 {isTermsOpen && (
-                  <div className="mt-2 bg-[#1f2937] rounded-md shadow-lg py-2 min-w-[160px] mb-2">
+                  <div className="mt-2 bg-[#1f2937] rounded-md shadow-lg py-2 min-w-[160px] mb-2 absolute z-10">
                     <Link
                       to="/terms-conditions"
                       className="flex items-center gap-2 px-4 py-2 text-sm text-white no-underline transition-colors duration-200 hover:bg-[#ef4f5f] hover:text-white"
@@ -137,49 +119,63 @@ function Footer() {
                       <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
                       Mom's Kitchen
                     </Link>
-                    <a
-                      href="#"
+                    <Link
+                      to="/foodbnb-terms"
                       className="flex items-center gap-2 px-4 py-2 text-sm text-white no-underline transition-colors duration-200 hover:bg-[#ef4f5f] hover:text-white"
                       onClick={() => setIsTermsOpen(false)}>
                       <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
-                      FoodBNB
-                    </a>
+                      foodbnb
+                    </Link>
                   </div>
                 )}
               </div>
             </div>
           </div>
 
-          {/* Help & Support Section */}
-          <div className="flex-[1_1_200px] min-w-[180px] flex flex-col items-start">
-            <h3 className="text-sm font-semibold text-white mb-2 uppercase tracking-[1px] font-['Geom',sans-serif] max-[600px]:text-[17px]">
+          {/* Column 3: For Partners Section */}
+          <div className="flex flex-col items-start">
+            <h3 className="text-sm font-semibold text-white mb-2 uppercase tracking-[1px] font-['Geom',sans-serif]">
+              For Our Partners
+            </h3>
+            <div className="flex flex-col gap-1.25 items-start font-['Geom',sans-serif]">
+              <Link
+                to="/partners"
+                className="text-sm text-white no-underline transition-colors duration-200 hover:text-[#ef4f5f] select-none pointer-events-auto">
+                Partner With Us
+              </Link>
+              <a
+                href="#"
+                className="text-sm text-white no-underline transition-colors duration-200 hover:text-[#ef4f5f] select-none pointer-events-auto">
+                Apps For You
+              </a>
+            </div>
+          </div>
+
+          {/* Column 4: Help And Support Section */}
+          <div className="flex flex-col items-start">
+            <h3 className="text-sm font-semibold text-white mb-2 uppercase tracking-[1px] font-['Geom',sans-serif]">
               Help & Support
             </h3>
-            <div className="flex flex-col gap-[5px] items-start font-['Geom',sans-serif]">
+            <div className="flex flex-col gap-1.25 items-start font-['Geom',sans-serif]">
               <Link
                 to="/report-fraud"
-                className="text-sm text-white no-underline transition-colors duration-200 hover:text-[#ef4f5f] select-none pointer-events-auto max-[600px]:text-sm">
+                className="text-sm text-white no-underline transition-colors duration-200 hover:text-[#ef4f5f] select-none pointer-events-auto">
                 Report a Fraud
               </Link>
               <Link
                 to="/blog"
-                className="text-sm text-white no-underline transition-colors duration-200 hover:text-[#ef4f5f] select-none pointer-events-auto max-[600px]:text-sm">
+                className="text-sm text-white no-underline transition-colors duration-200 hover:text-[#ef4f5f] select-none pointer-events-auto">
                 Blog
-              </Link>
-              <Link
-                to="/partners"
-                className="text-sm text-white no-underline transition-colors duration-200 hover:text-[#ef4f5f] select-none pointer-events-auto max-[600px]:text-sm">
-                Partners
               </Link>
             </div>
           </div>
 
-          {/* Social Links Section */}
-          <div className="flex-[1_1_200px] min-w-[180px] flex flex-col items-center">
-            <h3 className="text-sm font-semibold text-white mb-2 uppercase tracking-[1px] font-['Geom',sans-serif] max-[600px]:text-[17px]">
+          {/* Column 5: Social Links Section - Last column */}
+          <div className="flex flex-col items-start w-full">
+            <h3 className="text-sm font-semibold text-white mb-2 uppercase tracking-[1px] font-['Geom',sans-serif] w-full">
               Social Links
             </h3>
-            <div className="flex gap-2 justify-center max-[900px]:flex-wrap">
+            <div className="flex gap-2 justify-start flex-wrap mb-4 w-full">
               <a
                 href="#"
                 target="_blank"
@@ -215,19 +211,19 @@ function Footer() {
             </div>
 
             {/* App Badges */}
-            <div className="flex flex-wrap justify-center gap-[10px] mt-[15px] max-[900px]:flex-wrap">
-              <a href="">
-                <img
-                  src={play_store}
-                  alt="Google Play"
-                  className="h-10 my-[5px] mx-1 rounded-[5px] shadow-[0_2px_6px_rgba(0,0,0,0.2)] transition-transform duration-200 hover:scale-105 max-w-[115px] max-[1100px]:max-w-[100px] max-[900px]:max-w-[90px] max-[600px]:max-w-[80px]"
-                />
-              </a>
+            <div className="flex flex-col gap-[10px] items-start">
               <a href="">
                 <img
                   src={app_store}
                   alt="App Store"
-                  className="h-10 my-[5px] mx-1 rounded-[5px] shadow-[0_2px_6px_rgba(0,0,0,0.2)] transition-transform duration-200 hover:scale-105 max-w-[115px] max-[1100px]:max-w-[100px] max-[900px]:max-w-[90px] max-[600px]:max-w-[80px]"
+                  className="h-10 rounded-[5px] shadow-[0_2px_6px_rgba(0,0,0,0.2)] transition-transform duration-200 hover:scale-105 w-[150px] max-w-[300px] contrast-125"
+                />
+              </a>
+              <a href="">
+                <img
+                  src={play_store}
+                  alt="Google Play"
+                  className="h-10 rounded-[5px] shadow-[0_2px_6px_rgba(0,0,0,0.2)] transition-transform duration-200 hover:scale-105 w-[150px] max-w-[300px] contrast-125"
                 />
               </a>
             </div>
@@ -235,8 +231,8 @@ function Footer() {
         </div>
 
         {/* Footer Bottom */}
-        <div className="pt-[15px] text-center">
-          <p className="text-xs text-white m-0 mx-auto max-w-[900px] leading-[1.6] font-['Geom',sans-serif] break-words max-[480px]:text-[10px] max-[480px]:max-w-[280px] max-[480px]:px-[10px]">
+        <div className="pt-[15px] border-t border-[#333] text-left">
+          <p className="text-xs text-white m-0 leading-[1.6] font-['Geom',sans-serif] max-[480px]:text-[10px]">
             By continuing past this page, you agree to our Terms of Service,
             Cookie Policy, Privacy Policy and Content Policies. All trademarks
             are properties of their respective owners. 2025-2026 © FoodBNB™ Ltd.

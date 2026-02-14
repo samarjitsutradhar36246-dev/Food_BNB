@@ -135,7 +135,7 @@ function FoodbnbSecurity() {
   return (
     <>
       {/* Standalone Header like Terms page */}
-      <header className="bg-red-600 text-white px-4 sm:px-6 py-4 shadow-lg">
+      <header className="bg-red-500 text-white px-4 sm:px-6 py-4 shadow-lg">
         <div className="max-w-6xl mx-auto flex items-center gap-3">
           <img
             src={Logo}
@@ -155,7 +155,7 @@ function FoodbnbSecurity() {
         {/* Animated Background Elements */}
         <div className="fixed inset-0 pointer-events-none overflow-hidden">
           <div
-            className="absolute top-0 right-0 w-96 h-96 bg-red-600 rounded-full opacity-5 blur-3xl"
+            className="absolute top-0 right-0 w-96 h-96 bg-red-500 rounded-full opacity-5 blur-3xl"
             style={{
               transform: `translate(${scrollY * 0.1}px, ${scrollY * 0.15}px)`,
             }}
@@ -169,7 +169,7 @@ function FoodbnbSecurity() {
         </div>
 
         {/* Hero Section */}
-        <div className="relative bg-red-600 text-white overflow-hidden">
+        <div className="relative bg-red-500 text-white overflow-hidden">
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-20 left-20 w-40 h-40 border-4 border-white rounded-full" />
             <div className="absolute bottom-20 right-20 w-32 h-32 border-4 border-white rounded-full" />
@@ -185,7 +185,7 @@ function FoodbnbSecurity() {
                 onClick={() => setActiveSection("customer")}
                 className={`px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 ${
                   activeSection === "customer"
-                    ? "bg-red-600 text-white shadow-xl scale-105"
+                    ? "bg-red-500 text-white shadow-xl scale-105"
                     : "bg-white text-black border-2 border-red-600 hover:bg-red-50"
                 }`}>
                 🔐 For Customers
@@ -194,7 +194,7 @@ function FoodbnbSecurity() {
                 onClick={() => setActiveSection("mom")}
                 className={`px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 ${
                   activeSection === "mom"
-                    ? "bg-red-600 text-white shadow-xl scale-105"
+                    ? "bg-red-500 text-white shadow-xl scale-105"
                     : "bg-white text-black border-2 border-red-600 hover:bg-red-50"
                 }`}>
                 👩‍🍳 For Moms
@@ -219,7 +219,7 @@ function FoodbnbSecurity() {
                     animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`,
                   }}>
                   <div className="flex items-start gap-6">
-                    <div className="flex-shrink-0 bg-red-600 text-white p-4 rounded-xl group-hover:scale-110 transition-transform duration-300">
+                    <div className="flex-shrink-0 bg-red-500 text-white p-4 rounded-xl group-hover:scale-110 transition-transform duration-300">
                       <Icon className="w-8 h-8" />
                     </div>
                     <div className="flex-1">
@@ -247,7 +247,7 @@ function FoodbnbSecurity() {
         </div>
 
         {/* Platform Security Section */}
-        <div className="bg-red-600 text-white py-20 relative overflow-hidden">
+        <div className="bg-red-500 text-white py-20 relative overflow-hidden">
           <div className="absolute inset-0 opacity-10">
             <div
               className="absolute inset-0"
@@ -279,7 +279,7 @@ function FoodbnbSecurity() {
                       animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`,
                     }}>
                     <div className="flex items-center gap-4">
-                      <div className="bg-red-600 text-white p-3 rounded-lg">
+                      <div className="bg-red-500 text-white p-3 rounded-lg">
                         <Icon className="w-6 h-6" />
                       </div>
                       <p className="font-semibold text-lg">{item.text}</p>
@@ -303,7 +303,7 @@ function FoodbnbSecurity() {
             <p className="text-xl mb-8 opacity-90">
               Join thousands who trust Foodbnb for authentic, secure meals
             </p>
-            <button className="bg-red-600 text-white px-12 py-4 rounded-xl font-bold text-lg hover:bg-red-700 transition-all duration-300 hover:scale-105 shadow-xl">
+            <button className="bg-red-500 text-white px-12 py-4 rounded-xl font-bold text-lg hover:bg-red-500 transition-all duration-300 hover:scale-105 shadow-xl">
               Get Started Today
             </button>
             <p className="text-lg text-white">

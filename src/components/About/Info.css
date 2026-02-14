@@ -49,15 +49,22 @@
   100% { transform: scale(1); opacity: 0.7; }
 }
 
-/* Content Container */
+/* Content Container - FIXED: Added bottom padding to prevent overflow */
 .heroX-container {
   position: relative;
   z-index: 5;
   text-align: center;
   color: white;
   max-width: 900px;
-  padding: 0 20px;
+  padding: 0 20px 100px 20px;
   margin: 0 auto;
+}
+
+/* Adjust padding for large screens */
+@media (min-width: 1200px) {
+  .heroX-container {
+    padding-bottom: 60px;
+  }
 }
 
 /* Badge */

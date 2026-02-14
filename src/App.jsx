@@ -13,6 +13,8 @@ import FoodbnbSecurity from "./components/Security/Security.jsx";
 import FraudReportPage from "./components/FraudReport/FraudReportPage.jsx";
 import FoodBnBBlog from "./components/Blog/Blog.jsx";
 import Partners from "./components/Partners/Partners.jsx";
+import FoodbnbPrivacy from "./components/Moms_Kitchen/FoodbnbPrivacy.jsx";
+import FoodbnbTerms from "./components/Term_and_Condition/FoodbnbTermAndCondition.jsx";
 // Home Page Component
 function HomePage() {
   return (
@@ -39,6 +41,8 @@ function App() {
         <Route path="/report-fraud" element={<FraudReportPage />} />
         <Route path="/blog" element={<FoodBnBBlog />} /> {/* Add this route */}
         <Route path="/partners" element={<Partners />} />
+        <Route path="/foodbnb-terms" element={<FoodbnbTerms />} />
+        <Route path="/foodbnb-privacy" element={<FoodbnbPrivacy />} />
       </Routes>
     </Router>
   );

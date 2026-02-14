@@ -23,7 +23,7 @@ export default function TermsAndConditions() {
   return (
     <div className="h-screen flex flex-col bg-white">
       {/* Header */}
-      <header className="bg-red-600 text-white px-4 sm:px-6 py-4 shadow-lg">
+      <header className="bg-orange-600 text-white px-4 sm:px-6 py-4 shadow-lg">
         <div className="max-w-4xl mx-auto flex items-center gap-3">
           <img
             src={Logo}
@@ -51,11 +51,7 @@ export default function TermsAndConditions() {
         )}
 
         <div className="max-w-4xl mx-auto">
-          <p className="text-xs sm:text-sm text-gray-600 mb-6">
-            <strong>Last Updated:</strong> 31 January 2026
-          </p>
-
-          <div className="bg-gray-50 border-l-4 border-red-600 p-4 mb-6 rounded">
+          <div className="bg-gray-50 border-l-4 border-orange-600 p-4 mb-6 rounded">
             <p className="text-sm sm:text-base text-black leading-relaxed">
               Welcome to <strong>Mom's Kitchen</strong>, an application designed
               for home cooks to list and manage homemade food offerings. By
@@ -67,7 +63,7 @@ export default function TermsAndConditions() {
           {/* Section 1 */}
           <section className="mb-8">
             <h2 className="text-lg sm:text-xl font-bold text-black mb-3 flex items-center gap-2">
-              <span className="bg-red-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-sm">
+              <span className="bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-sm">
                 1
               </span>
               About Mom's Kitchen
@@ -89,7 +85,7 @@ export default function TermsAndConditions() {
           {/* Section 2 */}
           <section className="mb-8">
             <h2 className="text-lg sm:text-xl font-bold text-black mb-3 flex items-center gap-2">
-              <span className="bg-red-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-sm">
+              <span className="bg-orange-500 text-white w-7 h-7 rounded-full flex items-center justify-center text-sm">
                 2
               </span>
               Eligibility
@@ -100,7 +96,7 @@ export default function TermsAndConditions() {
               </p>
               <ul className="space-y-2 text-sm sm:text-base text-black">
                 <li className="flex items-start gap-2">
-                  <span className="text-red-600 font-bold flex-shrink-0">
+                  <span className="text-orange-600 font-bold flex-shrink-0">
                     •
                   </span>
                   <span>Be 18 years of age or older</span>
@@ -127,7 +123,7 @@ export default function TermsAndConditions() {
           {/* Section 3 */}
           <section className="mb-8">
             <h2 className="text-lg sm:text-xl font-bold text-black mb-3 flex items-center gap-2">
-              <span className="bg-red-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-sm">
+              <span className="bg-orange-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-sm">
                 3
               </span>
               Account Registration & Security
@@ -163,7 +159,7 @@ export default function TermsAndConditions() {
           </section>
 
           {/* Section 4 - Highlighted */}
-          <section className="mb-8 bg-red-600 text-white p-5 rounded-lg shadow-lg">
+          <section className="mb-8 bg-orange-600 text-white p-5 rounded-lg shadow-lg">
             <div className="flex items-center gap-2 mb-4">
               <ChefHat className="w-6 h-6 sm:w-7 sm:h-7 flex-shrink-0" />
               <h2 className="text-lg sm:text-xl font-bold">
@@ -270,7 +266,7 @@ export default function TermsAndConditions() {
           {/* Section 6 */}
           <section className="mb-8">
             <h2 className="text-lg sm:text-xl font-bold text-black mb-3 flex items-center gap-2">
-              <span className="bg-red-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-sm">
+              <span className="bg-orange-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-sm">
                 6
               </span>
               Platform Usage & Payments
@@ -306,7 +302,7 @@ export default function TermsAndConditions() {
           </section>
 
           {/* Section 7 - Prohibited */}
-          <section className="mb-8 bg-red-600 text-white p-5 rounded-lg shadow-lg">
+          <section className="mb-8 bg-orange-600 text-white p-5 rounded-lg shadow-lg">
             <div className="flex items-center gap-2 mb-4">
               <Ban className="w-6 h-6 sm:w-7 sm:h-7 flex-shrink-0" />
               <h2 className="text-lg sm:text-xl font-bold">
@@ -343,7 +339,7 @@ export default function TermsAndConditions() {
           {/* Section 8 */}
           <section className="mb-8">
             <h2 className="text-lg sm:text-xl font-bold text-black mb-3 flex items-center gap-2">
-              <span className="bg-red-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-sm">
+              <span className="bg-orange-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-sm">
                 8
               </span>
               Suspension or Termination
@@ -417,7 +413,7 @@ export default function TermsAndConditions() {
           {/* Section 10 */}
           <section className="mb-8">
             <h2 className="text-lg sm:text-xl font-bold text-black mb-3 flex items-center gap-2">
-              <span className="bg-red-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-sm">
+              <span className="bg-orange-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-sm">
                 10
               </span>
               Updates to Terms
@@ -434,9 +430,9 @@ export default function TermsAndConditions() {
           </section>
 
           {/* Section 11 */}
-          <section className="mb-8 bg-white border-2 border-red-600 p-5 rounded-lg">
+          <section className="mb-8 bg-white border-2 border-orange-600 p-5 rounded-lg">
             <div className="flex items-center gap-2 mb-4">
-              <Phone className="w-6 h-6 sm:w-7 sm:h-7 text-red-600 flex-shrink-0" />
+              <Phone className="w-6 h-6 sm:w-7 sm:h-7 text-orange-600 flex-shrink-0" />
               <h2 className="text-lg sm:text-xl font-bold text-black">
                 11. Contact Information
               </h2>
@@ -447,7 +443,7 @@ export default function TermsAndConditions() {
               </p>
               <a
                 href="mailto:support@foodbnb.com"
-                className="inline-block text-sm sm:text-base text-red-600 font-bold hover:underline hover:text-red-700 transition-colors">
+                className="inline-block text-sm sm:text-base text-orange-600 font-bold hover:underline hover:text-red-700 transition-colors">
                 📧 support@foodbnb.com
               </a>
             </div>

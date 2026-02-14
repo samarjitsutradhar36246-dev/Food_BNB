@@ -1,11 +1,40 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ArrowRight, ChefHat, Utensils } from "lucide-react";
 import "./CTASection.css";
 import phone from "../../assets/phone_img.png";
-import { useInView } from "../../hooks/useInView";
 
 const CTASection = () => {
-  const { ref, visible } = useInView(0.2);
+  const [isVisible, setIsVisible] = useState(false);
+  const phoneRef = useRef(null);
+  const hasAnimated = useRef(false); // Track if animation has played
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          // Only animate once when first entering viewport
+          if (entry.isIntersecting && !hasAnimated.current) {
+            setIsVisible(true);
+            hasAnimated.current = true;
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+        rootMargin: "0px 0px -50px 0px", // Trigger slightly before fully visible
+      },
+    );
+
+    if (phoneRef.current) {
+      observer.observe(phoneRef.current);
+    }
+
+    return () => {
+      if (phoneRef.current) {
+        observer.unobserve(phoneRef.current);
+      }
+    };
+  }, []);
 
   return (
     <section className="relative -mt-12 overflow-hidden no-select">
@@ -92,18 +121,18 @@ const CTASection = () => {
             </div>
           </div>
 
-          {/* Right phone image - WITH SCROLL ANIMATION */}
+          {/* Right phone image - WITH ONE-TIME ANIMATION */}
           <div
-            ref={ref}
-            className={`flex-1 flex justify-center lg:justify-end transition-all duration-700 ${
-              visible
-                ? "motion-safe:animate-push-up-scroll"
+            ref={phoneRef}
+            className={`flex-1 flex justify-center lg:justify-end transition-all duration-700 ease-out ${
+              isVisible
+                ? "translate-y-0 opacity-100"
                 : "translate-y-24 opacity-0"
             }`}>
             <img
               src={phone}
               alt="Phone"
-              className="w-full max-w-70 sm:max-w-[350px] md:max-w-[400px] lg:max-w-full h-auto contrast-120 brightness-90 "
+              className="w-full max-w-70 sm:max-w-[350px] md:max-w-[400px] lg:max-w-full h-auto contrast-130 brightness-90"
             />
           </div>
         </div>

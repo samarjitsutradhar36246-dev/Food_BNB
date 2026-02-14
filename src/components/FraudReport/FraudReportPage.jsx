@@ -127,7 +127,7 @@ const FraudReportPage = () => {
   return (
     <div className="min-h-screen bg-white pb-12">
       {/* Header Section */}
-      <div className="bg-red-600 text-white text-center py-12 px-6 rounded-b-3xl mb-8">
+      <div className="bg-orange-600 text-white text-center py-12 px-6 rounded-b-3xl mb-8">
         <Shield className="w-16 h-16 mx-auto mb-4" />
         <h1 className="text-3xl md:text-4xl font-bold mb-3">
           Report a Fraud or Issue
@@ -140,17 +140,17 @@ const FraudReportPage = () => {
 
       <div className="max-w-2xl mx-auto px-6">
         {/* Who Can Report Section */}
-        <div className="bg-red-50 border-l-4 border-red-600 rounded-2xl p-6 mb-8 border-t-slate-400 ">
+        <div className="bg-red-50 border-l-4 border-orange-600 rounded-2xl p-6 mb-8 border-t-slate-400 ">
           <h2 className="text-xl font-semibold mb-3 text-black">
             Who Can Report
           </h2>
           <ul className="space-y-2">
             <li className="flex items-center text-black">
-              <CheckCircle2 className="w-5 h-5 text-red-600 mr-3 flex-shrink-0" />
+              <CheckCircle2 className="w-5 h-5 text-orange-600 mr-3 flex-shrink-0" />
               Foodbnb customers
             </li>
             <li className="flex items-center text-black">
-              <CheckCircle2 className="w-5 h-5 text-red-600 mr-3 flex-shrink-0" />
+              <CheckCircle2 className="w-5 h-5 text-orange-600 mr-3 flex-shrink-0" />
               Moms / Home chefs
             </li>
           </ul>

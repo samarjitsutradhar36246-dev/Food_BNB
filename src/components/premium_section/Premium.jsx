@@ -5,15 +5,13 @@ import logo from "../../assets/foodbnb1.svg";
 
 const Premium = () => (
   <div className="gold-container">
-    {/* doted background texture */}
-    <div className="ctaX-dotted-bg">
-      <div className="ctaX-dotted-grid"></div>
-    </div>
+    {/* Dotted background texture */}
+    <div className="dotted-bg"></div>
 
     {/* Curved Header SVG */}
     <div className="s-page">
       <svg
-        className="s-curve"
+        className="s-curve border-transparent"
         viewBox="0 0 1440 800"
         preserveAspectRatio="none">
         <path
@@ -31,7 +29,6 @@ const Premium = () => (
     </div>
 
     {/* Coins */}
-
     <img
       src="/Coins_4.png"
       className="coin-top-left rotate-45 contrast-125 w-100  saturate-130"
@@ -53,7 +50,7 @@ const Premium = () => (
       alt="coin"
     />
 
-    <div className="gold-content">
+    <div className="gold-content border-black">
       {/* Logo with rotating circular text */}
       <div className="logo-wrapper">
         <svg className="circular-text" viewBox="0 0 220 220">
