@@ -7,13 +7,13 @@ import Premium from "./components/premium_section/Premium.jsx";
 import App_moto from "./components/App_moto/App_moto.jsx";
 import CTASection from "./components/CTASection/CTASection.jsx";
 import Info from "./components/About/Info.jsx";
-import PrivacyPolicy from "./components/Moms_Kitchen/PrivacyPolicy.jsx";
+import PrivacyPolicy from "./components/Privacy_Policy/PrivacyPolicy.jsx";
 import TermsAndConditions from "./components/Term_and_Condition/TermAndConditions.jsx";
 import FoodbnbSecurity from "./components/Security/Security.jsx";
 import FraudReportPage from "./components/FraudReport/FraudReportPage.jsx";
 import FoodBnBBlog from "./components/Blog/Blog.jsx";
 import Partners from "./components/Partners/Partners.jsx";
-import FoodbnbPrivacy from "./components/Moms_Kitchen/FoodbnbPrivacy.jsx";
+import FoodbnbPrivacy from "./components/Privacy_Policy/FoodbnbPrivacy.jsx";
 import FoodbnbTerms from "./components/Term_and_Condition/FoodbnbTermAndCondition.jsx";
 // Home Page Component
 function HomePage() {

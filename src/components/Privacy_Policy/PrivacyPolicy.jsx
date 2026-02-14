@@ -19,7 +19,7 @@ export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="bg-red-600 text-white px-4 sm:px-6 py-6 shadow-lg">
+      <header className="bg-orange-600 text-white px-4 sm:px-6 py-6 shadow-lg">
         <div className="max-w-4xl mx-auto">
           <div className="flex items-center gap-3 mb-4">
             <img
@@ -52,9 +52,6 @@ export default function PrivacyPolicy() {
               Your privacy is important to us. This page explains how Mom's
               Kitchen collects, uses, and protects your information.
             </p>
-            <p className="text-xs sm:text-sm text-gray-600">
-              <strong>Last Updated:</strong> January 31, 2026
-            </p>
           </div>
 
           {/* Introduction Section */}
@@ -68,7 +65,7 @@ export default function PrivacyPolicy() {
 
           {/* A. Information We Collect */}
           <section className="mb-8">
-            <div className="bg-red-600 text-white p-5 sm:p-6 rounded-lg shadow-md mb-4">
+            <div className="bg-orange-600 text-white p-5 sm:p-6 rounded-lg shadow-md mb-4">
               <div className="flex items-center gap-3">
                 <Database className="w-7 h-7 sm:w-8 sm:h-8 shrink-0" />
                 <h3 className="text-xl sm:text-2xl font-bold">
@@ -143,7 +140,7 @@ export default function PrivacyPolicy() {
 
           {/* B. How We Use Your Information */}
           <section className="mb-8">
-            <div className="bg-red-600 text-white p-5 sm:p-6 rounded-lg shadow-md mb-4">
+            <div className="bg-orange-600 text-white p-5 sm:p-6 rounded-lg shadow-md mb-4">
               <div className="flex items-center gap-3">
                 <Eye className="w-7 h-7 sm:w-8 sm:h-8 shrink-0" />
                 <h3 className="text-xl sm:text-2xl font-bold">
@@ -154,7 +151,7 @@ export default function PrivacyPolicy() {
 
             <div className="ml-0 sm:ml-4 space-y-3">
               <div className="flex items-start gap-3">
-                <span className="bg-red-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold shrink-0 mt-1">
+                <span className="bg-orange-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold shrink-0 mt-1">
                   1
                 </span>
                 <p className="text-sm sm:text-base text-black leading-relaxed">
@@ -163,7 +160,7 @@ export default function PrivacyPolicy() {
               </div>
 
               <div className="flex items-start gap-3">
-                <span className="bg-red-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold shrink-0 mt-1">
+                <span className="bg-orange-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold shrink-0 mt-1">
                   2
                 </span>
                 <p className="text-sm sm:text-base text-black leading-relaxed">
@@ -172,7 +169,7 @@ export default function PrivacyPolicy() {
               </div>
 
               <div className="flex items-start gap-3">
-                <span className="bg-red-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold shrink-0 mt-1">
+                <span className="bg-orange-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold shrink-0 mt-1">
                   3
                 </span>
                 <p className="text-sm sm:text-base text-black leading-relaxed">
@@ -181,7 +178,7 @@ export default function PrivacyPolicy() {
               </div>
 
               <div className="flex items-start gap-3">
-                <span className="bg-red-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 mt-1">
+                <span className="bg-orange-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 mt-1">
                   4
                 </span>
                 <p className="text-sm sm:text-base text-black leading-relaxed">
@@ -190,7 +187,7 @@ export default function PrivacyPolicy() {
               </div>
 
               <div className="flex items-start gap-3">
-                <span className="bg-red-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold shrink-0 mt-1">
+                <span className="bg-orange-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold shrink-0 mt-1">
                   5
                 </span>
                 <p className="text-sm sm:text-base text-black leading-relaxed">
@@ -202,7 +199,7 @@ export default function PrivacyPolicy() {
 
           {/* C. Sharing and Disclosure */}
           <section className="mb-8">
-            <div className="bg-red-600 text-white p-5 sm:p-6 rounded-lg shadow-md mb-4">
+            <div className="bg-orange-600 text-white p-5 sm:p-6 rounded-lg shadow-md mb-4">
               <div className="flex items-center gap-3">
                 <Share2 className="w-7 h-7 sm:w-8 sm:h-8 shrink-0" />
                 <h3 className="text-xl sm:text-2xl font-bold">
@@ -232,7 +229,7 @@ export default function PrivacyPolicy() {
                   </p>
                 </div>
 
-                <div className="bg-red-50 border-l-4 border-red-600 p-4 rounded-r-lg">
+                <div className="bg-red-50 border-l-4 border-red-600 p-4 rounded-l-lg">
                   <div className="flex items-start gap-3">
                     <span className="text-red-600 font-bold shrink-0">•</span>
                     <p className="text-sm sm:text-base text-black leading-relaxed">
@@ -256,7 +253,7 @@ export default function PrivacyPolicy() {
 
           {/* D. Data Retention */}
           <section className="mb-8">
-            <div className="bg-red-600 text-white p-5 sm:p-6 rounded-lg shadow-md mb-4">
+            <div className="bg-orange-600 text-white p-5 sm:p-6 rounded-lg shadow-md mb-4">
               <div className="flex items-center gap-3">
                 <Database className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0" />
                 <h3 className="text-xl sm:text-2xl font-bold">
@@ -286,7 +283,7 @@ export default function PrivacyPolicy() {
 
           {/* E. Security */}
           <section className="mb-8">
-            <div className="bg-red-600 text-white p-5 sm:p-6 rounded-lg shadow-md mb-4">
+            <div className="bg-orange-600 text-white p-5 sm:p-6 rounded-lg shadow-md mb-4">
               <div className="flex items-center gap-3">
                 <Lock className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0" />
                 <h3 className="text-xl sm:text-2xl font-bold"> Security</h3>
@@ -295,7 +292,9 @@ export default function PrivacyPolicy() {
 
             <div className="ml-0 sm:ml-4 space-y-3">
               <div className="flex items-start gap-3">
-                <span className="text-red-600 font-bold flex-shrink-0">•</span>
+                <span className="text-orange-600 font-bold flex-shrink-0">
+                  •
+                </span>
                 <p className="text-sm sm:text-base text-black leading-relaxed">
                   We implement reasonable technical and administrative measures
                   to protect your information.
@@ -318,7 +317,7 @@ export default function PrivacyPolicy() {
 
           {/* F. Your Rights */}
           <section className="mb-8">
-            <div className="bg-red-600 text-white p-5 sm:p-6 rounded-lg shadow-md mb-4">
+            <div className="bg-orange-600 text-white p-5 sm:p-6 rounded-lg shadow-md mb-4">
               <div className="flex items-center gap-3">
                 <Shield className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0" />
                 <h3 className="text-xl sm:text-2xl font-bold">Your Rights</h3>
@@ -327,7 +326,9 @@ export default function PrivacyPolicy() {
 
             <div className="ml-0 sm:ml-4 space-y-3">
               <div className="flex items-start gap-3">
-                <span className="text-red-600 font-bold flex-shrink-0">•</span>
+                <span className="text-orange-600 font-bold flex-shrink-0">
+                  •
+                </span>
                 <p className="text-sm sm:text-base text-black leading-relaxed">
                   Access your personal data.
                 </p>
@@ -358,7 +359,7 @@ export default function PrivacyPolicy() {
 
           {/* G. Children's Privacy */}
           <section className="mb-8">
-            <div className="bg-red-600 text-white p-5 sm:p-6 rounded-lg shadow-md mb-4">
+            <div className="bg-orange-600 text-white p-5 sm:p-6 rounded-lg shadow-md mb-4">
               <div className="flex items-center gap-3">
                 <User className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0" />
                 <h3 className="text-xl sm:text-2xl font-bold">
@@ -386,7 +387,7 @@ export default function PrivacyPolicy() {
 
           {/* H. Policy Updates */}
           <section className="mb-8">
-            <div className="bg-red-600 text-white p-5 sm:p-6 rounded-lg shadow-md mb-4">
+            <div className="bg-orange-600 text-white p-5 sm:p-6 rounded-lg shadow-md mb-4">
               <div className="flex items-center gap-3">
                 <Activity className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0" />
                 <h3 className="text-xl sm:text-2xl font-bold">
