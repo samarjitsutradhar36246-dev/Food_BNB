@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+@custom-media --xs (min-width: 375px);
+
+@theme {
+  --breakpoint-xs: 375px;
+}

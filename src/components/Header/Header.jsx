@@ -8,12 +8,16 @@ import foodbnb from "../../assets/foodbnb1.svg";
 const Header = () => {
   return (
     <div className="relative flex h-screen w-full flex-col items-center justify-end overflow-hidden font-sans">
-      {/* Logo - Responsive using viewport units */}
+      {/* Logo - Responsive across all viewports */}
       <img
         src={foodbnb}
         alt="FoodBNB Logo"
-        className="absolute top-[25%] left-1/2 z-30 -translate-x-1/2 -translate-y-1/2 
-                   w-[12vw] h-[12vw] min-w-[50px] min-h-[50px] max-w-[140px] max-h-[140px]"
+        className="absolute  top-[60vh] xs:top-[50vh] sm:top-[60vh] xl:top-[48vh] left-1/2 z-30 -translate-x-1/2 -translate-y-1/2 
+             w-[90px] h-[90px]
+             sm:w-[70px] sm:h-[70px]
+             md:w-[200px] md:h-[200px]
+             lg:w-[200px] lg:h-[200px]
+             xl:w-[200px] xl:h-[200px]"
       />
 
       {/* Video Background */}
@@ -31,23 +35,23 @@ const Header = () => {
 
       {/* Hero Content - Using viewport units for consistent scaling */}
       <div className="z-20 flex w-full flex-col items-center justify-end pb-[2vh] px-4">
-        <div className="flex w-full flex-col items-center justify-center text-white mb-[2vh]">
+        <div className="flex w-full flex-col items-center justify-center text-white mb-0">
           {/* Main Title */}
           <h1
-            className="text-center font-semibold tracking-tight
+            className="text-center font-extrabold
                        font-['Bungee_Tint'] text-[#ff4c35] [text-shadow:_0_0_10px_rgba(255,76,53,0.7)]
-                       text-[clamp(2rem,10vw,8rem)]">
+                       text-[clamp(2.5rem,12vw,10rem)] leading-none ">
             FoodBNB
           </h1>
 
           {/* Subtitle */}
           <div
-            className="font-bold text-center font-['Geom'] mt-[1vh]
+            className="font-bold text-center font-['Geom'] 
                        text-[clamp(0.875rem,3.5vw,1.5rem)]">
             Taste the{" "}
             <span
               className="text-[#ff4c35] font-bold
-                         text-[clamp(1.25rem,5vw,2.5rem)]">
+                         ">
               comfort
             </span>{" "}
             of Home
@@ -72,13 +76,11 @@ const Header = () => {
           </a>
         </div>
 
-        {/* Scroll Indicator - Hidden on very small screens */}
-        <div
-          className="mb-[2vh] mt-[2vh] flex items-center cursor-pointer animate-bounce
-                        hidden sm:flex">
-          <div className="text-white font-['Geom'] flex items-center text-[clamp(1rem,4vw,1.625rem)]">
+        {/* Scroll Indicator - Now visible on all screen sizes */}
+        <div className="mb-[2vh] mt-[2vh] flex items-center cursor-pointer animate-bounce">
+          <div className="text-white font-['Geom'] flex items-center text-[clamp(0.875rem,3.5vw,1.625rem)]">
             Scroll down
-            <ChevronDown className="ml-2" size={20} />
+            <ChevronDown className="ml-2 w-[clamp(16px,4vw,20px)] h-[clamp(16px,4vw,20px)]" />
           </div>
         </div>
       </div>

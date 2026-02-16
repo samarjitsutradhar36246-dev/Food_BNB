@@ -96,15 +96,15 @@ export default function OrbitingSection() {
   }, [displayedText, isDeleting, textIndex]);
 
   return (
-    <div className="w-full select-none">
+    <div className="w-full select-none  ">
       {/* Hero Section with Orbiting Food - NOW WITH PATTERN */}
-      <section className="relative min-h-162.5 lg:min-h-187.5 xl:min-h-200 bg-slate-100 overflow-hidden border-b border-gray-200 flex flex-col justify-center items-center px-4">
+      <section className="relative min-h-162.5 lg:min-h-187.5 xl:min-h-240 bg-slate-100 overflow-hidden border-b border-gray-200 flex flex-col justify-center items-center  ">
         {/* Orbiting Container - with proper containment */}
         <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
           <div className="relative w-full h-full max-w-225 max-h-225 flex justify-center items-center">
             {/* Guide Ring */}
             <div
-              className="absolute border border-dashed border-gray-300/50 rounded-full"
+              className="absolute border border-dashed border-slate-200 rounded-full xl:!w-[680px] xl:!h-[680px] 2xl:w-[1000px] 2xl:h-[1100px]"
               style={{
                 width: "min(700px, 85vw, 85vh)",
                 height: "min(700px, 85vw, 85vh)",
@@ -140,12 +140,12 @@ export default function OrbitingSection() {
                   className="absolute top-1/2 left-1/2 w-0 h-0 animate-orbit"
                   style={{ animationDelay: `${delay}s` }}>
                   <div
-                    className="absolute -translate-x-1/2 -translate-y-1/2"
+                    className="absolute -translate-x-1/2 -translate-y-1/2 xl:![transform:translate(-50%,-50%)_translateX(400px)] 2xl:![transform:translate(-50%,-50%)_translateX(410px)]"
                     style={{
                       transform: `translate(-50%, -50%) translateX(min(350px, 42.5vw, 42.5vh))`,
                     }}>
                     <div
-                      className="w-13.75 h-13.75 sm:w-16.25 sm:h-16.25 md:w-18.75 md:h-18.75 lg:w-21.25 lg:h-21.25 bg-white rounded-lg shadow-lg border border-gray-100 flex items-center justify-center p-1.5 sm:p-2 md:p-2.5 transition-transform hover:scale-110 animate-counter-orbit"
+                      className="w-13.75 h-13.75 sm:w-16.25 sm:h-16.25 md:w-18.75 md:h-18.75 lg:w-21.25 lg:h-21.25  xl:h-32 xl:w-32 2xl:!w:32 2xl:!h:40 bg-white rounded-lg shadow-lg border border-gray-100 flex items-center justify-center p-1.5 sm:p-2 md:p-2.5 transition-transform hover:scale-110 animate-counter-orbit "
                       style={{ animationDelay: `${delay}s` }}>
                       <img
                         src={item.src}
@@ -166,7 +166,7 @@ export default function OrbitingSection() {
       </section>
 
       {/* How It Works Section */}
-      <section className="py-10 sm:py-16 md:py-20 bg-white bg-pattern">
+      <section className="py-10 sm:py-16 md:py-20 bg-white bg-pattern ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="text-center mb-10 sm:mb-12 md:mb-16">
