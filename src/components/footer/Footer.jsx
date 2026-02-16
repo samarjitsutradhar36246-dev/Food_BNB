@@ -41,11 +41,11 @@ function Footer() {
     <footer className="bg-[#111827] border-t border-[#e8e8e8] pt-15 pb-12.5 font-sans relative bottom-0 w-full m-0 box-border select-none">
       <div className="max-w-300 mx-auto px-4 lg:px-7.5">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-x-0 gap-y-8 mb-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-5 gap-x-4 gap-y-8 mb-6">
           {/* Column 1: Brand Section */}
           <div className="flex flex-col items-start">
-            <div className="ml-6">
-              <h1 className="text-[28px] font-bold text-[#ef4f5f] mt-1.25 mb-0 font-['Geom',sans-serif] max-md:text-2xl max-[480px]:text-[22px]">
+            <div className="ml-1">
+              <h1 className="text-[28px] font-bold text-[#ef4f5f] mt-1.25  font-['Geom',sans-serif] max-md:text-2xl max-[480px]:text-[22px]">
                 foodbnb
               </h1>
               <p className="text-xl font-normal text-white m-0 leading-[1.3] font-['Geom',sans-serif] max-md:text-lg max-[480px]:text-base">
@@ -216,14 +216,14 @@ function Footer() {
                 <img
                   src={app_store}
                   alt="App Store"
-                  className="h-10 rounded-[5px] shadow-[0_2px_6px_rgba(0,0,0,0.2)] transition-transform duration-200 hover:scale-105 w-[150px] max-w-[300px] contrast-125"
+                  className="h-10 rounded-[5px] shadow-[0_2px_6px_rgba(0,0,0,0.2)] transition-transform duration-200 hover:scale-105 w-[150px] max-w-[300px] h-[50px] max-h-[70px] contrast-125"
                 />
               </a>
               <a href="">
                 <img
                   src={play_store}
                   alt="Google Play"
-                  className="h-10 rounded-[5px] shadow-[0_2px_6px_rgba(0,0,0,0.2)] transition-transform duration-200 hover:scale-105 w-[150px] max-w-[300px] contrast-125"
+                  className="h-10 rounded-[5px] shadow-[0_2px_6px_rgba(0,0,0,0.2)] transition-transform duration-200 hover:scale-105 w-[150px] h-[50px] max-w-[300px] max-h-[70px] contrast-125"
                 />
               </a>
             </div>
