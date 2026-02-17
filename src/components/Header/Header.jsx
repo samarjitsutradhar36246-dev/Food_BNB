@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { ChevronDown } from "lucide-react";
 import intro from "../../assets/new_Header_video.mp4";
 import app_store from "../../assets/app.avif";
@@ -6,85 +6,146 @@ import play_store from "../../assets/play.avif";
 import foodbnb from "../../assets/foodbnb1.svg";
 
 const Header = () => {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  }, []);
+
   return (
-    <div className="relative flex h-screen w-full flex-col items-center justify-end overflow-hidden font-sans">
-      {/* Logo - Responsive across all viewports */}
-      <img
-        src={foodbnb}
-        alt="FoodBNB Logo"
-        className="absolute  top-[60vh] xs:top-[50vh] sm:top-[60vh] xl:top-[48vh] left-1/2 z-30 -translate-x-1/2 -translate-y-1/2 
-             w-[90px] h-[90px]
-             sm:w-[70px] sm:h-[70px]
-             md:w-[200px] md:h-[200px]
-             lg:w-[200px] lg:h-[200px]
-             xl:w-[200px] xl:h-[200px]"
-      />
+    <>
+      {/* Bungee Tint font */}
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Bungee+Tint&display=swap');
+        .font-bungee-tint {
+          font-family: 'Bungee Tint', cursive;
+        }
+        .scroll-bounce {
+          animation: scrollBounce 1.8s ease-in-out infinite;
+        }
+        @keyframes scrollBounce {
+          0%, 100% { transform: translateY(0); }
+          50%       { transform: translateY(5px); }
+        }
+      `}</style>
 
-      {/* Video Background */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute top-0 left-0 h-full w-full object-cover object-center">
-        <source src={intro} type="video/mp4" />
-      </video>
+      <header className="relative w-full h-screen min-h-[500px] overflow-hidden">
+        {/* Background Video */}
+        <video
+          ref={videoRef}
+          src={intro}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        />
 
-      {/* Gradient overlay */}
-      <div className="absolute bottom-0 left-0 h-full w-full bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+        {/* Dark gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
-      {/* Hero Content - Using viewport units for consistent scaling */}
-      <div className="z-20 flex w-full flex-col items-center justify-end pb-[2vh] px-4">
-        <div className="flex w-full flex-col items-center justify-center text-white mb-0">
-          {/* Main Title */}
+        {/* Content pinned to bottom-center */}
+        <div className="absolute inset-0 flex flex-col items-center justify-end pb-10 sm:pb-12 md:pb-14 lg:pb-16 xl:pb-20 2xl:pb-24 px-4">
+          {/* Logo icon */}
+          <img
+            src={foodbnb}
+            alt="FoodBnb logo icon"
+            className="
+              w-16 h-16
+              sm:w-20 sm:h-20
+              md:w-24 md:h-24
+              lg:w-28 lg:h-28
+              xl:w-32 xl:h-32
+              2xl:w-36 2xl:h-36
+              mb-2 object-contain
+            "
+          />
+
+          {/* FOODBNB wordmark */}
           <h1
-            className="text-center font-extrabold
-                       font-['Bungee_Tint'] text-[#ff4c35] [text-shadow:_0_0_10px_rgba(255,76,53,0.7)]
-                       text-[clamp(2.5rem,12vw,10rem)] leading-none ">
-            FoodBNB
+            className="font-bungee-tint leading-none tracking-widest
+              text-5xl
+              sm:text-6xl
+              md:text-7xl
+              lg:text-8xl
+              xl:text-9xl
+              2xl:text-[10rem]"
+            style={{ color: "#FF2D2D" }}>
+            FOODBNB
           </h1>
 
-          {/* Subtitle */}
-          <div
-            className="font-bold text-center font-['Geom'] 
-                       text-[clamp(0.875rem,3.5vw,1.5rem)]">
+          {/* Tagline */}
+          <p
+            className="mt-1 text-white font-light tracking-wide
+            text-xs
+            sm:text-sm
+            md:text-base
+            lg:text-lg
+            xl:text-xl
+            2xl:text-2xl">
             Taste the{" "}
-            <span
-              className="text-[#ff4c35] font-bold
-                         ">
+            <em
+              className="font-semibold not-italic"
+              style={{ color: "#FF2D2D" }}>
               comfort
-            </span>{" "}
+            </em>{" "}
             of Home
+          </p>
+
+          {/* Store badges — pure avif images, no text */}
+          <div className="flex items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 mt-4 sm:mt-5 md:mt-6">
+            <a
+              href="#"
+              className="hover:opacity-80 active:scale-95 transition-all duration-150">
+              <img
+                src={play_store}
+                alt="Get it on Google Play"
+                className="
+                  h-9 w-auto
+                  sm:h-11
+                  md:h-12
+                  lg:h-14
+                  xl:h-16
+                  2xl:h-[4.5rem]
+                  object-contain
+                "
+              />
+            </a>
+
+            <a
+              href="#"
+              className="hover:opacity-80 active:scale-95 transition-all duration-150">
+              <img
+                src={app_store}
+                alt="Download on the App Store"
+                className="
+                  h-9 w-auto
+                  sm:h-11
+                  md:h-12
+                  lg:h-14
+                  xl:h-16
+                  2xl:h-[4.5rem]
+                  object-contain
+                "
+              />
+            </a>
+          </div>
+
+          {/* Scroll down */}
+          <div className="flex flex-col items-center mt-6 sm:mt-8 text-white/70 scroll-bounce">
+            <span className="text-[11px] sm:text-xs md:text-sm tracking-widest uppercase mb-0.5">
+              Scroll down
+            </span>
+            <ChevronDown
+              className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4"
+              strokeWidth={1.5}
+            />
           </div>
         </div>
-
-        {/* App Store Buttons */}
-        <div className="mt-[2vh] mb-[1vh] flex w-full justify-center gap-[3vw] max-w-md">
-          <a href="#" className="group flex-shrink-0">
-            <img
-              src={play_store}
-              alt="Google Play"
-              className="h-[clamp(2rem,8vw,3.5rem)] w-auto transition-transform group-hover:scale-110"
-            />
-          </a>
-          <a href="#" className="group flex-shrink-0">
-            <img
-              src={app_store}
-              alt="App Store"
-              className="h-[clamp(2rem,8vw,3.5rem)] w-auto transition-transform group-hover:scale-110"
-            />
-          </a>
-        </div>
-
-        {/* Scroll Indicator - Now visible on all screen sizes */}
-        <div className="mb-[2vh] mt-[2vh] flex items-center cursor-pointer animate-bounce">
-          <div className="text-white font-['Geom'] flex items-center text-[clamp(0.875rem,3.5vw,1.625rem)]">
-            Scroll down
-            <ChevronDown className="ml-2 w-[clamp(16px,4vw,20px)] h-[clamp(16px,4vw,20px)]" />
-          </div>
-        </div>
-      </div>
-    </div>
+      </header>
+    </>
   );
 };
 
