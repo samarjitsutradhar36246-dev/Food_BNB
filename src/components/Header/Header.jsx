@@ -47,14 +47,14 @@ const Header = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
         {/* Content pinned to bottom-center */}
-        <div className="absolute inset-0 flex flex-col items-center justify-end pb-10 sm:pb-12 md:pb-14 lg:pb-16 xl:pb-20 2xl:pb-24 px-4">
+        <div className="absolute inset-0 flex flex-col items-center justify-end pb-10 sm:pb-12 md:pb-14 lg:pb-16 xl:pb-5 2xl:pb-6 px-4">
           {/* Logo icon */}
           <img
             src={foodbnb}
             alt="FoodBnb logo icon"
             className="
-              w-16 h-16
-              sm:w-20 sm:h-20
+              w-18 h-18
+              sm:w-22 sm:h-22
               md:w-24 md:h-24
               lg:w-28 lg:h-28
               xl:w-32 xl:h-32
