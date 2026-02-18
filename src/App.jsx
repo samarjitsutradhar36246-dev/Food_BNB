@@ -15,6 +15,7 @@ import FoodBnBBlog from "./components/Blog/Blog.jsx";
 import Partners from "./components/Partners/Partners.jsx";
 import FoodbnbPrivacy from "./components/Privacy_Policy/FoodbnbPrivacy.jsx";
 import FoodbnbTerms from "./components/Term_and_Condition/FoodbnbTermAndCondition.jsx";
+
 // Home Page Component
 function HomePage() {
   return (
@@ -22,6 +23,7 @@ function HomePage() {
       <Header />
       <Info />
       <Hero_section />
+
       <App_moto />
       <CTASection />
       <Premium />

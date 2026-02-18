@@ -36,7 +36,7 @@ const cards = [
 
 const SpinningBadge = () => {
   const text =
-    "• foodbnb • foodbnb • foodbnb • foodbnb • foodbnb • foodbnb • foodbnb • foodbnb • foodbnb • foodbnb • ";
+    "• foodbnb • foodbnb • foodbnb • foodbnb • foodbnb • foodbnb • foodbnb • foodbnb • foodbnb • ";
 
   return (
     <div className="flex items-center justify-center py-10 relative z-10">
@@ -46,6 +46,29 @@ const SpinningBadge = () => {
           to { transform: rotate(360deg); }
         }
         .spin-badge { animation: spin-badge 10s linear infinite; }
+
+        /* ── Gold text shimmer ── */
+        @keyframes gold-shimmer {
+          0%   { background-position: -200% center; }
+          100% { background-position: 200% center; }
+        }
+        .gold-shimmer-text {
+          background: linear-gradient(
+            105deg,
+            #c9920a 0%,
+            #f5c842 20%,
+            #fffbe6 35%,
+            #f5c842 50%,
+            #d4a017 65%,
+            #f5c842 80%,
+            #b8860b 100%
+          );
+          background-size: 200% auto;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+          animation: gold-shimmer 3s linear infinite;
+        }
 
         /* ── Card transitions ── */
         .premium-card {
@@ -136,7 +159,7 @@ const SpinningBadge = () => {
           opacity: 1 !important;
         }
 
-        /* ── Radial top glow (rendered via JS conditional but animated via CSS) ── */
+        /* ── Radial top glow ── */
         .card-top-glow {
           position: absolute;
           top: -30px;
@@ -251,13 +274,9 @@ const PremiumCard = ({ card }) => {
             : "inset 0 1px 0 rgba(255,255,255,0.04)",
         minHeight: "auto",
       }}>
-      {/* Shimmer sweep */}
       <div className="card-shimmer" />
-
-      {/* Top radial glow — always mounted, shown via CSS opacity */}
       <div className="card-top-glow" />
 
-      {/* Icon circle */}
       <div
         className="icon-circle flex items-center justify-center rounded-full mb-6"
         style={{
@@ -273,7 +292,6 @@ const PremiumCard = ({ card }) => {
         <Icon {...card.iconProps} />
       </div>
 
-      {/* Title */}
       <h3
         className="card-title text-center w-full font-bold mb-3 tracking-wider text-white"
         style={{
@@ -284,14 +302,12 @@ const PremiumCard = ({ card }) => {
         {card.title}
       </h3>
 
-      {/* Description */}
       <p
         className="card-desc text-center text-sm leading-relaxed flex-1"
         style={{ color: "#888", lineHeight: 1.7 }}>
         {card.description}
       </p>
 
-      {/* Badge */}
       <p
         className="card-badge text-center w-full text-xs font-semibold mt-6"
         style={{
@@ -352,7 +368,7 @@ export default function Premium() {
         </div>
 
         <p
-          className="text-xl sm:text-2xl  font-light tracking-widest mb-2"
+          className="text-xl sm:text-2xl font-light tracking-widest mb-2"
           style={{
             color: "#888",
             letterSpacing: "0.5em",
@@ -362,7 +378,7 @@ export default function Premium() {
           PREMIUM
         </p>
         <h1
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl  font-bold text-center leading-none"
+          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-center leading-none"
           style={{
             color: "#ffffff",
             fontFamily: "'Georgia', 'Times New Roman', serif",
@@ -371,14 +387,34 @@ export default function Premium() {
           }}>
           foodbnb
         </h1>
+
+        {/* GOLD text with shimmer */}
+        <style>{`
+          @keyframes gold-shimmer {
+            0%   { background-position: -200% center; }
+            100% { background-position: 200% center; }
+          }
+          .gold-shimmer-text {
+            background: linear-gradient(
+              105deg,
+              #c9920a 0%,
+              #f5c842 20%,
+              #fffbe6 35%,
+              #f5c842 50%,
+              #d4a017 65%,
+              #f5c842 80%,
+              #b8860b 100%
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gold-shimmer 3s linear infinite;
+          }
+        `}</style>
         <h2
-          className="font-black text-center leading-none"
+          className="gold-shimmer-text font-black text-center leading-none"
           style={{
-            background:
-              "linear-gradient(135deg, #c9920a 0%, #f5c842 40%, #d4a017 70%, #b8860b 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
             fontFamily: "'Georgia', 'Times New Roman', serif",
             fontWeight: 900,
             lineHeight: 1,
@@ -386,6 +422,7 @@ export default function Premium() {
           }}>
           GOLD
         </h2>
+
         <p
           className="mt-6 text-center max-w-md text-base sm:text-lg italic"
           style={{ color: "#aaa", lineHeight: 1.6, fontStyle: "italic" }}>

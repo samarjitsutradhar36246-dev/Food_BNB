@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronsDown } from "lucide-react";
 import intro from "../../assets/new_Header_video.mp4";
 import app_store from "../../assets/app.avif";
 import play_store from "../../assets/play.avif";
@@ -57,28 +57,28 @@ const Header = () => {
               sm:w-22 sm:h-22
               md:w-24 md:h-24
               lg:w-28 lg:h-28
-              xl:w-32 xl:h-32
-              2xl:w-36 2xl:h-36
+              xl:w-38 xl:h-38
+              2xl:w-42 2xl:h-42
               mb-2 object-contain
             "
           />
 
           {/* FOODBNB wordmark */}
           <h1
-            className="font-bungee-tint leading-none tracking-widest
+            className="font-bungee-tint leading-none tracking-wide
               text-5xl
               sm:text-6xl
               md:text-7xl
               lg:text-8xl
-              xl:text-9xl
-              2xl:text-[10rem]"
+              xl:text-[10rem]
+              2xl:text-[12rem]"
             style={{ color: "#FF2D2D" }}>
             FOODBNB
           </h1>
 
           {/* Tagline */}
           <p
-            className="mt-1 text-white font-light tracking-wide
+            className="mt-1 text-white font-bold tracking-wide
             text-xs
             sm:text-sm
             md:text-base
@@ -98,7 +98,7 @@ const Header = () => {
           <div className="flex items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 mt-4 sm:mt-5 md:mt-6">
             <a
               href="#"
-              className="hover:opacity-80 active:scale-95 transition-all duration-150">
+              className="hover:opacity-80 active:scale-95 hover:scale-110 transition-all duration-150">
               <img
                 src={play_store}
                 alt="Get it on Google Play"
@@ -116,7 +116,7 @@ const Header = () => {
 
             <a
               href="#"
-              className="hover:opacity-80 active:scale-95 transition-all duration-150">
+              className="hover:opacity-80 active:scale-95 hover:scale-110 transition-all duration-150">
               <img
                 src={app_store}
                 alt="Download on the App Store"
@@ -135,12 +135,12 @@ const Header = () => {
 
           {/* Scroll down */}
           <div className="flex flex-col items-center mt-6 sm:mt-8 text-white/70 scroll-bounce">
-            <span className="text-[11px] sm:text-xs md:text-sm tracking-widest uppercase mb-0.5">
+            <span className="text-[11px] sm:text-xs md:text-sm tracking-wide uppercase mb-0.5 font-bold">
               Scroll down
             </span>
-            <ChevronDown
-              className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4"
-              strokeWidth={1.5}
+            <ChevronsDown
+              className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 xl:w-10 xl:h-8 "
+              strokeWidth={2.5}
             />
           </div>
         </div>
