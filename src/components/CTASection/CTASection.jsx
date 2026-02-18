@@ -39,7 +39,7 @@ const CTASection = () => {
   return (
     <section className="relative -mt-12 overflow-hidden no-select border-b-0 border-black">
       {/* Dotted background */}
-      <div className="absolute inset-0 w-full h-full pointer-events-none z-[1]">
+      <div className="absolute inset-0 w-full h-full pointer-events-none z-1">
         <div
           className="absolute w-full h-full"
           style={{
@@ -70,7 +70,7 @@ const CTASection = () => {
         <div className="absolute right-1/3 bottom-[30%] w-32 h-32 bg-white/8 blur-[30px] rounded-full" />
 
         {/* Floating icons */}
-        <div className="absolute top-[60px] right-[60px] opacity-20 float-animation">
+        <div className="absolute top-15 right-[60px] opacity-20 float-animation">
           <ChefHat className="w-[70px] h-[70px] text-white" />
         </div>
         <div className="absolute bottom-[60px] left-[60px] opacity-20 float-animation float-delay">
@@ -141,23 +141,29 @@ const CTASection = () => {
       {/* Bottom wave divider */}
       <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-[2]">
         <svg
-  className="block w-full h-[60px] sm:h-[80px] md:h-[100px] lg:h-[110px]"
-  data-name="Layer 1"
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 1200 120"
-  preserveAspectRatio="none">
-  <defs>
-    <radialGradient id="waveGrad" cx="50%" cy="0%" r="100%" fx="50%" fy="0%">
-      <stop offset="0%" stopColor="#1a1a1a" />
-      <stop offset="60%" stopColor="#1a1a1a" />
-      <stop offset="100%" stopColor="#1a1a1a" />
-    </radialGradient>
-  </defs>
-  <path
-    fill="url(#waveGrad)"
-    d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
-  />
-</svg>
+          className="block w-full h-[60px] sm:h-[80px] md:h-[100px] lg:h-[110px]"
+          data-name="Layer 1"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 1200 120"
+          preserveAspectRatio="none">
+          <defs>
+            <radialGradient
+              id="waveGrad"
+              cx="50%"
+              cy="0%"
+              r="100%"
+              fx="50%"
+              fy="0%">
+              <stop offset="20%" stopColor="#1a1a1a" />
+              <stop offset="60%" stopColor="#1a1a1a" />
+              <stop offset="100%" stopColor="#1a1a1a" />
+            </radialGradient>
+          </defs>
+          <path
+            fill="url(#waveGrad)"
+            d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+          />
+        </svg>
       </div>
     </section>
   );

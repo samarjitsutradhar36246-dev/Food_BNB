@@ -16,7 +16,6 @@ function Footer() {
   const privacyDropdownRef = useRef(null);
   const termsDropdownRef = useRef(null);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -38,17 +37,34 @@ function Footer() {
   }, []);
 
   return (
-    <footer className="bg-[#111827] border-t border-[#e8e8e8] pt-15 pb-12.5 font-sans relative bottom-0 w-full m-0 box-border select-none">
-      <div className="max-w-300 mx-auto px-4 lg:px-7.5">
+    <footer
+      className="pt-15 pb-12.5 font-sans relative bottom-0 w-full m-0 box-border select-none overflow-hidden"
+      style={{
+        background:
+          "radial-gradient(ellipse at center top, #1a1a1a 0%, #0a0a0a 60%, #000000 100%)",
+        borderTop: "1px solid rgba(197, 150, 10, 0.1)",
+      }}>
+      {/* Gold gradient overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(180deg, transparent 0%, rgba(197,150,10,0.04) 30%, rgba(197,150,10,0.08) 60%, rgba(150,110,0,0.06) 100%)",
+        }}
+      />
+
+      <div className="max-w-300 mx-auto px-4 lg:px-7.5 relative z-10">
         {/* Main Footer Content */}
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-5 gap-x-4 gap-y-8 mb-6">
           {/* Column 1: Brand Section */}
           <div className="flex flex-col items-start">
             <div className="ml-1">
-              <h1 className="text-[28px] font-bold text-[#ef4f5f] mt-1.25  font-['Geom',sans-serif] max-md:text-2xl max-[480px]:text-[22px]">
+              <h1 className="text-[28px] font-bold text-[#c9a227] mt-1.25 font-['Geom',sans-serif] max-md:text-2xl max-[480px]:text-[22px]">
                 foodbnb
               </h1>
-              <p className="text-xl font-normal text-white m-0 leading-[1.3] font-['Geom',sans-serif] max-md:text-lg max-[480px]:text-base">
+              <p
+                className="text-xl font-normal m-0 leading-[1.3] font-['Geom',sans-serif] max-md:text-lg max-[480px]:text-base"
+                style={{ color: "rgba(255, 255, 255, 0.6)" }}>
                 Made with ❤️
               </p>
             </div>
@@ -56,7 +72,7 @@ function Footer() {
 
           {/* Column 2: Learn More Section */}
           <div className="flex flex-col items-start ml-2">
-            <h3 className="text-sm font-semibold text-white mb-2 uppercase tracking-[1px] font-['Geom',sans-serif]">
+            <h3 className="text-sm font-semibold text-[#c9a227] mb-2 uppercase tracking-[1px] font-['Geom',sans-serif]">
               Learn More
             </h3>
             <div className="flex flex-col gap-[5px] items-start font-['Geom',sans-serif] relative">
@@ -64,28 +80,34 @@ function Footer() {
               <div className="relative w-full" ref={privacyDropdownRef}>
                 <span
                   onClick={() => setIsPrivacyOpen(!isPrivacyOpen)}
-                  className="flex items-center gap-1 text-sm text-white no-underline transition-colors duration-200 hover:text-[#ef4f5f] select-none pointer-events-auto bg-transparent border-none cursor-pointer p-0">
+                  className="flex items-center gap-1 text-sm no-underline transition-colors duration-200 select-none pointer-events-auto bg-transparent border-none cursor-pointer p-0"
+                  style={{ color: "#888" }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.color = "#f5c842")
+                  }
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "#888")}>
                   Privacy
                   <ChevronDown
                     className={`w-4 h-4 transition-transform duration-200 ${isPrivacyOpen ? "rotate-180" : ""}`}
                   />
                 </span>
 
-                {/* Privacy Dropdown Menu */}
                 {isPrivacyOpen && (
                   <div className="mt-2 bg-[#1f2937] rounded-md shadow-lg py-2 min-w-[160px] mb-2 z-10">
                     <Link
                       to="/privacy-policy"
-                      className="flex items-center gap-2 px-4 py-2 text-sm text-white no-underline transition-colors duration-200 hover:bg-[#ef4f5f] hover:text-white"
+                      className="flex items-center gap-2 px-4 py-2 text-sm no-underline transition-colors duration-200 hover:bg-[#c9a227] hover:text-black"
+                      style={{ color: "#888" }}
                       onClick={() => setIsPrivacyOpen(false)}>
-                      <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
+                      <span className="w-1.5 h-1.5 bg-current rounded-full"></span>
                       Mom's Kitchen
                     </Link>
                     <Link
                       to="/foodbnb-privacy"
-                      className="flex items-center gap-2 px-4 py-2 text-sm text-white no-underline transition-colors duration-200 hover:bg-[#ef4f5f] hover:text-white"
+                      className="flex items-center gap-2 px-4 py-2 text-sm no-underline transition-colors duration-200 hover:bg-[#c9a227] hover:text-black"
+                      style={{ color: "#888" }}
                       onClick={() => setIsPrivacyOpen(false)}>
-                      <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
+                      <span className="w-1.5 h-1.5 bg-current rounded-full"></span>
                       foodbnb
                     </Link>
                   </div>
@@ -94,7 +116,10 @@ function Footer() {
 
               <Link
                 to="/security"
-                className="text-sm text-white no-underline transition-colors duration-200 hover:text-[#ef4f5f] select-none pointer-events-auto">
+                className="text-sm no-underline transition-colors duration-200 select-none pointer-events-auto"
+                style={{ color: "#888" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#f5c842")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#888")}>
                 Security
               </Link>
 
@@ -102,28 +127,34 @@ function Footer() {
               <div className="relative w-full" ref={termsDropdownRef}>
                 <span
                   onClick={() => setIsTermsOpen(!isTermsOpen)}
-                  className="flex items-center gap-1 text-sm text-white no-underline transition-colors duration-200 hover:text-[#ef4f5f] select-none pointer-events-auto bg-transparent border-none cursor-pointer p-0">
+                  className="flex items-center gap-1 text-sm no-underline transition-colors duration-200 select-none pointer-events-auto bg-transparent border-none cursor-pointer p-0"
+                  style={{ color: "#888" }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.color = "#f5c842")
+                  }
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "#888")}>
                   Terms & Conditions
                   <ChevronDown
                     className={`w-4 h-4 transition-transform duration-200 ${isTermsOpen ? "rotate-180" : ""}`}
                   />
                 </span>
 
-                {/* Terms & Conditions Dropdown Menu */}
                 {isTermsOpen && (
                   <div className="mt-2 bg-[#1f2937] rounded-md shadow-lg py-2 min-w-[160px] mb-2 absolute z-10">
                     <Link
                       to="/terms-conditions"
-                      className="flex items-center gap-2 px-4 py-2 text-sm text-white no-underline transition-colors duration-200 hover:bg-[#ef4f5f] hover:text-white"
+                      className="flex items-center gap-2 px-4 py-2 text-sm no-underline transition-colors duration-200 hover:bg-[#c9a227] hover:text-black"
+                      style={{ color: "#888" }}
                       onClick={() => setIsTermsOpen(false)}>
-                      <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
+                      <span className="w-1.5 h-1.5 bg-current rounded-full"></span>
                       Mom's Kitchen
                     </Link>
                     <Link
                       to="/foodbnb-terms"
-                      className="flex items-center gap-2 px-4 py-2 text-sm text-white no-underline transition-colors duration-200 hover:bg-[#ef4f5f] hover:text-white"
+                      className="flex items-center gap-2 px-4 py-2 text-sm no-underline transition-colors duration-200 hover:bg-[#c9a227] hover:text-black"
+                      style={{ color: "#888" }}
                       onClick={() => setIsTermsOpen(false)}>
-                      <span className="w-1.5 h-1.5 bg-white rounded-full"></span>
+                      <span className="w-1.5 h-1.5 bg-current rounded-full"></span>
                       foodbnb
                     </Link>
                   </div>
@@ -134,80 +165,91 @@ function Footer() {
 
           {/* Column 3: For Partners Section */}
           <div className="flex flex-col items-start">
-            <h3 className="text-sm font-semibold text-white mb-2 uppercase tracking-[1px] font-['Geom',sans-serif]">
+            <h3 className="text-sm font-semibold text-[#c9a227] mb-2 uppercase tracking-[1px] font-['Geom',sans-serif]">
               For Our Partners
             </h3>
             <div className="flex flex-col gap-1.25 items-start font-['Geom',sans-serif]">
               <Link
                 to="/partners"
-                className="text-sm text-white no-underline transition-colors duration-200 hover:text-[#ef4f5f] select-none pointer-events-auto">
+                className="text-sm no-underline transition-colors duration-200 select-none pointer-events-auto"
+                style={{ color: "#888" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#f5c842")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#888")}>
                 Partner With Us
               </Link>
               <a
                 href="#"
-                className="text-sm text-white no-underline transition-colors duration-200 hover:text-[#ef4f5f] select-none pointer-events-auto">
+                className="text-sm no-underline transition-colors duration-200 select-none pointer-events-auto"
+                style={{ color: "#888" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#f5c842")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#888")}>
                 Apps For You
               </a>
             </div>
           </div>
 
-          {/* Column 4: Help And Support Section */}
+          {/* Column 4: Help & Support Section */}
           <div className="flex flex-col items-start">
-            <h3 className="text-sm font-semibold text-white mb-2 uppercase tracking-[1px] font-['Geom',sans-serif]">
+            <h3 className="text-sm font-semibold text-[#c9a227] mb-2 uppercase tracking-[1px] font-['Geom',sans-serif]">
               Help & Support
             </h3>
             <div className="flex flex-col gap-1.25 items-start font-['Geom',sans-serif]">
               <Link
                 to="/report-fraud"
-                className="text-sm text-white no-underline transition-colors duration-200 hover:text-[#ef4f5f] select-none pointer-events-auto">
+                className="text-sm no-underline transition-colors duration-200 select-none pointer-events-auto"
+                style={{ color: "#888" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#f5c842")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#888")}>
                 Report a Fraud
               </Link>
               <Link
                 to="/blog"
-                className="text-sm text-white no-underline transition-colors duration-200 hover:text-[#ef4f5f] select-none pointer-events-auto">
+                className="text-sm no-underline transition-colors duration-200 select-none pointer-events-auto"
+                style={{ color: "#888" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#f5c842")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "#888")}>
                 Blog
               </Link>
             </div>
           </div>
 
-          {/* Column 5: Social Links Section - Last column */}
+          {/* Column 5: Social Links Section */}
           <div className="flex flex-col items-start w-full">
-            <h3 className="text-sm font-semibold text-white mb-2 uppercase tracking-[1px] font-['Geom',sans-serif] w-full">
+            <h3 className="text-sm font-semibold text-[#c9a227] mb-2 uppercase tracking-[1px] font-['Geom',sans-serif] w-full">
               Social Links
             </h3>
             <div className="flex gap-2 justify-start flex-wrap mb-4 w-full">
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="w-8 h-8 rounded-full bg-[#1c1c1c] flex items-center justify-center text-white transition-all duration-300 hover:bg-[#ef4f5f] hover:-translate-y-0.5 hover:text-white hover:scale-110">
-                <Linkedin size={20} />
-              </a>
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="w-8 h-8 rounded-full bg-[#1c1c1c] flex items-center justify-center text-white transition-all duration-300 hover:bg-[#ef4f5f] hover:-translate-y-0.5 hover:text-white hover:scale-110">
-                <Instagram size={20} />
-              </a>
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="YouTube"
-                className="w-8 h-8 rounded-full bg-[#1c1c1c] flex items-center justify-center text-white transition-all duration-300 hover:bg-[#ef4f5f] hover:-translate-y-0.5 hover:text-white hover:scale-110">
-                <Youtube size={20} />
-              </a>
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-                className="w-8 h-8 rounded-full bg-[#1c1c1c] flex items-center justify-center text-white transition-all duration-300 hover:bg-[#ef4f5f] hover:-translate-y-0.5 hover:text-white hover:scale-110">
-                <Facebook size={20} />
-              </a>
+              {[
+                { Icon: Linkedin, label: "LinkedIn" },
+                { Icon: Instagram, label: "Instagram" },
+                { Icon: Youtube, label: "YouTube" },
+                { Icon: Facebook, label: "Facebook" },
+              ].map(({ Icon, label }) => (
+                <a
+                  key={label}
+                  href="#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5 hover:scale-110"
+                  style={{
+                    color: "#888",
+                    border: "1px solid rgba(255, 255, 255, 0.1)",
+                    background: "transparent",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.color = "#f5c842";
+                    e.currentTarget.style.borderColor =
+                      "rgba(245, 200, 66, 0.5)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.color = "#888";
+                    e.currentTarget.style.borderColor =
+                      "rgba(255, 255, 255, 0.1)";
+                  }}>
+                  <Icon size={16} />
+                </a>
+              ))}
             </div>
 
             {/* App Badges */}
@@ -216,14 +258,14 @@ function Footer() {
                 <img
                   src={app_store}
                   alt="App Store"
-                  className="h-10 rounded-[5px] shadow-[0_2px_6px_rgba(0,0,0,0.2)] transition-transform duration-200 hover:scale-105 w-[150px] max-w-[300px] h-[50px] max-h-[70px] contrast-125"
+                  className="rounded-[5px] shadow-[0_2px_6px_rgba(0,0,0,0.2)] transition-transform duration-200 hover:scale-105 w-[150px] max-w-[300px] h-[50px] max-h-[70px] contrast-125"
                 />
               </a>
               <a href="">
                 <img
                   src={play_store}
                   alt="Google Play"
-                  className="h-10 rounded-[5px] shadow-[0_2px_6px_rgba(0,0,0,0.2)] transition-transform duration-200 hover:scale-105 w-[150px] h-[50px] max-w-[300px] max-h-[70px] contrast-125"
+                  className="rounded-[5px] shadow-[0_2px_6px_rgba(0,0,0,0.2)] transition-transform duration-200 hover:scale-105 w-[150px] h-[50px] max-w-[300px] max-h-[70px] contrast-125"
                 />
               </a>
             </div>
@@ -232,7 +274,9 @@ function Footer() {
 
         {/* Footer Bottom */}
         <div className="pt-[15px] border-t border-[#333] text-left">
-          <p className="text-xs text-white m-0 leading-[1.6] font-['Geom',sans-serif] max-[480px]:text-[10px]">
+          <p
+            className="text-xs m-0 leading-[1.6] font-['Geom',sans-serif] max-[480px]:text-[10px]"
+            style={{ color: "rgba(255, 255, 255, 0.4)" }}>
             By continuing past this page, you agree to our Terms of Service,
             Cookie Policy, Privacy Policy and Content Policies. All trademarks
             are properties of their respective owners. 2025-2026 © FoodBNB™ Ltd.

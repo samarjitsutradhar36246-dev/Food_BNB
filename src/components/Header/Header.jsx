@@ -18,10 +18,7 @@ const Header = () => {
     <>
       {/* Bungee Tint font */}
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Bungee+Tint&display=swap');
-        .font-bungee-tint {
-          font-family: 'Bungee Tint', cursive;
-        }
+       
         .scroll-bounce {
           animation: scrollBounce 1.8s ease-in-out infinite;
         }
@@ -65,15 +62,15 @@ const Header = () => {
 
           {/* FOODBNB wordmark */}
           <h1
-            className="font-bungee-tint leading-none tracking-wide
+            className=" leading-none tracking-wide font-extrabold
               text-5xl
               sm:text-6xl
               md:text-7xl
               lg:text-8xl
               xl:text-[10rem]
               2xl:text-[12rem]"
-            style={{ color: "#FF2D2D" }}>
-            FOODBNB
+            style={{ color: "#FFF4E6", fontFamily: "Geom, sans-serif" }}>
+            foodbnb
           </h1>
 
           {/* Tagline */}

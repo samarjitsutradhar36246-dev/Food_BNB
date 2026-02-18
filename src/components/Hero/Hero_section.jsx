@@ -170,7 +170,7 @@ export default function OrbitingSection() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="text-center mb-10 sm:mb-12 md:mb-16">
-            <span className="text-xs sm:text-sm font-bold text-gray-400 uppercase tracking-wider">
+            <span className="text-xs sm:text-sm font-bold text-red-400 uppercase tracking-wider">
               SIMPLE PROCESS
             </span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mt-2">

@@ -6,6 +6,7 @@ import {
   Heart,
   Users,
   Wallet,
+  Scale,
 } from "lucide-react";
 import "./Info.css";
 
@@ -107,7 +108,7 @@ const Info = () => {
 
             {/* Right Content Area */}
             <div className="storyX-right">
-              <h4 className="storyX-subtitle">Our Story</h4>
+              <h4 className="storyX-subtitle text-[#cf0f0f]">Our Story</h4>
 
               <h2 className="storyX-heading">
                 Bridging the Gap Between <br />
@@ -134,7 +135,7 @@ const Info = () => {
                     <Users size={20} />
                   </div>
                   <div>
-                    <h5 className="storyX-feature-title">Local for Locals</h5>
+                    <h5 className="storyX-feature-title ">Local for Locals</h5>
                     <p className="storyX-feature-desc">
                       Empowering Tripura's Locals.
                     </p>
