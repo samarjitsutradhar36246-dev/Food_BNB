@@ -123,8 +123,11 @@
 
 /* Mobile devices (≤480px) - Add extra bottom gap */
 @media (max-width: 480px) {
-  .heroX-description {
-    margin-bottom: 130px;
+  .heroX-title {
+    margin-top: 60px;
+  }
+  .heroX-wrapper {
+    padding-top: 60px;
   }
 }
 
@@ -301,7 +304,7 @@
   border-radius: 14px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.15);
   animation: storyXBounce 3s infinite ease-in-out;
-  display: block; /* 👈 change none to block */
+  display: block; 
 }
 
 @media (min-width: 768px) {
@@ -338,6 +341,31 @@
   font-weight: 700;
   color: #333;
   font-family: "Geom", sans-serif;
+}
+
+@media (max-width: 480px) {
+  .storyX-badge {
+    top: -15px;
+    right: 5px;
+    padding: 10px;
+  }
+
+  .storyX-badge-subtext {
+    font-size: 10px;
+  }
+
+  .storyX-badge-title {
+    font-size: 12px;
+  }
+
+  .storyX-badge-icon {
+    padding: 7px;
+  }
+
+  .storyX-heart-icon {
+    width: 18px;
+    height: 18px;
+  }
 }
 
 /* BADGE ANIMATION */
@@ -392,6 +420,12 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
+}
+
+@media (max-width: 480px) {
+  .storyX-features {
+    grid-template-columns: 1fr;
+  }
 }
 
 .storyX-feature-item {
