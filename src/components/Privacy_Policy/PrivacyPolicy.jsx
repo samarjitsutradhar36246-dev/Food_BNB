@@ -1,5 +1,5 @@
-import React from "react";
-import Logo from "../../assets/Image/foodbnb.svg";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import {
   ChefHat,
   Shield,
@@ -7,453 +7,294 @@ import {
   User,
   UtensilsCrossed,
   Activity,
-  CreditCard,
   Share2,
   Database,
   Eye,
-  UserX,
   Mail,
 } from "lucide-react";
-import "./PrivacyPolicy.css";
+
 export default function PrivacyPolicy() {
+  useEffect(() => {
+    const handleContextMenu = (e) => e.preventDefault();
+    const handleKeyDown = (e) => {
+      if (
+        (e.ctrlKey || e.metaKey) &&
+        ["c", "a", "u", "s", "p"].includes(e.key.toLowerCase())
+      ) {
+        e.preventDefault();
+      }
+    };
+    document.addEventListener("contextmenu", handleContextMenu);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("contextmenu", handleContextMenu);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
+  const SectionCard = ({ icon: Icon, title, children }) => (
+    <div className="bg-white rounded-2xl shadow-sm p-8 mb-5">
+      <div className="flex items-center gap-3 mb-4">
+        <Icon size={20} className="text-orange-600 shrink-0" />
+        <h3 className="text-base font-semibold text-gray-700">{title}</h3>
+      </div>
+      {children}
+    </div>
+  );
+
+  const Bullet = ({ children }) => (
+    <p className="flex gap-2 text-sm text-gray-700 leading-relaxed mb-2">
+      <span className="text-orange-600 font-bold shrink-0">•</span>
+      {children}
+    </p>
+  );
+
   return (
-    <div className="min-h-screen bg-white">
-      {/* Header */}
-      <header className="bg-orange-600 text-white px-4 sm:px-6 py-6 shadow-lg">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex items-center gap-3 mb-4">
-            <img
-              src={Logo}
-              alt="Mom's Kitchen Logo"
-              className="w-8 h-8 sm:w-10 sm:h-10 shrink-0"
-            />
-            <div>
-              <h1 className="text-xl sm:text-2xl font-bold">Mom's Kitchen</h1>
-              <p className="text-xs sm:text-sm text-red-100">
-                Legal Information
-              </p>
-            </div>
+    <div className="min-h-screen bg-gray-100 select-none">
+      <div className="max-w-3xl mx-auto px-4 py-8">
+        {/* Hero Card */}
+        <div className="bg-white rounded-2xl shadow-sm p-8 mb-5 relative overflow-hidden">
+          <div className="absolute top-6 right-8 opacity-10">
+            <UtensilsCrossed size={100} className="text-orange-600" />
           </div>
-        </div>
-      </header>
 
-      {/* Main Content */}
-      <main className="px-4 sm:px-6 py-8 sm:py-12">
-        <div className="max-w-4xl mx-auto">
-          {/* Page Title Section */}
-          <div className="mb-8">
-            <div className="flex items-center gap-3 mb-3">
-              <Shield className="w-10 h-10 sm:w-12 sm:h-12 text-red-600" />
-              <h2 className="text-3xl sm:text-4xl font-bold text-black">
-                Privacy Policy
-              </h2>
-            </div>
-            <p className="text-sm sm:text-base text-gray-700 leading-relaxed mb-2">
-              Your privacy is important to us. This page explains how Mom's
-              Kitchen collects, uses, and protects your information.
+          {/* Breadcrumb */}
+          <div className="text-xs text-gray-500 mb-4">
+            <Link
+              to="/"
+              className="text-gray-500 hover:text-orange-600 transition-colors">
+              Home
+            </Link>
+            {" / "}
+            <span className="text-orange-600 font-medium">Privacy Policy</span>
+          </div>
+
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            Privacy Policy
+          </h1>
+
+          <div className="border-l-4 border-orange-600 bg-orange-50 px-5 py-5 rounded-r-lg">
+            <p className="italic text-gray-600 text-sm">
+              "At Mom's Kitchen, we treat your personal data like a secret
+              family recipe — with the utmost care, respect, and protection."
             </p>
           </div>
-
-          {/* Introduction Section */}
-          <section className="mb-8 bg-yellow-50 border-l-4 border-yellow-500 p-5 sm:p-6 rounded-r-lg shadow-sm">
-            <p className="text-sm sm:text-base text-black leading-relaxed">
-              <strong>Mom's Kitchen</strong> is committed to protecting the
-              privacy of home cooks using our platform. By using Mom's Kitchen,
-              you consent to the practices described in this Privacy Policy.
-            </p>
-          </section>
-
-          {/* A. Information We Collect */}
-          <section className="mb-8">
-            <div className="bg-orange-600 text-white p-5 sm:p-6 rounded-lg shadow-md mb-4">
-              <div className="flex items-center gap-3">
-                <Database className="w-7 h-7 sm:w-8 sm:h-8 shrink-0" />
-                <h3 className="text-xl sm:text-2xl font-bold">
-                  Information We Collect
-                </h3>
-              </div>
-            </div>
-
-            <div className="ml-0 sm:ml-4 space-y-4">
-              {/* Account Information */}
-              <div className="bg-gray-50 border-l-4 border-red-600 p-4 rounded-r-lg">
-                <div className="flex items-start gap-3">
-                  <User className="w-6 h-6 text-red-600 shrink-0 mt-1" />
-                  <div>
-                    <h4 className="font-bold text-black mb-2 text-sm sm:text-base">
-                      Account Information:
-                    </h4>
-                    <p className="text-sm sm:text-base text-black">
-                      Name, email, password, phone number.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Kitchen Information */}
-              <div className="bg-gray-50 border-l-4 border-red-600 p-4 rounded-r-lg">
-                <div className="flex items-start gap-3">
-                  <UtensilsCrossed className="w-6 h-6 text-red-600 shrink-0 mt-1" />
-                  <div>
-                    <h4 className="font-bold text-black mb-2 text-sm sm:text-base">
-                      Kitchen Information:
-                    </h4>
-                    <p className="text-sm sm:text-base text-black">
-                      Listings, menus, photos, pricing.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Usage Data */}
-              <div className="bg-gray-50 border-l-4 border-red-600 p-4 rounded-r-lg">
-                <div className="flex items-start gap-3">
-                  <Activity className="w-6 h-6 text-red-600 shrink-0 mt-1" />
-                  <div>
-                    <h4 className="font-bold text-black mb-2 text-sm sm:text-base">
-                      Usage Data:
-                    </h4>
-                    <p className="text-sm sm:text-base text-black">
-                      App interactions, login timestamps, error logs.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Payment Information */}
-              <div className="bg-gray-50 border-l-4 border-red-600 p-4 rounded-r-lg">
-                <div className="flex items-start gap-3">
-                  <CreditCard className="w-6 h-6 text-red-600 shrink-0 mt-1" />
-                  <div>
-                    <h4 className="font-bold text-black mb-2 text-sm sm:text-base">
-                      Payment Information:
-                    </h4>
-                    <p className="text-sm sm:text-base text-black">
-                      Only when using payment features (handled securely via
-                      payment partners).
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* B. How We Use Your Information */}
-          <section className="mb-8">
-            <div className="bg-orange-600 text-white p-5 sm:p-6 rounded-lg shadow-md mb-4">
-              <div className="flex items-center gap-3">
-                <Eye className="w-7 h-7 sm:w-8 sm:h-8 shrink-0" />
-                <h3 className="text-xl sm:text-2xl font-bold">
-                  How We Use Your Information
-                </h3>
-              </div>
-            </div>
-
-            <div className="ml-0 sm:ml-4 space-y-3">
-              <div className="flex items-start gap-3">
-                <span className="bg-orange-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold shrink-0 mt-1">
-                  1
-                </span>
-                <p className="text-sm sm:text-base text-black leading-relaxed">
-                  To provide and maintain Mom's Kitchen services.
-                </p>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <span className="bg-orange-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold shrink-0 mt-1">
-                  2
-                </span>
-                <p className="text-sm sm:text-base text-black leading-relaxed">
-                  To communicate with you (notifications, updates, support).
-                </p>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <span className="bg-orange-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold shrink-0 mt-1">
-                  3
-                </span>
-                <p className="text-sm sm:text-base text-black leading-relaxed">
-                  To improve the platform and user experience.
-                </p>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <span className="bg-orange-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 mt-1">
-                  4
-                </span>
-                <p className="text-sm sm:text-base text-black leading-relaxed">
-                  To process payments securely.
-                </p>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <span className="bg-orange-600 text-white w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold shrink-0 mt-1">
-                  5
-                </span>
-                <p className="text-sm sm:text-base text-black leading-relaxed">
-                  To comply with legal obligations if required.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          {/* C. Sharing and Disclosure */}
-          <section className="mb-8">
-            <div className="bg-orange-600 text-white p-5 sm:p-6 rounded-lg shadow-md mb-4">
-              <div className="flex items-center gap-3">
-                <Share2 className="w-7 h-7 sm:w-8 sm:h-8 shrink-0" />
-                <h3 className="text-xl sm:text-2xl font-bold">
-                  Sharing and Disclosure
-                </h3>
-              </div>
-            </div>
-
-            <div className="ml-0 sm:ml-4 space-y-4">
-              <div className="bg-green-50 border-2 border-green-600 p-4 sm:p-5 rounded-lg">
-                <p className="text-sm sm:text-base text-black leading-relaxed font-bold">
-                  ✓ Mom's Kitchen does not sell your personal information.
-                </p>
-              </div>
-
-              <p className="text-sm sm:text-base text-black leading-relaxed font-semibold">
-                Information may be shared with:
-              </p>
-
-              <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <span className="text-red-600 font-bold flex-shrink-0">
-                    •
-                  </span>
-                  <p className="text-sm sm:text-base text-black leading-relaxed">
-                    <strong>Payment processors</strong> for transactions
-                  </p>
-                </div>
-
-                <div className="bg-red-50 border-l-4 border-red-600 p-4 rounded-l-lg">
-                  <div className="flex items-start gap-3">
-                    <span className="text-red-600 font-bold shrink-0">•</span>
-                    <p className="text-sm sm:text-base text-black leading-relaxed">
-                      <strong>Legal authorities</strong> if required by law
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <span className="text-red-600 font-bold flex-shrink-0">
-                    •
-                  </span>
-                  <p className="text-sm sm:text-base text-black leading-relaxed">
-                    <strong>Service providers</strong> to maintain the platform
-                    (e.g., hosting, analytics)
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* D. Data Retention */}
-          <section className="mb-8">
-            <div className="bg-orange-600 text-white p-5 sm:p-6 rounded-lg shadow-md mb-4">
-              <div className="flex items-center gap-3">
-                <Database className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0" />
-                <h3 className="text-xl sm:text-2xl font-bold">
-                  Data Retention
-                </h3>
-              </div>
-            </div>
-
-            <div className="ml-0 sm:ml-4 space-y-3">
-              <div className="flex items-start gap-3">
-                <span className="text-red-600 font-bold flex-shrink-0">•</span>
-                <p className="text-sm sm:text-base text-black leading-relaxed">
-                  Your personal and kitchen data is stored as long as your
-                  account is active.
-                </p>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <span className="text-red-600 font-bold flex-shrink-0">•</span>
-                <p className="text-sm sm:text-base text-black leading-relaxed">
-                  After account deletion, data is permanently removed, except
-                  where legal obligations require retention.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          {/* E. Security */}
-          <section className="mb-8">
-            <div className="bg-orange-600 text-white p-5 sm:p-6 rounded-lg shadow-md mb-4">
-              <div className="flex items-center gap-3">
-                <Lock className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0" />
-                <h3 className="text-xl sm:text-2xl font-bold"> Security</h3>
-              </div>
-            </div>
-
-            <div className="ml-0 sm:ml-4 space-y-3">
-              <div className="flex items-start gap-3">
-                <span className="text-orange-600 font-bold flex-shrink-0">
-                  •
-                </span>
-                <p className="text-sm sm:text-base text-black leading-relaxed">
-                  We implement reasonable technical and administrative measures
-                  to protect your information.
-                </p>
-              </div>
-
-              <div className="bg-yellow-50 border-2 border-yellow-400 p-4 rounded-lg">
-                <div className="flex items-start gap-3">
-                  <span className="text-yellow-600 font-bold flex-shrink-0">
-                    •
-                  </span>
-                  <p className="text-sm sm:text-base text-black leading-relaxed">
-                    <strong>No system is 100% secure</strong>, so use strong
-                    passwords and protect your account.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* F. Your Rights */}
-          <section className="mb-8">
-            <div className="bg-orange-600 text-white p-5 sm:p-6 rounded-lg shadow-md mb-4">
-              <div className="flex items-center gap-3">
-                <Shield className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0" />
-                <h3 className="text-xl sm:text-2xl font-bold">Your Rights</h3>
-              </div>
-            </div>
-
-            <div className="ml-0 sm:ml-4 space-y-3">
-              <div className="flex items-start gap-3">
-                <span className="text-orange-600 font-bold flex-shrink-0">
-                  •
-                </span>
-                <p className="text-sm sm:text-base text-black leading-relaxed">
-                  Access your personal data.
-                </p>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <span className="text-red-600 font-bold flex-shrink-0">•</span>
-                <p className="text-sm sm:text-base text-black leading-relaxed">
-                  Request corrections.
-                </p>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <span className="text-red-600 font-bold flex-shrink-0">•</span>
-                <p className="text-sm sm:text-base text-black leading-relaxed">
-                  Delete your account (see the account deletion page).
-                </p>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <span className="text-red-600 font-bold flex-shrink-0">•</span>
-                <p className="text-sm sm:text-base text-black leading-relaxed">
-                  Opt out of communications.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          {/* G. Children's Privacy */}
-          <section className="mb-8">
-            <div className="bg-orange-600 text-white p-5 sm:p-6 rounded-lg shadow-md mb-4">
-              <div className="flex items-center gap-3">
-                <User className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0" />
-                <h3 className="text-xl sm:text-2xl font-bold">
-                  Children's Privacy
-                </h3>
-              </div>
-            </div>
-
-            <div className="ml-0 sm:ml-4 space-y-3">
-              <div className="flex items-start gap-3">
-                <span className="text-red-600 font-bold flex-shrink-0">•</span>
-                <p className="text-sm sm:text-base text-black leading-relaxed">
-                  Mom's Kitchen is not intended for users under 18.
-                </p>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <span className="text-red-600 font-bold flex-shrink-0">•</span>
-                <p className="text-sm sm:text-base text-black leading-relaxed">
-                  We do not knowingly collect data from minors.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          {/* H. Policy Updates */}
-          <section className="mb-8">
-            <div className="bg-orange-600 text-white p-5 sm:p-6 rounded-lg shadow-md mb-4">
-              <div className="flex items-center gap-3">
-                <Activity className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0" />
-                <h3 className="text-xl sm:text-2xl font-bold">
-                  Policy Updates
-                </h3>
-              </div>
-            </div>
-
-            <div className="ml-0 sm:ml-4 space-y-3">
-              <div className="flex items-start gap-3">
-                <span className="text-red-600 font-bold flex-shrink-0">•</span>
-                <p className="text-sm sm:text-base text-black leading-relaxed">
-                  Privacy Policy may be updated periodically.
-                </p>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <span className="text-red-600 font-bold flex-shrink-0">•</span>
-                <p className="text-sm sm:text-base text-black leading-relaxed font-semibold">
-                  Continued use of Mom's Kitchen implies acceptance of updated
-                  policies.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          {/* I. Contact Information */}
-          <section className="mb-8">
-            <div className="bg-green-50 border-2 border-green-600 p-6 sm:p-8 rounded-lg shadow-md">
-              <div className="flex items-start gap-3 mb-4">
-                <Mail className="w-7 h-7 sm:w-8 sm:h-8 text-green-600 flex-shrink-0" />
-                <h3 className="text-xl sm:text-2xl font-bold text-black">
-                  I. Contact Information
-                </h3>
-              </div>
-
-              <div className="space-y-2">
-                <p className="text-sm sm:text-base text-black leading-relaxed">
-                  Questions or concerns regarding your privacy?
-                </p>
-                <p className="text-sm sm:text-base text-black leading-relaxed">
-                  Contact us:{" "}
-                  <a
-                    href="mailto:support@foodbnb.com"
-                    className="inline-flex items-center gap-1 text-red-600 font-bold hover:underline hover:text-red-700 transition-colors">
-                    📧 support@foodbnb.com
-                  </a>
-                </p>
-              </div>
-            </div>
-          </section>
         </div>
-      </main>
 
-      {/* Footer */}
-      <footer className="bg-gray-100 border-t border-gray-300 px-4 sm:px-6 py-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="flex items-center justify-center gap-2 mb-2">
-            <ChefHat className="w-5 h-5 text-red-600" />
-            <p className="text-sm font-bold text-black">Mom's Kitchen</p>
-          </div>
-          <p className="text-xs sm:text-sm text-gray-600">
-            © 2026 Mom's Kitchen. All rights reserved.
+        {/* Introduction */}
+        <div className="bg-white rounded-2xl shadow-sm p-8 mb-5">
+          <p className="text-sm text-gray-700 leading-relaxed">
+            <strong>Mom's Kitchen</strong> is committed to protecting the
+            privacy of home cooks using our platform. By using Mom's Kitchen,
+            you consent to the practices described in this Privacy Policy.
           </p>
         </div>
-      </footer>
+
+        {/* Information We Collect */}
+        <SectionCard icon={Database} title="Information We Collect">
+          <div className="text-sm text-gray-700 leading-relaxed">
+            <p className="mb-3">
+              When you use Mom's Kitchen, we may collect the following:
+            </p>
+            <Bullet>
+              <span>
+                <span className="font-semibold">Account Information:</span>{" "}
+                Name, email, password, phone number.
+              </span>
+            </Bullet>
+            <Bullet>
+              <span>
+                <span className="font-semibold">Kitchen Information:</span>{" "}
+                Listings, menus, photos, pricing.
+              </span>
+            </Bullet>
+            <Bullet>
+              <span>
+                <span className="font-semibold">Usage Data:</span> App
+                interactions, login timestamps, error logs.
+              </span>
+            </Bullet>
+            <Bullet>
+              <span>
+                <span className="font-semibold">Payment Information:</span> Only
+                when using payment features (handled securely via payment
+                partners).
+              </span>
+            </Bullet>
+          </div>
+        </SectionCard>
+
+        {/* How We Use Your Information */}
+        <SectionCard icon={Eye} title="How We Use Your Information">
+          <div className="text-sm text-gray-700 leading-relaxed">
+            <p className="mb-3">
+              We use the "ingredients" of your data to serve you better:
+            </p>
+            {[
+              "To provide and maintain Mom's Kitchen services.",
+              "To communicate with you (notifications, updates, support).",
+              "To improve the platform and user experience.",
+              "To process payments securely.",
+              "To comply with legal obligations if required.",
+            ].map((item, i) => (
+              <div key={i} className="flex items-start gap-3 mb-2">
+                <span className="bg-orange-600 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">
+                  {i + 1}
+                </span>
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+        </SectionCard>
+
+        {/* Sharing and Disclosure */}
+        <SectionCard icon={Share2} title="Sharing and Disclosure">
+          <div className="text-sm text-gray-700 leading-relaxed">
+            <div className="bg-green-50 border border-green-600 rounded-lg px-4 py-3 text-green-800 font-semibold mb-3">
+              ✓ Mom's Kitchen does not sell your personal information.
+            </div>
+            <p className="font-semibold mb-2">
+              Information may be shared with:
+            </p>
+            <Bullet>
+              <span>
+                <span className="font-semibold">Payment processors</span> for
+                transactions.
+              </span>
+            </Bullet>
+            <Bullet>
+              <span>
+                <span className="font-semibold">Legal authorities</span> if
+                required by law.
+              </span>
+            </Bullet>
+            <Bullet>
+              <span>
+                <span className="font-semibold">Service providers</span> to
+                maintain the platform (e.g., hosting, analytics).
+              </span>
+            </Bullet>
+          </div>
+        </SectionCard>
+
+        {/* Data Retention & Security — side by side */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+          <div className="bg-white rounded-2xl shadow-sm p-8">
+            <div className="flex items-center gap-3 mb-4">
+              <Database size={20} className="text-orange-600" />
+              <h3 className="text-base font-semibold text-gray-700">
+                Data Retention
+              </h3>
+            </div>
+            <div className="text-sm text-gray-700 leading-relaxed">
+              <Bullet>
+                Your data is stored as long as your account is active.
+              </Bullet>
+              <Bullet>
+                After account deletion, data is permanently removed, except
+                where legal obligations require retention.
+              </Bullet>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-2xl shadow-sm p-8">
+            <div className="flex items-center gap-3 mb-4">
+              <Lock size={20} className="text-orange-600" />
+              <h3 className="text-base font-semibold text-gray-700">
+                Security
+              </h3>
+            </div>
+            <div className="text-sm text-gray-700 leading-relaxed">
+              <Bullet>
+                We implement reasonable technical and administrative measures to
+                protect your information.
+              </Bullet>
+              <div className="bg-yellow-50 border border-yellow-400 rounded-lg px-4 py-3 mt-2 text-sm text-gray-700">
+                <span className="text-orange-600 font-bold mr-2">•</span>
+                <strong>No system is 100% secure</strong>, so use strong
+                passwords and protect your account.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Your Rights */}
+        <SectionCard icon={Shield} title="Your Rights">
+          <div className="text-sm text-gray-700 leading-relaxed">
+            <Bullet>Access your personal data.</Bullet>
+            <Bullet>Request corrections.</Bullet>
+            <Bullet>
+              Delete your account (see the account deletion page).
+            </Bullet>
+            <Bullet>Opt out of communications.</Bullet>
+          </div>
+        </SectionCard>
+
+        {/* Children's Privacy & Policy Updates — side by side */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+          <div className="bg-white rounded-2xl shadow-sm p-8">
+            <div className="flex items-center gap-3 mb-4">
+              <User size={20} className="text-orange-600" />
+              <h3 className="text-base font-semibold text-gray-700">
+                Children's Privacy
+              </h3>
+            </div>
+            <div className="text-sm text-gray-700 leading-relaxed">
+              <Bullet>Mom's Kitchen is not intended for users under 18.</Bullet>
+              <Bullet>We do not knowingly collect data from minors.</Bullet>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-2xl shadow-sm p-8">
+            <div className="flex items-center gap-3 mb-4">
+              <Activity size={20} className="text-orange-600" />
+              <h3 className="text-base font-semibold text-gray-700">
+                Policy Updates
+              </h3>
+            </div>
+            <div className="text-sm text-gray-700 leading-relaxed">
+              <Bullet>Privacy Policy may be updated periodically.</Bullet>
+              <Bullet>
+                <strong>
+                  Continued use of Mom's Kitchen implies acceptance of updated
+                  policies.
+                </strong>
+              </Bullet>
+            </div>
+          </div>
+        </div>
+
+        {/* Contact */}
+        <div className="bg-white rounded-2xl shadow-sm p-8 mb-5">
+          <div className="flex items-center gap-3 mb-3">
+            <Mail size={20} className="text-green-600" />
+            <h3 className="text-lg font-semibold text-gray-700">
+              Contact Information
+            </h3>
+          </div>
+          <p className="text-sm text-gray-700 mb-3">
+            Questions or concerns regarding your privacy? Contact our Kitchen
+            Manager:
+          </p>
+          <div className="flex items-center gap-2 text-sm">
+            <Mail size={15} className="text-orange-600" />
+            <a
+              href="mailto:support@foodbnb.com"
+              className="text-orange-600 font-semibold hover:underline">
+              support@foodbnb.com
+            </a>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="text-center py-6 text-gray-400 text-xs">
+          <div className="flex items-center justify-center gap-2 mb-1 font-semibold text-gray-600 text-sm">
+            <ChefHat size={16} className="text-orange-600" />
+            Mom's Kitchen
+          </div>
+          © 2026 Mom's Kitchen. All rights reserved.
+        </div>
+      </div>
     </div>
   );
 }
