@@ -37,7 +37,7 @@ const CTASection = () => {
   }, []);
 
   return (
-    <section className="relative -mt-12 overflow-hidden no-select border-b-0 border-black">
+    <section className="relative overflow-hidden no-select border-b-0 border-black">
       {/* Dotted background */}
       <div className="absolute inset-0 w-full h-full pointer-events-none z-1">
         <div
@@ -79,7 +79,7 @@ const CTASection = () => {
       </div>
 
       {/* Container */}
-      <div className="relative z-[5] max-w-[1100px] mx-auto px-5 py-20 md:py-24 lg:py-28">
+      <div className="relative z-[5] max-w-[1100px] mx-auto px-5 py-30 md:py-24 lg:py-28">
         <div className="flex flex-col lg:flex-row xl:flex-row 2xl:flex-row items-center lg:items-center xl:items-center 2xl:items-center justify-center gap-8 lg:gap-12 xl:gap-16 2xl:gap-20">
           {/* Left content */}
           <div className="flex-1 text-center lg:text-left xl:text-left 2xl:text-left lg:max-w-[500px] xl:max-w-[550px] 2xl:max-w-[600px]">
@@ -139,9 +139,9 @@ const CTASection = () => {
       </div>
 
       {/* Bottom wave divider */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-[2]">
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none z-[2] translate-y-[1px] sm:translate-y-[2px] md:translate-y-[3px] lg:translate-y-[4px] xl:translate-y-[5px]">
         <svg
-          className="block w-full h-[60px] sm:h-[80px] md:h-[100px] lg:h-[110px]"
+          className="block w-full h-[80px] sm:h-[100px] md:h-[120px] lg:h-[130px] scale-y-[1.02]"
           data-name="Layer 1"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1200 120"
@@ -160,7 +160,7 @@ const CTASection = () => {
             </radialGradient>
           </defs>
           <path
-            fill="url(#waveGrad)"
+            fill="#1a1a1a"
             d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
           />
         </svg>

@@ -55,19 +55,17 @@ function Footer() {
 
       <div className="max-w-300 mx-auto px-4 lg:px-7.5 relative z-10">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-5 gap-x-4 gap-y-8 mb-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-5 2xl:grid-cols-5 gap-x-4 gap-y-8 mb-6 items-start">
           {/* Column 1: Brand Section */}
           <div className="flex flex-col items-start">
-            <div className="ml-1">
-              <h1 className="text-[28px] font-bold text-[#c9a227] mt-1.25 font-['Geom',sans-serif] max-md:text-2xl max-[480px]:text-[22px]">
-                foodbnb
-              </h1>
-              <p
-                className="text-xl font-normal m-0 leading-[1.3] font-['Geom',sans-serif] max-md:text-lg max-[480px]:text-base"
-                style={{ color: "rgba(255, 255, 255, 0.6)" }}>
-                Made with ❤️
-              </p>
-            </div>
+            <h1 className="text-[28px] font-bold text-[#c9a227] mt-0 font-['Geom',sans-serif] max-md:text-2xl max-[480px]:text-[22px]">
+              foodbnb
+            </h1>
+            <p
+              className="text-xl font-normal m-0 leading-[1.3] font-['Geom',sans-serif] max-md:text-lg max-[480px]:text-base"
+              style={{ color: "rgba(255, 255, 255, 0.6)" }}>
+              Made with ❤️
+            </p>
           </div>
 
           {/* Column 2: Learn More Section */}

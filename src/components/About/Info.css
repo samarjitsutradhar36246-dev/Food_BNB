@@ -301,7 +301,7 @@
   border-radius: 14px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.15);
   animation: storyXBounce 3s infinite ease-in-out;
-  display: none;
+  display: block; /* 👈 change none to block */
 }
 
 @media (min-width: 768px) {
@@ -426,7 +426,11 @@
   color: #777;
   font-family: "Geom", sans-serif;
 }
-
+@media (max-width: 480px) {
+  .heroX-title {
+    margin-top: 60px; /* or however much gap you want */
+  }
+}
 
 /* Prevent text selection for the entire Info component */
 .heroX-wrapper,
