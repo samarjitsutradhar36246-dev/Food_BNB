@@ -5,3 +5,6 @@
 }
 
 @custom-variant xs (@media (min-width: 375px));
+* {
+  touch-action: pan-x pan-y;
+}
