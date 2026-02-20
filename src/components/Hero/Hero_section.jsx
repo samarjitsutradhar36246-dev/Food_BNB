@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import paymentImg from "../../assets/payment.jpg";
 import cook from "../../assets/cooking.png";
-import food1 from "../../assets/kfc.png";
+import food1 from "../../assets/food 5.png";
 import food2 from "../../assets/pasta.jpg";
 import food3 from "../../assets/rice_bowl_new.png";
 import food4 from "../../assets/naan.png";
 import food5 from "../../assets/tomato.jpg";
 import food6 from "../../assets/soup_veggies.jpg";
 import food7 from "../../assets/ots.png";
-import food8 from "../../assets/Onion_ring.jpg";
+import food8 from "../../assets/food 1.png";
 import food9 from "../../assets/momo.png";
-import food10 from "../../assets/burger.png";
+import food10 from "../../assets/food 3.png";
 import food11 from "../../assets/chole.png";
 import food12 from "../../assets/fish.png";
 import "./Hero_section.css";
@@ -98,7 +98,7 @@ export default function OrbitingSection() {
   return (
     <div className="w-full select-none  ">
       {/* Hero Section with Orbiting Food - NOW WITH PATTERN */}
-      <section className="relative min-h-162.5 lg:min-h-187.5 xl:min-h-240 bg-slate-100 overflow-hidden border-b border-gray-200 flex flex-col justify-center items-center  ">
+      <section className="relative min-h-[420px] md:min-h-180 lg:min-h-187.5 xl:min-h-240  bg-slate-100 overflow-hidden border-b border-gray-200 flex flex-col justify-center items-center  ">
         {/* Orbiting Container - with proper containment */}
         <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
           <div className="relative w-full h-full max-w-225 max-h-225 flex justify-center items-center">
@@ -140,12 +140,17 @@ export default function OrbitingSection() {
                   className="absolute top-1/2 left-1/2 w-0 h-0 animate-orbit"
                   style={{ animationDelay: `${delay}s` }}>
                   <div
-                    className="absolute -translate-x-1/2 -translate-y-1/2 xl:![transform:translate(-50%,-50%)_translateX(400px)] 2xl:![transform:translate(-50%,-50%)_translateX(410px)]"
                     style={{
-                      transform: `translate(-50%, -50%) translateX(min(350px, 42.5vw, 42.5vh))`,
-                    }}>
+                      transform: `translate(-50%, -50%) translateX(var(--orbit-radius))`,
+                    }}
+                    className="absolute -translate-x-1/2 -translate-y-1/2 
+                  [--orbit-radius:180px] 
+    
+                  md:[--orbit-radius:300px]
+                  lg:[--orbit-radius:300px]
+                  xl:![transform:translate(-50%,-50%)_translateX(400px)]">
                     <div
-                      className="w-13.75 h-13.75 sm:w-16.25 sm:h-16.25 md:w-18.75 md:h-18.75 lg:w-21.25 lg:h-21.25  xl:h-32 xl:w-32 2xl:!w:32 2xl:!h:40 bg-white rounded-lg shadow-lg border border-gray-100 flex items-center justify-center p-1.5 sm:p-2 md:p-2.5 transition-transform hover:scale-110 animate-counter-orbit "
+                      className="w-13.75 h-13.75 sm:w-16.25 sm:h-16.25 md:w-25 md:h-25 lg:w-21.25 lg:h-21.25  xl:h-32 xl:w-32 2xl:!w:32 2xl:!h:40 bg-white rounded-lg shadow-lg border border-gray-100 flex items-center justify-center p-1.5 sm:p-2 md:p-2.5 transition-transform hover:scale-110 animate-counter-orbit "
                       style={{ animationDelay: `${delay}s` }}>
                       <img
                         src={item.src}

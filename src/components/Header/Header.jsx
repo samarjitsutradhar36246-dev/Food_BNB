@@ -4,6 +4,7 @@ import intro from "../../assets/new_Header_video.mp4";
 import app_store from "../../assets/app.avif";
 import play_store from "../../assets/play.avif";
 import foodbnb from "../../assets/foodbnb1.svg";
+import video from "../../assets/intro_mobile_Video.mp4";
 
 const Header = () => {
   const videoRef = useRef(null);
@@ -16,9 +17,7 @@ const Header = () => {
 
   return (
     <>
-      {/* Bungee Tint font */}
       <style>{`
-       
         .scroll-bounce {
           animation: scrollBounce 1.8s ease-in-out infinite;
         }
@@ -28,16 +27,26 @@ const Header = () => {
         }
       `}</style>
 
-      <header className="relative w-full h-screen min-h-[500px] overflow-hidden">
-        {/* Background Video */}
+      <header className="relative w-full h-screen min-h-[500px] overflow-hidden select-none">
+        {/* Mobile Background Video — visible below sm */}
         <video
-          ref={videoRef}
-          src={intro}
           autoPlay
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover block sm:hidden"
+          src={video}
+        />
+
+        {/* Desktop Background Video — visible at sm and above */}
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover hidden sm:block"
+          src={intro}
         />
 
         {/* Dark gradient overlay */}
@@ -62,7 +71,7 @@ const Header = () => {
 
           {/* FOODBNB wordmark */}
           <h1
-            className=" leading-none tracking-wide font-extrabold
+            className="leading-none tracking-wide font-extrabold
               text-5xl
               sm:text-6xl
               md:text-7xl
@@ -91,7 +100,7 @@ const Header = () => {
             of Home
           </p>
 
-          {/* Store badges — pure avif images, no text */}
+          {/* Store badges */}
           <div className="flex items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6 mt-4 sm:mt-5 md:mt-6">
             <a
               href="#"
@@ -99,44 +108,53 @@ const Header = () => {
               <img
                 src={play_store}
                 alt="Get it on Google Play"
-                className="
-                  h-9 w-auto
-                  sm:h-11
-                  md:h-12
-                  lg:h-14
-                  xl:h-16
-                  2xl:h-[4.5rem]
-                  object-contain
-                "
+                className="h-9 w-auto sm:h-11 md:h-12 lg:h-14 xl:h-16 2xl:h-[4.5rem] object-contain"
               />
             </a>
-
             <a
               href="#"
               className="hover:opacity-80 active:scale-95 hover:scale-110 transition-all duration-150">
               <img
                 src={app_store}
                 alt="Download on the App Store"
-                className="
-                  h-9 w-auto
-                  sm:h-11
-                  md:h-12
-                  lg:h-14
-                  xl:h-16
-                  2xl:h-[4.5rem]
-                  object-contain
-                "
+                className="h-9 w-auto sm:h-11 md:h-12 lg:h-14 xl:h-16 2xl:h-[4.5rem] object-contain"
               />
             </a>
           </div>
 
           {/* Scroll down */}
-          <div className="flex flex-col items-center mt-6 sm:mt-8 text-white/70 scroll-bounce">
+          <div
+            className="flex flex-col items-center mt-6 sm:mt-8 text-white/70 scroll-bounce cursor-pointer"
+            onClick={() => {
+              const nextSection = document.querySelector("header + *");
+              if (nextSection) {
+                const start = window.scrollY;
+                const end =
+                  nextSection.getBoundingClientRect().top + window.scrollY;
+                const duration = 3000;
+                const startTime = performance.now();
+
+                const easeInOut = (t) =>
+                  t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+
+                const scroll = (currentTime) => {
+                  const elapsed = currentTime - startTime;
+                  const progress = Math.min(elapsed / duration, 1);
+                  window.scrollTo(
+                    0,
+                    start + (end - start) * easeInOut(progress),
+                  );
+                  if (progress < 1) requestAnimationFrame(scroll);
+                };
+
+                requestAnimationFrame(scroll);
+              }
+            }}>
             <span className="text-[11px] sm:text-xs md:text-sm tracking-wide uppercase mb-0.5 font-bold">
               Scroll down
             </span>
             <ChevronsDown
-              className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 xl:w-10 xl:h-8 "
+              className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 xl:w-10 xl:h-8"
               strokeWidth={2.5}
             />
           </div>
