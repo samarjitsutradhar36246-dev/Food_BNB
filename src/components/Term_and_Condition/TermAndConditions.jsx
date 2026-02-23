@@ -1,14 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  ChefHat,
-  AlertTriangle,
-  Ban,
-  Shield,
-  Phone,
-  CheckCircle,
-  ArrowLeft,
-} from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 const sections = [
   {
@@ -325,20 +317,20 @@ const sections = [
 export default function TermsAndConditions() {
   const navigate = useNavigate();
   return (
-    <div className="min-h-screen bg-stone-50">
+    <div className="min-h-screen bg-stone-50 select-none">
       {/* Hero */}
-      <div className="max-w-5xl mx-auto px-12 pt-12 pb-14 border-b border-stone-200">
+      <div className="max-w-5xl mx-auto px-4 sm:px-8 lg:px-12 pt-8 sm:pt-12 pb-10 sm:pb-14 border-b border-stone-200">
         <button
           onClick={() => navigate("/")}
-          className="flex items-center gap-2 text-sm text-gray-500 border border-stone-200 rounded-lg px-4 py-2 mb-10 hover:bg-stone-100 hover:text-orange-600 transition-colors bg-white cursor-pointer">
+          className="flex items-center gap-2 text-sm text-gray-500 border border-stone-200 rounded-lg px-4 py-2 mb-8 sm:mb-10 hover:bg-stone-100 hover:text-orange-600 transition-colors bg-white cursor-pointer">
           <ArrowLeft size={15} />
           Back
         </button>
 
-        <h1 className="text-7xl font-black text-gray-900 leading-tight mb-5 tracking-tight">
+        <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black text-gray-900 leading-tight mb-4 sm:mb-5 tracking-tight">
           Terms of <span className="text-orange-500">Service</span>
         </h1>
-        <p className="text-base text-gray-500 leading-relaxed max-w-lg font-light">
+        <p className="text-sm sm:text-base text-gray-500 leading-relaxed max-w-lg font-light">
           Our goal is to be as transparent as possible. We've designed these
           terms to be easy to read while covering the legal essentials of our
           partnership.
@@ -346,52 +338,64 @@ export default function TermsAndConditions() {
       </div>
 
       {/* Sections */}
-      <div className="max-w-5xl mx-auto px-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-8 lg:px-12">
         {sections.map((section) => (
           <div
             key={section.num}
-            className="grid grid-cols-3 gap-12 py-16 border-b border-stone-200 relative">
-            {/* Ghost number */}
-            <span className="absolute left-0 top-10 text-9xl font-black text-stone-100 leading-none select-none pointer-events-none">
+            className="py-10 sm:py-14 lg:py-16 border-b border-stone-200 relative">
+            {/* Ghost number — only visible on lg+ */}
+            <span className="hidden lg:block absolute left-0 top-10 text-9xl font-black text-stone-100 leading-none select-none pointer-events-none">
               {section.num}
             </span>
 
-            {/* Main content */}
-            <div className="col-span-2 relative z-10">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6 leading-snug">
-                {section.title}
-              </h2>
-              {section.content}
-            </div>
+            {/* Mobile/tablet: stacked layout (sm & md) */}
+            {/* Desktop: 3-col grid (lg+) */}
+            <div className="flex flex-col lg:grid lg:grid-cols-3 lg:gap-12">
+              {/* Section number badge — visible only on sm/md */}
+              <div className="flex items-center gap-2 mb-4 lg:hidden">
+                <span className="text-2xl font-black text-orange-200 leading-none">
+                  {section.num}
+                </span>
+                <div className="h-px flex-1 bg-stone-200" />
+              </div>
 
-            {/* Summary card */}
-            <div className="col-span-1">
-              <div className="bg-white border border-stone-200 rounded-xl p-5 sticky top-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-sm">{section.summaryIcon}</span>
-                  <span className="text-xs font-semibold tracking-widest text-orange-500 uppercase">
-                    {section.summaryTitle}
-                  </span>
+              {/* Main content */}
+              <div className="lg:col-span-2 relative z-10 mb-6 lg:mb-0">
+                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 leading-snug">
+                  {section.title}
+                </h2>
+                {section.content}
+              </div>
+
+              {/* Summary card */}
+              <div className="lg:col-span-1">
+                <div className="bg-white border border-stone-200 rounded-xl p-4 sm:p-5 lg:sticky lg:top-6">
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="text-sm">{section.summaryIcon}</span>
+                    <span className="text-xs font-semibold tracking-widest text-orange-500 uppercase">
+                      {section.summaryTitle}
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-500 leading-relaxed mb-3">
+                    {section.summaryText}
+                  </p>
+                  {section.summaryBullets &&
+                    section.summaryBullets.map((b, i) => (
+                      <div
+                        key={i}
+                        className="flex items-center gap-2 text-xs text-gray-700 font-medium my-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-orange-500 flex-shrink-0" />
+                        {b}
+                      </div>
+                    ))}
                 </div>
-                <p className="text-xs text-gray-500 leading-relaxed mb-3">
-                  {section.summaryText}
-                </p>
-                {section.summaryBullets &&
-                  section.summaryBullets.map((b, i) => (
-                    <div
-                      key={i}
-                      className="flex items-center gap-2 text-xs text-gray-700 font-medium my-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-orange-500 flex-shrink-0" />
-                      {b}
-                    </div>
-                  ))}
               </div>
             </div>
           </div>
         ))}
 
         {/* Footer */}
-        <div className="flex justify-center py-10 mt-8 border-t border-stone-200 flex-wrap gap-3 ">
+        <div className="flex justify-center py-8 sm:py-10 mt-6 sm:mt-8 border-t border-stone-200 flex-wrap gap-3">
           <p className="text-xs text-gray-400">
             © 2026 Mom's Kitchen. All rights reserved.
           </p>
