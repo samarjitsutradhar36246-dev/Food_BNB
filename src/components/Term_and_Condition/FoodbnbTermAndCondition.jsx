@@ -1,257 +1,419 @@
 import React from "react";
-import { ShieldCheck, Calendar, Mail, Phone, MapPin } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import {
+  ShieldCheck,
+  CheckCircle,
+  ArrowLeft,
+  Mail,
+  Phone,
+  MapPin,
+} from "lucide-react";
 
-export default function FoodbnbTerms() {
-  return (
-    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 bg-amber-100">
-      <div className="max-w-4xl mx-auto">
-        {/* Header Section with Claude Brand Color Background */}
-        <div className="rounded-t-2xl shadow-4xl p-8 sm:p-12 bg-red-500 shadow-red-800">
-          <div className="flex items-center justify-center mb-4">
-            <ShieldCheck className="w-12 h-12 text-white mr-3" />
-            <h1 className="text-4xl sm:text-5xl font-bold text-white">
-              Foodbnb
-            </h1>
+const sections = [
+  {
+    num: "01",
+    title: "About Foodbnb",
+    summaryTitle: "QUICK SUMMARY",
+    summaryIcon: "🍽️",
+    summaryText:
+      "Foodbnb is an online marketplace connecting customers with home-based food providers. We don't prepare food — we power the platform.",
+    summaryBullets: ["Marketplace platform only", "No direct food preparation"],
+    content: (
+      <>
+        <p className="text-sm text-gray-600 leading-relaxed mb-3">
+          Foodbnb is an online platform that connects customers with home-based
+          food providers offering homemade meals.
+        </p>
+        <p className="text-sm text-gray-600 leading-relaxed">
+          Foodbnb operates as a marketplace and technology platform and does not
+          directly prepare or manufacture food unless clearly stated.
+        </p>
+      </>
+    ),
+  },
+  {
+    num: "02",
+    title: "Use of the Platform",
+    summaryTitle: "YOUR OBLIGATIONS",
+    summaryIcon: "📋",
+    summaryText:
+      "Use the platform lawfully, provide accurate info, and don't disrupt services. Violations may result in account suspension.",
+    summaryBullets: ["Lawful use only", "Accurate info required"],
+    content: (
+      <>
+        <p className="text-sm text-gray-600 leading-relaxed mb-3">
+          You agree to:
+        </p>
+        <ul className="space-y-2 mb-4">
+          {[
+            "Provide accurate and complete information",
+            "Use the Platform only for lawful purposes",
+            "Not misuse or attempt to disrupt the Platform",
+          ].map((item, i) => (
+            <li
+              key={i}
+              className="flex items-start gap-2 text-sm text-gray-600 border-b border-orange-50 pb-2">
+              <span className="text-orange-500 font-bold mt-0.5">•</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+        <p className="text-sm text-gray-600 leading-relaxed">
+          Foodbnb reserves the right to suspend or terminate accounts that
+          violate these Terms.
+        </p>
+      </>
+    ),
+  },
+  {
+    num: "03",
+    title: "Orders and Payments",
+    summaryTitle: "ORDERS",
+    summaryIcon: "💳",
+    summaryText:
+      "Orders are subject to availability. Payments must go through the platform. Cancellations may not be possible once preparation starts.",
+    summaryBullets: ["Approved payment methods only", "Fees & taxes may apply"],
+    content: (
+      <>
+        <ul className="space-y-2 mb-4">
+          {[
+            "All orders are subject to availability.",
+            "Prices and menus may change without notice.",
+            "Payments must be completed through the Platform's approved payment methods.",
+            "Service fees, delivery charges, and taxes may apply.",
+          ].map((item, i) => (
+            <li
+              key={i}
+              className="flex items-start gap-2 text-sm text-gray-600 border-b border-orange-50 pb-2">
+              <span className="text-orange-500 font-bold mt-0.5">•</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+        <p className="text-sm text-gray-600 leading-relaxed">
+          Orders cannot be canceled once preparation has started unless
+          permitted by the provider.
+        </p>
+      </>
+    ),
+  },
+  {
+    num: "04",
+    title: "Food Responsibility",
+    summaryTitle: "WHO'S RESPONSIBLE",
+    summaryIcon: "🧑‍🍳",
+    summaryText:
+      "Food providers handle preparation and hygiene. Customers must review food details and disclose allergies before ordering.",
+    summaryBullets: [
+      "Providers handle food safety",
+      "Disclose allergies before ordering",
+    ],
+    content: (
+      <>
+        <p className="text-sm text-gray-600 leading-relaxed mb-3">
+          Food providers listed on Foodbnb are responsible for:
+        </p>
+        <ul className="space-y-2 mb-4">
+          {[
+            "Food preparation and hygiene",
+            "Ingredient information",
+            "Compliance with applicable food safety regulations",
+          ].map((item, i) => (
+            <li
+              key={i}
+              className="flex items-start gap-2 text-sm text-gray-600 border-b border-orange-50 pb-2">
+              <span className="text-orange-500 font-bold mt-0.5">•</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+        <p className="text-sm text-gray-600 leading-relaxed">
+          Customers are responsible for reviewing food details and informing
+          providers of any allergies or dietary restrictions before ordering.
+        </p>
+      </>
+    ),
+  },
+  {
+    num: "05",
+    title: "Delivery",
+    summaryTitle: "DELIVERY TERMS",
+    summaryIcon: "🚚",
+    summaryText:
+      "Delivery times are estimates. Delays from external factors aren't Foodbnb's responsibility. Risk transfers to you on delivery.",
+    summaryBullets: ["Times are estimates only", "Risk transfers on delivery"],
+    content: (
+      <ul className="space-y-2">
+        {[
+          "Delivery times are estimates and may vary.",
+          "Delays caused by traffic, weather, or unforeseen circumstances are not the responsibility of Foodbnb.",
+          "Responsibility for the order transfers to the customer upon delivery.",
+        ].map((item, i) => (
+          <li
+            key={i}
+            className="flex items-start gap-2 text-sm text-gray-600 border-b border-orange-50 pb-2">
+            <span className="text-orange-500 font-bold mt-0.5">•</span>
+            {item}
+          </li>
+        ))}
+      </ul>
+    ),
+  },
+  {
+    num: "06",
+    title: "Refunds and Complaints",
+    summaryTitle: "REFUND POLICY",
+    summaryIcon: "💰",
+    summaryText:
+      "Refunds may be issued for non-delivery, wrong items, or valid quality issues. All decisions are subject to review.",
+    summaryBullets: [
+      "Reported within required timeframe",
+      "Subject to approval",
+    ],
+    content: (
+      <>
+        <p className="text-sm text-gray-600 leading-relaxed mb-3">
+          Refunds may be considered in cases such as:
+        </p>
+        <ul className="space-y-2 mb-4">
+          {[
+            "Non-delivery",
+            "Incorrect items delivered",
+            "Valid quality issues reported within [X hours] of delivery",
+          ].map((item, i) => (
+            <li
+              key={i}
+              className="flex items-start gap-2 text-sm text-gray-600 border-b border-orange-50 pb-2">
+              <span className="text-orange-500 font-bold mt-0.5">•</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+        <p className="text-sm text-gray-600 leading-relaxed">
+          All refund decisions are subject to review and approval.
+        </p>
+      </>
+    ),
+  },
+  {
+    num: "07",
+    title: "User Conduct",
+    summaryTitle: "GROUND RULES",
+    summaryIcon: "🚫",
+    summaryText:
+      "No illegal activities, harassment, fake reviews, or bypassing the platform for direct transactions. Violations lead to suspension.",
+    summaryBullets: ["No harassment or abuse", "No off-platform transactions"],
+    content: (
+      <>
+        <p className="text-sm text-gray-600 leading-relaxed mb-3">
+          Users must not:
+        </p>
+        <ul className="space-y-2 mb-4">
+          {[
+            "Engage in illegal activities",
+            "Harass or abuse providers or staff",
+            "Post false or misleading reviews",
+            "Attempt to bypass the Platform for direct transactions",
+          ].map((item, i) => (
+            <li
+              key={i}
+              className="flex items-start gap-2 text-sm text-gray-600 border-b border-orange-50 pb-2">
+              <span className="text-orange-500 font-bold mt-0.5">•</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+        <p className="text-sm text-gray-600 leading-relaxed">
+          Violations may result in account suspension or termination.
+        </p>
+      </>
+    ),
+  },
+  {
+    num: "08",
+    title: "Intellectual Property",
+    summaryTitle: "OWNERSHIP",
+    summaryIcon: "©️",
+    summaryText:
+      "All logos, branding, design, and software on the platform belong to Foodbnb. Don't copy or use without permission.",
+    summaryBullets: [
+      "All content belongs to Foodbnb",
+      "Permission required to use",
+    ],
+    content: (
+      <p className="text-sm text-gray-600 leading-relaxed">
+        All content on the Platform, including logos, branding, design, and
+        software, belongs to Foodbnb and may not be copied or used without
+        permission.
+      </p>
+    ),
+  },
+  {
+    num: "09",
+    title: "Limitation of Liability",
+    summaryTitle: 'THE "CAPS" SECTION',
+    summaryIcon: "🛡️",
+    summaryText:
+      "Foodbnb isn't responsible for food health issues, allergic reactions, or provider negligence. Liability won't exceed the order amount paid.",
+    summaryBullets: [
+      "Use at your own risk",
+      "Liability capped at order amount",
+    ],
+    content: (
+      <>
+        <p className="text-sm text-gray-600 leading-relaxed mb-3">
+          Foodbnb provides the Platform on an "as available" basis.
+        </p>
+        <p className="text-sm text-gray-600 leading-relaxed mb-3">
+          Foodbnb is not responsible for:
+        </p>
+        <ul className="space-y-2 mb-4">
+          {[
+            "Food-related health issues",
+            "Allergic reactions",
+            "Actions or negligence of food providers",
+            "Indirect or consequential damages",
+          ].map((item, i) => (
+            <li
+              key={i}
+              className="flex items-start gap-2 text-sm text-gray-600 border-b border-orange-50 pb-2">
+              <span className="text-orange-500 font-bold mt-0.5">•</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+        <p className="text-sm text-gray-600 leading-relaxed">
+          Liability, if any, shall not exceed the amount paid for the specific
+          order.
+        </p>
+      </>
+    ),
+  },
+  {
+    num: "10",
+    title: "Changes to Terms",
+    summaryTitle: "STAYING CURRENT",
+    summaryIcon: "📋",
+    summaryText:
+      "Foodbnb may update these terms at any time. Continued use of the platform means you accept the updated terms.",
+    summaryBullets: [
+      "Terms may be updated anytime",
+      "Continued use = acceptance",
+    ],
+    content: (
+      <p className="text-sm text-gray-600 leading-relaxed">
+        Foodbnb may update these Terms at any time. Continued use of the
+        Platform means you accept the updated Terms.
+      </p>
+    ),
+  },
+  {
+    num: "11",
+    title: "Contact Us",
+    summaryTitle: "REACH US",
+    summaryIcon: "📧",
+    summaryText:
+      "Have questions about these terms? Our team is ready to help. Reach out via email, phone, or visit us in person.",
+    summaryBullets: null,
+    content: (
+      <>
+        <p className="text-sm text-gray-600 leading-relaxed mb-4">
+          If you have any questions or concerns regarding these Terms and
+          Conditions, please contact us:
+        </p>
+        <div className="space-y-3">
+          <div className="flex items-center gap-3 text-sm text-gray-600">
+            <Mail className="text-orange-500 flex-shrink-0" size={18} />
+            <span>support@foodbnb.com</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-semibold text-white text-center mb-2">
-            Terms and Conditions
-          </h2>
-          <div className="flex items-center justify-center text-white/90 text-sm space-x-4">
-            <div className="flex items-center">
-              <Calendar className="w-4 h-4 mr-1" />
-              <span>Effective Date: [Coming Soon]</span>
-            </div>
-            <span>|</span>
-            <div className="flex items-center">
-              <Calendar className="w-4 h-4 mr-1" />
-              <span>Last Updated: [13-02-2026]</span>
-            </div>
+          <div className="flex items-center gap-3 text-sm text-gray-600">
+            <Phone className="text-orange-500 flex-shrink-0" size={18} />
+            <span>+1 (555) 123-4567</span>
+          </div>
+          <div className="flex items-center gap-3 text-sm text-gray-600">
+            <MapPin className="text-orange-500 flex-shrink-0" size={18} />
+            <span>123 Foodbnb Street, City, State, ZIP</span>
           </div>
         </div>
+      </>
+    ),
+  },
+];
 
-        {/* Main Content Section with White Background */}
-        <div className="bg-white rounded-b-2xl shadow-2xl p-8 sm:p-12">
-          <div className="prose prose-slate max-w-none">
-            {/* Introduction */}
-            <p className="text-slate-700 text-lg mb-8">
-              Welcome to Foodbnb. By accessing or using the Foodbnb mobile
-              application, website, or services (collectively, the "Platform"),
-              you agree to comply with these Terms and Conditions. If you do not
-              agree, please do not use the Platform.
-            </p>
+export default function FoodbnbTerms() {
+  const navigate = useNavigate();
 
-            {/* Section 1 */}
-            <div className="mb-8">
-              <h3 className="text-2xl font-bold text-slate-800 mb-4">
-                1. About Foodbnb
-              </h3>
-              <p className="text-slate-700 mb-3">
-                Foodbnb is an online platform that connects customers with
-                home-based food providers offering homemade meals.
-              </p>
-              <p className="text-slate-700">
-                Foodbnb operates as a marketplace and technology platform and
-                does not directly prepare or manufacture food unless clearly
-                stated.
-              </p>
+  return (
+    <div className="min-h-screen bg-stone-50">
+      {/* Hero */}
+      <div className="max-w-5xl mx-auto px-12 pt-12 pb-14 border-b border-stone-200">
+        <button
+          onClick={() => navigate("/")}
+          className="flex items-center gap-2 text-sm text-gray-500 border border-stone-200 rounded-lg px-4 py-2 mb-10 hover:bg-stone-100 hover:text-orange-600 transition-colors bg-white cursor-pointer">
+          <ArrowLeft size={15} />
+          Back
+        </button>
+
+        <h1 className="text-7xl font-black text-gray-900 leading-tight mb-5 tracking-tight">
+          Terms of <span className="text-orange-500">Service</span>
+        </h1>
+        <p className="text-base text-gray-500 leading-relaxed max-w-lg font-light">
+          Welcome to Foodbnb. By accessing or using our platform, you agree to
+          comply with these Terms and Conditions. If you do not agree, please do
+          not use the Platform.
+        </p>
+      </div>
+
+      {/* Sections */}
+      <div className="max-w-5xl mx-auto px-12">
+        {sections.map((section) => (
+          <div
+            key={section.num}
+            className="grid grid-cols-3 gap-12 py-16 border-b border-stone-200 relative">
+            {/* Ghost number */}
+            <span className="absolute left-0 top-10 text-9xl font-black text-stone-100 leading-none select-none pointer-events-none">
+              {section.num}
+            </span>
+
+            {/* Main content */}
+            <div className="col-span-2 relative z-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6 leading-snug">
+                {section.title}
+              </h2>
+              {section.content}
             </div>
 
-            {/* Section 2 */}
-            <div className="mb-8">
-              <h3 className="text-2xl font-bold text-slate-800 mb-4">
-                2. Use of the Platform
-              </h3>
-              <p className="text-slate-700 mb-3">You agree to:</p>
-              <ul className="list-disc list-inside text-slate-700 space-y-2 mb-3">
-                <li>Provide accurate and complete information</li>
-                <li>Use the Platform only for lawful purposes</li>
-                <li>Not misuse or attempt to disrupt the Platform</li>
-              </ul>
-              <p className="text-slate-700">
-                Foodbnb reserves the right to suspend or terminate accounts that
-                violate these Terms.
-              </p>
-            </div>
-
-            {/* Section 3 */}
-            <div className="mb-8">
-              <h3 className="text-2xl font-bold text-slate-800 mb-4">
-                3. Orders and Payments
-              </h3>
-              <ul className="list-disc list-inside text-slate-700 space-y-2 mb-3">
-                <li>All orders are subject to availability.</li>
-                <li>Prices and menus may change without notice.</li>
-                <li>
-                  Payments must be completed through the Platform's approved
-                  payment methods.
-                </li>
-                <li>Service fees, delivery charges, and taxes may apply.</li>
-              </ul>
-              <p className="text-slate-700">
-                Orders cannot be canceled once preparation has started unless
-                permitted by the provider.
-              </p>
-            </div>
-
-            {/* Section 4 */}
-            <div className="mb-8">
-              <h3 className="text-2xl font-bold text-slate-800 mb-4">
-                4. Food Responsibility
-              </h3>
-              <p className="text-slate-700 mb-3">
-                Food providers listed on Foodbnb are responsible for:
-              </p>
-              <ul className="list-disc list-inside text-slate-700 space-y-2 mb-3">
-                <li>Food preparation and hygiene</li>
-                <li>Ingredient information</li>
-                <li>Compliance with applicable food safety regulations</li>
-              </ul>
-              <p className="text-slate-700">
-                Customers are responsible for reviewing food details and
-                informing providers of any allergies or dietary restrictions
-                before ordering.
-              </p>
-            </div>
-
-            {/* Section 5 */}
-            <div className="mb-8">
-              <h3 className="text-2xl font-bold text-slate-800 mb-4">
-                5. Delivery
-              </h3>
-              <ul className="list-disc list-inside text-slate-700 space-y-2 mb-3">
-                <li>Delivery times are estimates and may vary.</li>
-                <li>
-                  Delays caused by traffic, weather, or unforeseen circumstances
-                  are not the responsibility of Foodbnb.
-                </li>
-                <li>
-                  Responsibility for the order transfers to the customer upon
-                  delivery.
-                </li>
-              </ul>
-            </div>
-
-            {/* Section 6 */}
-            <div className="mb-8">
-              <h3 className="text-2xl font-bold text-slate-800 mb-4">
-                6. Refunds and Complaints
-              </h3>
-              <p className="text-slate-700 mb-3">
-                Refunds may be considered in cases such as:
-              </p>
-              <ul className="list-disc list-inside text-slate-700 space-y-2 mb-3">
-                <li>Non-delivery</li>
-                <li>Incorrect items delivered</li>
-                <li>
-                  Valid quality issues reported within [X hours] of delivery
-                </li>
-              </ul>
-              <p className="text-slate-700">
-                All refund decisions are subject to review and approval.
-              </p>
-            </div>
-
-            {/* Section 7 */}
-            <div className="mb-8">
-              <h3 className="text-2xl font-bold text-slate-800 mb-4">
-                7. User Conduct
-              </h3>
-              <p className="text-slate-700 mb-3">Users must not:</p>
-              <ul className="list-disc list-inside text-slate-700 space-y-2 mb-3">
-                <li>Engage in illegal activities</li>
-                <li>Harass or abuse providers or staff</li>
-                <li>Post false or misleading reviews</li>
-                <li>Attempt to bypass the Platform for direct transactions</li>
-              </ul>
-              <p className="text-slate-700">
-                Violations may result in account suspension or termination.
-              </p>
-            </div>
-
-            {/* Section 8 */}
-            <div className="mb-8">
-              <h3 className="text-2xl font-bold text-slate-800 mb-4">
-                8. Intellectual Property
-              </h3>
-              <p className="text-slate-700">
-                All content on the Platform, including logos, branding, design,
-                and software, belongs to Foodbnb and may not be copied or used
-                without permission.
-              </p>
-            </div>
-
-            {/* Section 9 */}
-            <div className="mb-8">
-              <h3 className="text-2xl font-bold text-slate-800 mb-4">
-                9. Limitation of Liability
-              </h3>
-              <p className="text-slate-700 mb-3">
-                Foodbnb provides the Platform on an "as available" basis.
-              </p>
-              <p className="text-slate-700 mb-3">
-                Foodbnb is not responsible for:
-              </p>
-              <ul className="list-disc list-inside text-slate-700 space-y-2 mb-3">
-                <li>Food-related health issues</li>
-                <li>Allergic reactions</li>
-                <li>Actions or negligence of food providers</li>
-                <li>Indirect or consequential damages</li>
-              </ul>
-              <p className="text-slate-700">
-                Liability, if any, shall not exceed the amount paid for the
-                specific order.
-              </p>
-            </div>
-
-            {/* Section 10 */}
-            <div className="mb-8">
-              <h3 className="text-2xl font-bold text-slate-800 mb-4">
-                10. Changes to Terms
-              </h3>
-              <p className="text-slate-700">
-                Foodbnb may update these Terms at any time. Continued use of the
-                Platform means you accept the updated Terms.
-              </p>
-            </div>
-
-            {/* Section 11 - Contact Us */}
-            <div className="mb-8">
-              <h3 className="text-2xl font-bold text-slate-800 mb-4">
-                11. Contact Us
-              </h3>
-              <p className="text-slate-700 mb-4">
-                If you have any questions or concerns regarding these Terms and
-                Conditions, please contact us:
-              </p>
-              <div className="space-y-3">
-                <div className="flex items-center text-slate-700">
-                  <Mail className="w-5 h-5 mr-3" style={{ color: "#CC785C" }} />
-                  <span>support@foodbnb.com</span>
+            {/* Summary card */}
+            <div className="col-span-1">
+              <div className="bg-white border border-stone-200 rounded-xl p-5 sticky top-6">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-sm">{section.summaryIcon}</span>
+                  <span className="text-xs font-semibold tracking-widest text-orange-500 uppercase">
+                    {section.summaryTitle}
+                  </span>
                 </div>
-                <div className="flex items-center text-slate-700">
-                  <Phone
-                    className="w-5 h-5 mr-3"
-                    style={{ color: "#CC785C" }}
-                  />
-                  <span>+1 (555) 123-4567</span>
-                </div>
-                <div className="flex items-center text-slate-700">
-                  <MapPin
-                    className="w-5 h-5 mr-3"
-                    style={{ color: "#CC785C" }}
-                  />
-                  <span>123 Foodbnb Street, City, State, ZIP</span>
-                </div>
+                <p className="text-xs text-gray-500 leading-relaxed mb-3">
+                  {section.summaryText}
+                </p>
+                {section.summaryBullets &&
+                  section.summaryBullets.map((b, i) => (
+                    <div
+                      key={i}
+                      className="flex items-center gap-2 text-xs text-gray-700 font-medium my-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-orange-500 flex-shrink-0" />
+                      {b}
+                    </div>
+                  ))}
               </div>
             </div>
           </div>
+        ))}
 
-          {/* Footer */}
-          <div className="mt-12 pt-8 border-t border-slate-200 text-center">
-            <p className="text-slate-600 text-sm">
-              © 2026 Foodbnb. All rights reserved.
-            </p>
-          </div>
+        {/* Footer */}
+        <div className="flex justify-center items-center py-10 mt-8 border-t border-stone-200 flex-wrap gap-3">
+          <p className="text-xs text-gray-400">
+            © 2026 Foodbnb. All rights reserved.
+          </p>
         </div>
       </div>
     </div>

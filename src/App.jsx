@@ -1,5 +1,11 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
+
 import Hero_section from "./components/Hero/Hero_section.jsx";
 import Footer from "./components/footer/Footer.jsx";
 import Header from "./components/Header/Header.jsx";
@@ -16,6 +22,16 @@ import Partners from "./components/Partners/Partners.jsx";
 import FoodbnbPrivacy from "./components/Privacy_Policy/FoodbnbPrivacy.jsx";
 import FoodbnbTerms from "./components/Term_and_Condition/FoodbnbTermAndCondition.jsx";
 
+import { Support } from "./components/Support/Support.jsx";
+// Scroll to top on every route change
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
+
 // Home Page Component
 function HomePage() {
   return (
@@ -23,7 +39,6 @@ function HomePage() {
       <Header />
       <Info />
       <Hero_section />
-
       <App_moto />
       <CTASection />
       <Premium />
@@ -35,16 +50,18 @@ function HomePage() {
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-conditions" element={<TermsAndConditions />} />
         <Route path="/security" element={<FoodbnbSecurity />} />
         <Route path="/report-fraud" element={<FraudReportPage />} />
-        <Route path="/blog" element={<FoodBnBBlog />} /> {/* Add this route */}
+        <Route path="/blog" element={<FoodBnBBlog />} />
         <Route path="/partners" element={<Partners />} />
         <Route path="/foodbnb-terms" element={<FoodbnbTerms />} />
         <Route path="/foodbnb-privacy" element={<FoodbnbPrivacy />} />
+        <Route path="/support" element={<Support />} />
       </Routes>
     </Router>
   );

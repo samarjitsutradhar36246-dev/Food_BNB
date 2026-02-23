@@ -15,6 +15,7 @@ import {
 
 export default function PrivacyPolicy() {
   useEffect(() => {
+    window.scrollTo(0, 0);
     const handleContextMenu = (e) => e.preventDefault();
     const handleKeyDown = (e) => {
       if (

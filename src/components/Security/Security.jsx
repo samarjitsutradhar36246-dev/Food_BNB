@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Shield,
   Lock,
@@ -8,24 +9,18 @@ import {
   CreditCard,
   FileCheck,
   Star,
-  MessageSquare,
   Database,
   PhoneCall,
-  AlertTriangle,
+  ArrowLeft,
+  ShieldCheck,
 } from "lucide-react";
-import Logo from "../../assets/Image/foodbnb.svg";
+import Security from "../../assets/security.jpg";
+import Security2 from "../../assets/Image/Security 2.jpg";
 
 function FoodbnbSecurity() {
   const [activeSection, setActiveSection] = useState("customer");
-  const [scrollY, setScrollY] = useState(0);
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -125,231 +120,351 @@ function FoodbnbSecurity() {
     },
   ];
 
-  const platformSecurity = [
-    { icon: Lock, text: "Encrypted login & password protection" },
-
-    { icon: Eye, text: "Activity monitoring" },
-    { icon: MessageSquare, text: "Dedicated customer & mom support team" },
+  const trustBadges = [
+    { icon: ShieldCheck, label: "TRUST-E CERTIFIED" },
+    { icon: Lock, label: "256-BIT SSL" },
+    { icon: Shield, label: "PCI COMPLIANT" },
+    { icon: FileCheck, label: "FOOD SAFETY ISO" },
   ];
 
+  const commitmentItems = [
+    {
+      t: "24/7 Support Team",
+      d: "Our dedicated safety team is available round-the-clock to assist with any concerns.",
+    },
+    {
+      t: "Hygiene Certifications",
+      d: "Moms are required to provide local health certifications where applicable.",
+    },
+    {
+      t: "Secure Data Storage",
+      d: "Bank-level encryption protocols for all stored sensitive information.",
+    },
+    {
+      t: "Encrypted Login & Password Protection",
+      d: "All accounts are secured with industry-standard encryption protocols.",
+    },
+    {
+      t: "Activity Monitoring",
+      d: "Continuous monitoring of platform activity to detect and prevent misuse.",
+    },
+    {
+      t: "Dedicated Customer & Mom Support Team",
+      d: "A dedicated team ready to resolve issues for both customers and moms.",
+    },
+  ];
+
+  const features =
+    activeSection === "customer" ? customerFeatures : momFeatures;
+
   return (
-    <>
-      {/* Standalone Header like Terms page */}
-      <header className="bg-red-500 text-white px-4 sm:px-6 py-4 shadow-lg">
-        <div className="max-w-6xl mx-auto flex items-center gap-3">
-          <img
-            src={Logo}
-            alt="FoodBNB Logo"
-            className="w-8 h-8 sm:w-10 sm:h-10 shrink-0"
-          />
-          <div>
-            <h1 className="text-xl sm:text-2xl font-bold">FoodBNB</h1>
-            <p className="text-xs sm:text-sm text-red-100">
-              Security & Protection
-            </p>
-          </div>
-        </div>
-      </header>
-      <hr className="border-2 border-slate-500"></hr>
-      <div className="min-h-screen bg-white relative overflow-hidden">
-        {/* Animated Background Elements */}
-        <div className="fixed inset-0 pointer-events-none overflow-hidden">
-          <div
-            className="absolute top-0 right-0 w-96 h-96 bg-red-500 rounded-full opacity-5 blur-3xl"
+    <div className="select-none">
+    <div className="font-sans bg-stone-100 text-gray-900 min-h-screen">
+      {/* HERO */}
+      <section
+        className="relative flex flex-col items-center justify-center text-center px-6 py-20 min-h-[420px] overflow-hidden"
+        style={{
+          background:
+            "linear-gradient(170deg, #1a1a1a 0%, #2d1a1a 60%, #3d1a10 100%)",
+        }}>
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse at 70% 50%, rgba(232,55,42,0.18) 0%, transparent 65%)",
+          }}
+        />
+        {/* Back Arrow Button */}
+        <button
+          onClick={() => navigate("/")}
+          className="absolute top-6 left-6 z-20 flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200 hover:scale-105"
+          style={{
+            background: "rgba(232,55,42,0.15)",
+            border: "1px solid rgba(232,55,42,0.4)",
+            color: "#ff6b5b",
+          }}>
+          <ArrowLeft size={16} />
+          Back
+        </button>
+        <div className="relative z-10 flex flex-col items-center">
+          <span
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-widest uppercase mb-7 border"
             style={{
-              transform: `translate(${scrollY * 0.1}px, ${scrollY * 0.15}px)`,
-            }}
-          />
-          <div
-            className="absolute bottom-0 left-0 w-80 h-80 bg-red-500 rounded-full opacity-5 blur-3xl"
-            style={{
-              transform: `translate(-${scrollY * 0.08}px, -${scrollY * 0.1}px)`,
-            }}
-          />
+              background: "rgba(232,55,42,0.2)",
+              borderColor: "rgba(232,55,42,0.5)",
+              color: "#ff6b5b",
+            }}>
+            <Shield size={11} /> Trusted by Thousands
+          </span>
+          <h1
+            className="text-6xl md:text-8xl font-black leading-tight text-white mb-5"
+            style={{ fontFamily: "'Playfair Display', serif" }}>
+            Our{" "}
+            <em className="not-italic" style={{ color: "#e8372a" }}>
+              Security
+            </em>
+            <br />
+            Promise
+          </h1>
+          <p
+            className="max-w-md text-base leading-relaxed"
+            style={{ color: "rgba(255,255,255,0.62)" }}>
+            At FoodBnB &amp; Mom's Kitchen, your safety is our ingredient for
+            success. We've crafted a security layer as authentic as our meals.
+          </p>
         </div>
+      </section>
 
-        {/* Hero Section */}
-        <div className="relative bg-red-500 text-white overflow-hidden">
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-20 left-20 w-40 h-40 border-4 border-white rounded-full" />
-            <div className="absolute bottom-20 right-20 w-32 h-32 border-4 border-white rounded-full" />
-            <div className="absolute top-1/2 left-1/3 w-24 h-24 border-4 border-white rounded-full" />
-          </div>
-        </div>
-
-        {/* Toggle Section */}
-        <div className="sticky top-0 z-40 bg-white border-b-4 border-red-600 shadow-lg">
-          <div className="max-w-6xl mx-auto px-6 py-6">
-            <div className="flex gap-4 justify-center">
-              <button
-                onClick={() => setActiveSection("customer")}
-                className={`px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 ${
-                  activeSection === "customer"
-                    ? "bg-red-500 text-white shadow-xl scale-105"
-                    : "bg-white text-black border-2 border-red-600 hover:bg-red-50"
-                }`}>
-                🔐 For Customers
-              </button>
-              <button
-                onClick={() => setActiveSection("mom")}
-                className={`px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 ${
-                  activeSection === "mom"
-                    ? "bg-red-500 text-white shadow-xl scale-105"
-                    : "bg-white text-black border-2 border-red-600 hover:bg-red-50"
-                }`}>
-                👩‍🍳 For Moms
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {/* Features Grid */}
-        <div className="max-w-6xl mx-auto px-6 py-20">
-          <div className="grid gap-8">
-            {(activeSection === "customer"
-              ? customerFeatures
-              : momFeatures
-            ).map((feature, index) => {
-              const Icon = feature.icon;
-              return (
-                <div
-                  key={index}
-                  className="group bg-white border-2 border-black rounded-2xl p-8 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
-                  style={{
-                    animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`,
-                  }}>
-                  <div className="flex items-start gap-6">
-                    <div className="flex-shrink-0 bg-red-500 text-white p-4 rounded-xl group-hover:scale-110 transition-transform duration-300">
-                      <Icon className="w-8 h-8" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-2xl font-bold mb-4 text-black">
-                        {feature.title}
-                      </h3>
-                      <ul className="space-y-3">
-                        {feature.points.map((point, i) => (
-                          <li
-                            key={i}
-                            className="flex items-start gap-3 text-black">
-                            <CheckCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
-                            <span className="text-lg leading-relaxed">
-                              {point}
-                            </span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Platform Security Section */}
-        <div className="bg-red-500 text-white py-20 relative overflow-hidden">
-          <div className="absolute inset-0 opacity-10">
-            <div
-              className="absolute inset-0"
-              style={{
-                backgroundImage:
-                  "repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.1) 35px, rgba(255,255,255,.1) 70px)",
-              }}
-            />
-          </div>
-
-          <div className="max-w-6xl mx-auto px-6 relative">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                🛡️ Platform-Wide Security
-              </h2>
-              <p className="text-xl opacity-95 font-light">
-                Protection measures for everyone
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {platformSecurity.map((item, index) => {
-                const Icon = item.icon;
-                return (
-                  <div
-                    key={index}
-                    className="bg-white text-black p-6 rounded-xl border-2 border-white hover:bg-red-50 transition-all duration-300 hover:scale-105"
-                    style={{
-                      animation: `fadeInUp 0.6s ease-out ${index * 0.1}s both`,
-                    }}>
-                    <div className="flex items-center gap-4">
-                      <div className="bg-red-500 text-white p-3 rounded-lg">
-                        <Icon className="w-6 h-6" />
-                      </div>
-                      <p className="font-semibold text-lg">{item.text}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-
-        {/* Trust Promise */}
-
-        {/* Footer CTA */}
-        <hr className="border-2 border-white"></hr>
-        <div className="bg-black text-white py-16">
-          <div className="max-w-6xl mx-auto px-6 text-center">
-            <h3 className="text-3xl md:text-4xl font-bold mb-6">
-              Ready to Experience Safe Home Cooking?
-            </h3>
-            <p className="text-xl mb-8 opacity-90">
-              Join thousands who trust Foodbnb for authentic, secure meals
-            </p>
-            <button className="bg-red-500 text-white px-12 py-4 rounded-xl font-bold text-lg hover:bg-red-500 transition-all duration-300 hover:scale-105 shadow-xl">
-              Get Started Today
-            </button>
-            <p className="text-lg text-white">
-              We continuously work to improve safety and transparency for
-              everyone on Foodbnb.
-            </p>
-          </div>
-        </div>
-
-        <style jsx>{`
-          @keyframes fadeIn {
-            from {
-              opacity: 0;
-              transform: translateY(-20px);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
-
-          @keyframes fadeInUp {
-            from {
-              opacity: 0;
-              transform: translateY(30px);
-            }
-            to {
-              opacity: 1;
-              transform: translateY(0);
-            }
-          }
-
-          @keyframes pulse {
-            0%,
-            100% {
-              transform: scale(1);
-              opacity: 1;
-            }
-            50% {
-              transform: scale(1.05);
-              opacity: 0.8;
-            }
-          }
-        `}</style>
+      {/* TOGGLE */}
+      <div className="sticky top-0 z-50 bg-white border-b-2 border-red-500 shadow-md flex justify-center gap-3 px-6 py-4">
+        <button
+          onClick={() => setActiveSection("customer")}
+          className={`px-7 py-2.5 rounded-lg text-sm font-semibold border-2 border-red-500 transition-all duration-200 ${activeSection === "customer" ? "bg-red-500 text-white shadow-lg scale-105" : "bg-white text-gray-900 hover:bg-red-50"}`}>
+          🔐 For Customers
+        </button>
+        <button
+          onClick={() => setActiveSection("mom")}
+          className={`px-7 py-2.5 rounded-lg text-sm font-semibold border-2 border-red-500 transition-all duration-200 ${activeSection === "mom" ? "bg-red-500 text-white shadow-lg scale-105" : "bg-white text-gray-900 hover:bg-red-50"}`}>
+          👩‍🍳 For Moms
+        </button>
       </div>
-    </>
+
+      {/* INTRO */}
+      <div className="max-w-5xl mx-auto px-10 pt-14 pb-3">
+        <h2
+          className="text-4xl font-black leading-tight text-gray-900 mb-3"
+          style={{ fontFamily: "'Playfair Display', serif" }}>
+          Crafted with{" "}
+          <em className="italic" style={{ color: "#e8372a" }}>
+            Rigorous
+          </em>
+          <br />
+          Standards
+        </h2>
+        <p className="text-sm text-gray-500 leading-relaxed max-w-md">
+          Every meal is a guest in your home. We ensure every transaction and
+          every kitchen meets our high-bar editorial standards.
+        </p>
+      </div>
+
+      {/* FEATURE GRID */}
+      <div className="max-w-5xl mx-auto px-10 py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {features.map((f, i) => {
+          const Icon = f.icon;
+          return (
+            <div
+              key={i}
+              className="group bg-white rounded-2xl p-7 border border-stone-200 shadow-sm cursor-default transition-all duration-300 hover:-translate-y-1 hover:bg-red-500 hover:border-red-500 hover:shadow-xl"
+              style={{ animationDelay: `${i * 0.08}s` }}>
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center mb-5 bg-red-50 text-red-500 transition-all duration-300 group-hover:bg-white/20 group-hover:text-white">
+                <Icon size={20} />
+              </div>
+              <h3
+                className="text-base font-bold mb-2.5 text-gray-900 transition-colors duration-300 group-hover:text-white"
+                style={{ fontFamily: "'Playfair Display', serif" }}>
+                {f.title}
+              </h3>
+              <ul className="space-y-1.5">
+                {f.points.map((pt, j) => (
+                  <li
+                    key={j}
+                    className="text-xs text-gray-500 leading-relaxed transition-colors duration-300 group-hover:text-white/85">
+                    {pt}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* SAFETY IS PERSONAL */}
+      <section className="bg-white px-10 py-16 flex flex-col md:flex-row gap-16 items-center">
+        <div className="relative flex-shrink-0 w-72 h-72 rounded-2xl overflow-hidden border border-stone-200">
+          <img
+            src={Security}
+            alt="Security"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute -bottom-4 -right-4 bg-gray-900 text-white rounded-xl px-5 py-3.5 text-center shadow-xl">
+            <div
+              className="text-2xl font-black leading-none"
+              style={{
+                fontFamily: "'Playfair Display', serif",
+                color: "#e8372a",
+              }}>
+              24/7
+            </div>
+            <div className="text-xs text-gray-400 tracking-widest uppercase mt-1">
+              Human Support
+            </div>
+          </div>
+        </div>
+        <div className="flex-1">
+          <p
+            className="text-xs font-bold tracking-widest uppercase mb-4"
+            style={{ color: "#e8372a" }}>
+            Human-Centric
+          </p>
+          <h2
+            className="text-3xl md:text-4xl font-black leading-tight text-gray-900 mb-4"
+            style={{ fontFamily: "'Playfair Display', serif" }}>
+            Safety is Personal,
+            <br />
+            Not Just Protocols.
+          </h2>
+          <p className="text-sm text-gray-500 leading-relaxed mb-8">
+            Behind every algorithm is a dedicated team of food lovers and safety
+            experts. We manually review complaints, conduct spot checks, and
+            support our community around the clock.
+          </p>
+          <div className="grid grid-cols-2 gap-6">
+            {activeSection === "customer" ? (
+              <>
+                <div>
+                  <strong className="block text-sm font-semibold text-gray-900 mb-1">
+                    Manual Review
+                  </strong>
+                  <span className="text-xs text-gray-500 leading-relaxed">
+                    Every feedback is read by a human being, ensuring nuanced
+                    resolutions.
+                  </span>
+                </div>
+                <div>
+                  <strong className="block text-sm font-semibold text-gray-900 mb-1">
+                    Verified Profiles
+                  </strong>
+                  <span className="text-xs text-gray-500 leading-relaxed">
+                    Every chef completes identity and contact verification
+                    before listing on Foodbnb kitchens.
+                  </span>
+                </div>
+              </>
+            ) : (
+              <>
+                <div>
+                  <strong className="block text-sm font-semibold text-gray-900 mb-1">
+                    Earnings Protection
+                  </strong>
+                  <span className="text-xs text-gray-500 leading-relaxed">
+                    Your payouts are processed securely and on a clear,
+                    predictable schedule.
+                  </span>
+                </div>
+                <div>
+                  <strong className="block text-sm font-semibold text-gray-900 mb-1">
+                    Dispute Support
+                  </strong>
+                  <span className="text-xs text-gray-500 leading-relaxed">
+                    Our team steps in to mediate fairly whenever a dispute or
+                    complaint arises.
+                  </span>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* GOLD STANDARD */}
+      <section className="px-10 py-16 flex flex-col md:flex-row-reverse gap-16 items-center">
+        <div className="flex-shrink-0 w-72 h-72 rounded-2xl overflow-hidden border border-stone-200">
+          <img
+            src={Security2}
+            alt="Security 2"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="flex-1">
+          <h2
+            className="text-3xl md:text-4xl font-black leading-tight text-gray-900 mb-4"
+            style={{ fontFamily: "'Playfair Display', serif" }}>
+            The Gold Standard
+            <br />
+            of Home Dining
+          </h2>
+          <p className="text-sm text-gray-500 leading-relaxed mb-7">
+            From the moment you browse to the moment you take your first bite,
+            our multi-layered framework acts as your invisible concierge.
+          </p>
+          <div className="space-y-5">
+            {commitmentItems.map((item, i) => (
+              <div key={i} className="flex gap-3 items-start">
+                <div
+                  className="w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5"
+                  style={{ background: "#fef2f1", color: "#e8372a" }}>
+                  <CheckCircle size={14} />
+                </div>
+                <div>
+                  <strong className="block text-sm font-semibold text-gray-900 mb-0.5">
+                    {item.t}
+                  </strong>
+                  <span className="text-xs text-gray-500 leading-relaxed">
+                    {item.d}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* TRUST BADGES */}
+      <div className="bg-white border-t border-b border-stone-200 py-8 px-6 text-center">
+        <p className="text-xs tracking-widest uppercase text-gray-300 font-semibold mb-5">
+          Certified Security Partners
+        </p>
+        <div className="flex justify-center gap-12 flex-wrap">
+          {trustBadges.map((b, i) => {
+            const Icon = b.icon;
+            return (
+              <div
+                key={i}
+                className="flex items-center gap-2 text-gray-400 text-xs font-semibold tracking-widest uppercase">
+                <Icon size={16} />
+                {b.label}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* CTA FOOTER */}
+      <div
+        className="text-center px-6 py-20"
+        style={{
+          background: "linear-gradient(160deg, #1a1a1a 0%, #2d1410 100%)",
+        }}>
+        <h2
+          className="font-black leading-tight text-white mb-2 text-4xl md:text-5xl"
+          style={{ fontFamily: "'Playfair Display', serif" }}>
+          Tastier with
+          <br />
+          <em className="italic" style={{ color: "#e8372a" }}>
+            Peace of Mind.
+          </em>
+        </h2>
+        <p
+          className="text-sm leading-relaxed max-w-md mx-auto mt-4"
+          style={{ color: "rgba(255,255,255,0.6)" }}>
+          Join thousands of families who trust us for their daily nourishment.
+          Authentic, safe, and secure.
+        </p>
+        <p className="mt-6 text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>
+          We continuously work to improve safety and transparency for everyone
+          on Foodbnb.
+        </p>
+      </div>
+
+      {/* LEGAL */}
+      <div
+        className="bg-black text-center px-6 py-4 text-xs border-t border-white/5"
+        style={{ color: "rgba(255,255,255,0.35)" }}>
+        © 2024 FoodBnB &amp; Mom's Kitchen. All rights reserved. Your security
+        is our promise.
+      </div>
+    </div>
+    </div>
   );
 }
 
