@@ -1,13 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  ShieldCheck,
-  CheckCircle,
-  ArrowLeft,
-  Mail,
-  Phone,
-  MapPin,
-} from "lucide-react";
+import { ArrowLeft, Mail, Phone, MapPin } from "lucide-react";
 
 const sections = [
   {
@@ -346,18 +339,19 @@ export default function FoodbnbTerms() {
   return (
     <div className="min-h-screen bg-stone-50">
       {/* Hero */}
-      <div className="max-w-5xl mx-auto px-12 pt-12 pb-14 border-b border-stone-200">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 pt-8 sm:pt-10 md:pt-12 pb-10 sm:pb-12 md:pb-14 border-b border-stone-200">
         <button
           onClick={() => navigate("/")}
-          className="flex items-center gap-2 text-sm text-gray-500 border border-stone-200 rounded-lg px-4 py-2 mb-10 hover:bg-stone-100 hover:text-orange-600 transition-colors bg-white cursor-pointer">
+          className="flex items-center gap-2 text-sm text-gray-500 border border-stone-200 rounded-lg px-3 sm:px-4 py-2 mb-6 sm:mb-8 md:mb-10 hover:bg-stone-100 hover:text-orange-600 transition-colors bg-white cursor-pointer">
           <ArrowLeft size={15} />
           Back
         </button>
 
-        <h1 className="text-7xl font-black text-gray-900 leading-tight mb-5 tracking-tight">
+        {/* Responsive headline: scales from small to huge */}
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 leading-tight mb-4 sm:mb-5 tracking-tight">
           Terms of <span className="text-orange-500">Service</span>
         </h1>
-        <p className="text-base text-gray-500 leading-relaxed max-w-lg font-light">
+        <p className="text-sm sm:text-base text-gray-500 leading-relaxed max-w-xs sm:max-w-sm md:max-w-lg font-light">
           Welcome to Foodbnb. By accessing or using our platform, you agree to
           comply with these Terms and Conditions. If you do not agree, please do
           not use the Platform.
@@ -365,27 +359,38 @@ export default function FoodbnbTerms() {
       </div>
 
       {/* Sections */}
-      <div className="max-w-5xl mx-auto px-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12">
         {sections.map((section) => (
           <div
             key={section.num}
-            className="grid grid-cols-3 gap-12 py-16 border-b border-stone-200 relative">
-            {/* Ghost number */}
-            <span className="absolute left-0 top-10 text-9xl font-black text-stone-100 leading-none select-none pointer-events-none">
+            className="
+              flex flex-col gap-6
+              md:grid md:grid-cols-3 md:gap-8
+              lg:gap-12
+              py-10 sm:py-12 md:py-16
+              border-b border-stone-200
+              relative
+            ">
+            {/* Ghost number — only show on md+ where there's room */}
+            <span className="hidden md:block absolute left-0 top-10 text-7xl lg:text-9xl font-black text-stone-100 leading-none select-none pointer-events-none">
               {section.num}
             </span>
 
             {/* Main content */}
-            <div className="col-span-2 relative z-10">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6 leading-snug">
+            <div className="md:col-span-2 relative z-10">
+              {/* Small screens: show section number inline */}
+              <span className="md:hidden inline-block text-xs font-black text-stone-300 tracking-widest mb-1">
+                {section.num}
+              </span>
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6 leading-snug">
                 {section.title}
               </h2>
               {section.content}
             </div>
 
             {/* Summary card */}
-            <div className="col-span-1">
-              <div className="bg-white border border-stone-200 rounded-xl p-5 sticky top-6">
+            <div className="md:col-span-1">
+              <div className="bg-white border border-stone-200 rounded-xl p-4 sm:p-5 md:sticky md:top-6">
                 <div className="flex items-center gap-2 mb-3">
                   <span className="text-sm">{section.summaryIcon}</span>
                   <span className="text-xs font-semibold tracking-widest text-orange-500 uppercase">
@@ -410,7 +415,7 @@ export default function FoodbnbTerms() {
         ))}
 
         {/* Footer */}
-        <div className="flex justify-center items-center py-10 mt-8 border-t border-stone-200 flex-wrap gap-3">
+        <div className="flex justify-center items-center py-8 sm:py-10 mt-6 sm:mt-8 border-t border-stone-200 flex-wrap gap-3">
           <p className="text-xs text-gray-400">
             © 2026 Foodbnb. All rights reserved.
           </p>
