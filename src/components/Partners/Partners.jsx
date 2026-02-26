@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+// Link import hata sakte ho ya rakho
 import background from "../../assets/Image/Background.png";
 import {
   ArrowLeft,
@@ -14,6 +16,8 @@ import {
 } from "lucide-react";
 
 const Partners = () => {
+  const navigate = useNavigate();
+  // ...baaki code same
   return (
     <div className="select-none cursor-pointer">
       <div className="min-h-screen bg-white font-sans">
@@ -577,8 +581,8 @@ const Partners = () => {
 
         {/* ── BACK BUTTON ── */}
         <div className="text-center pb-12 sm:pb-16 px-4">
-          <Link
-            to="/"
+          <button
+            onClick={() => navigate(-1)}
             className="inline-flex items-center gap-2 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold text-sm sm:text-base transition-all hover:scale-105"
             style={{
               background:
@@ -586,7 +590,7 @@ const Partners = () => {
             }}>
             <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
             Back to FoodBnB
-          </Link>
+          </button>
         </div>
 
         {/* ── FOOTER ── */}

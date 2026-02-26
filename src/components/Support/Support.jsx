@@ -166,7 +166,7 @@ export const Support = () => {
           <div className="max-w-6xl mx-auto px-6 py-16 text-center">
             <div className="flex justify-start mb-6">
               <button
-                onClick={() => navigate("/")}
+                onClick={() => navigate(-1)}
                 className="flex items-center gap-2 text-white/80 hover:text-white bg-white/10 hover:bg-white/20 transition duration-200 px-4 py-2 rounded-xl text-sm font-medium backdrop-blur-sm border border-white/20">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -452,6 +452,9 @@ export const Support = () => {
             <p className="text-gray-400 text-base max-w-xl mx-auto">
               Our dedicated support team is available 24/7 to assist you with
               any questions or concerns about your food orders.
+            </p>
+            <p className="text-gray-400 text-base max-w-xl mx-auto">
+              Contact us at: +91 25463987746
             </p>
           </div>
 

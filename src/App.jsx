@@ -4,6 +4,7 @@ import {
   Routes,
   Route,
   useLocation,
+  useNavigationType,
 } from "react-router-dom";
 
 import Hero_section from "./components/Hero/Hero_section.jsx";
@@ -21,18 +22,37 @@ import FoodBnBBlog from "./components/Blog/Blog.jsx";
 import Partners from "./components/Partners/Partners.jsx";
 import FoodbnbPrivacy from "./components/Privacy_Policy/FoodbnbPrivacy.jsx";
 import FoodbnbTerms from "./components/Term_and_Condition/FoodbnbTermAndCondition.jsx";
-
 import { Support } from "./components/Support/Support.jsx";
-// Scroll to top on every route change
+
 function ScrollToTop() {
   const { pathname } = useLocation();
+  const navType = useNavigationType();
+
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    const navEntry = performance.getEntriesByType("navigation")[0];
+    const isReloadOrFresh =
+      !navEntry || navEntry.type === "reload" || navEntry.type === "navigate";
+
+    if (isReloadOrFresh) {
+      window.scrollTo(0, 0);
+      return;
+    }
+
+    if (navType === "POP") {
+      setTimeout(() => {
+        const footer = document.querySelector("footer");
+        if (footer) {
+          footer.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 150);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, navType]);
+
   return null;
 }
 
-// Home Page Component
 function HomePage() {
   return (
     <>

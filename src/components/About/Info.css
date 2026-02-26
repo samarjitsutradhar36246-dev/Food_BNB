@@ -476,3 +476,8 @@
   -moz-user-select: none;    /* Firefox */
   -ms-user-select: none;     /* IE/Edge */
 }
+@media (min-width: 1280px) {
+  .heroX-title {
+    font-size: 85px;
+  }
+}

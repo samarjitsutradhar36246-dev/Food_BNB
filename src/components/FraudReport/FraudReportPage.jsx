@@ -147,7 +147,7 @@ const FraudReportPage = () => {
       <div className="bg-white border-b border-gray-100 px-4 sm:px-8 py-4 sm:py-6 flex items-center justify-between">
         {/* Back Button */}
         <button
-          onClick={() => navigate("/")}
+          onClick={() => navigate(-1)}
           className="flex items-center gap-1.5 text-gray-500 hover:text-orange-500 transition-colors group">
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
           <span className="text-xs font-semibold hidden sm:inline">

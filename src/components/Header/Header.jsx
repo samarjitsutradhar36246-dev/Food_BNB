@@ -93,7 +93,7 @@ const Header = () => {
             2xl:text-2xl">
             Taste the{" "}
             <em
-              className="font-semibold not-italic"
+              className="font-extrabold not-italic"
               style={{ color: "#FF2D2D" }}>
               comfort
             </em>{" "}
@@ -126,12 +126,12 @@ const Header = () => {
           <div
             className="flex flex-col items-center mt-6 sm:mt-8 text-white/70 scroll-bounce cursor-pointer"
             onClick={() => {
-              const nextSection = document.querySelector("header + *");
+              const nextSection = document.getElementById("hero-section");
               if (nextSection) {
                 const start = window.scrollY;
                 const end =
                   nextSection.getBoundingClientRect().top + window.scrollY;
-                const duration = 3000;
+                const duration = 6000;
                 const startTime = performance.now();
 
                 const easeInOut = (t) =>

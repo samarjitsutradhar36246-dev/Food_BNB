@@ -1,29 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import paymentImg from "../../assets/payment.jpg";
 import cook from "../../assets/cooking.png";
-import food1 from "../../assets/food 5.png";
+import dosa from "../../assets/Image/Dosa.png";
 import food2 from "../../assets/pasta.jpg";
-import food3 from "../../assets/rice_bowl_new.png";
-import food4 from "../../assets/naan.png";
+import noodles from "../../assets/Image/Noodles.png";
+import birayni from "../../assets/Image/birayni.png";
 import food5 from "../../assets/tomato.jpg";
 import food6 from "../../assets/soup_veggies.jpg";
 import food7 from "../../assets/ots.png";
-import food8 from "../../assets/food 1.png";
-import food9 from "../../assets/momo.png";
+import illish from "../../assets/food 1.png";
+import food9 from "../../assets/Image/food 9.png";
 import food10 from "../../assets/food 3.png";
-import food11 from "../../assets/chole.png";
+import food11 from "../../assets/Image/Roti.png";
 import food12 from "../../assets/fish.png";
 import "./Hero_section.css";
 
 const FOOD_ITEMS = [
-  { name: "kfc", src: food1 },
+  { name: "kfc", src: dosa },
   { name: "pasta", src: food2 },
-  { name: "rice-bowl", src: food3 },
-  { name: "naan", src: food4 },
+  { name: "rice-bowl", src: noodles },
+  { name: "naan", src: birayni },
   { name: "tomato", src: food5 },
   { name: "soup", src: food6 },
   { name: "ots", src: food7 },
-  { name: "onion-ring", src: food8 },
+  { name: "onion-ring", src: illish },
   { name: "momo", src: food9 },
   { name: "burger", src: food10 },
   { name: "chole", src: food11 },
@@ -65,11 +65,24 @@ const STEPS = [
   },
 ];
 
+const BASE_SPEED = 0.3;
+const FRICTION = 0.97;
+
 export default function OrbitingSection() {
   const [textIndex, setTextIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
+  const [orbitAngle, setOrbitAngle] = useState(0);
 
+  const containerRef = useRef(null);
+  const rafRef = useRef(null);
+  const isDragging = useRef(false);
+  const dragCenter = useRef({ x: 0, y: 0 });
+  const lastAngle = useRef(0);
+  const velocity = useRef(BASE_SPEED);
+  const currentAngle = useRef(0);
+
+  // Typewriter effect
   useEffect(() => {
     const currentText = ROTATING_TEXTS[textIndex];
     const typingSpeed = isDeleting ? 30 : 50;
@@ -91,16 +104,91 @@ export default function OrbitingSection() {
         setDisplayedText(currentText.substring(0, nextLength));
       }, typingSpeed);
     }
-
     return () => clearTimeout(timer);
   }, [displayedText, isDeleting, textIndex]);
 
+  // RAF animation loop
+  useEffect(() => {
+    const tick = () => {
+      if (!isDragging.current) {
+        const sign = velocity.current >= 0 ? 1 : -1;
+        const abs = Math.abs(velocity.current);
+        if (abs > BASE_SPEED) {
+          velocity.current =
+            sign * (BASE_SPEED + (abs - BASE_SPEED) * FRICTION);
+        } else {
+          velocity.current = BASE_SPEED;
+        }
+        currentAngle.current += velocity.current;
+      }
+      setOrbitAngle(currentAngle.current);
+      rafRef.current = requestAnimationFrame(tick);
+    };
+    rafRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafRef.current);
+  }, []);
+
+  const getAngle = (clientX, clientY) => {
+    const { x, y } = dragCenter.current;
+    return Math.atan2(clientY - y, clientX - x) * (180 / Math.PI);
+  };
+
+  const getXY = (e) =>
+    e.touches
+      ? { x: e.touches[0].clientX, y: e.touches[0].clientY }
+      : { x: e.clientX, y: e.clientY };
+
+  const onDragStart = useCallback((e) => {
+    if (containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      dragCenter.current = {
+        x: rect.left + rect.width / 2,
+        y: rect.top + rect.height / 2,
+      };
+    }
+    const { x, y } = getXY(e);
+    lastAngle.current = getAngle(x, y);
+    velocity.current = 0;
+    isDragging.current = true;
+  }, []);
+
+  const onDragMove = useCallback((e) => {
+    if (!isDragging.current) return;
+    const { x, y } = getXY(e);
+    const angle = getAngle(x, y);
+
+    let delta = angle - lastAngle.current;
+    if (delta > 180) delta -= 360;
+    if (delta < -180) delta += 360;
+
+    currentAngle.current += delta;
+    velocity.current = delta;
+    lastAngle.current = angle;
+  }, []);
+
+  const onDragEnd = useCallback(() => {
+    if (!isDragging.current) return;
+    isDragging.current = false;
+    if (Math.abs(velocity.current) < BASE_SPEED) {
+      velocity.current = BASE_SPEED;
+    }
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("mousemove", onDragMove);
+    window.addEventListener("mouseup", onDragEnd);
+    return () => {
+      window.removeEventListener("mousemove", onDragMove);
+      window.removeEventListener("mouseup", onDragEnd);
+    };
+  }, [onDragMove, onDragEnd]);
+
   return (
-    <div className="w-full select-none  ">
-      {/* Hero Section with Orbiting Food - NOW WITH PATTERN */}
-      <section className="relative min-h-[420px] md:min-h-180 lg:min-h-187.5 xl:min-h-240  bg-slate-100 overflow-hidden border-b border-gray-200 flex flex-col justify-center items-center  ">
-        {/* Orbiting Container - with proper containment */}
-        <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
+    <div id="hero-section" className="w-full select-none">
+      <section className="relative min-h-[420px] md:min-h-180 lg:min-h-187.5 xl:min-h-240 bg-slate-100 overflow-hidden border-b border-gray-200 flex flex-col justify-center items-center">
+        <div
+          ref={containerRef}
+          className="absolute inset-0 flex justify-center items-center pointer-events-none">
           <div className="relative w-full h-full max-w-225 max-h-225 flex justify-center items-center">
             {/* Guide Ring */}
             <div
@@ -110,15 +198,15 @@ export default function OrbitingSection() {
                 height: "min(700px, 85vw, 85vh)",
               }}
             />
-            {/* Center Content - with proper text wrapping and overflow prevention */}
+
+            {/* Center Content */}
             <div className="relative z-10 max-w-md sm:max-w-lg px-4 sm:px-6 text-center">
               <h1
                 style={{ fontFamily: '"Geom", sans-serif' }}
-                className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 leading-tight mb-3 sm:mb-4 md:mb-6 ">
+                className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 leading-tight mb-3 sm:mb-4 md:mb-6">
                 Food that brings <br />
                 <span className="text-red-500">us together</span>
               </h1>
-
               <div className="flex justify-center px-2 sm:px-4">
                 <div className="w-full max-w-xs sm:max-w-sm md:max-w-md">
                   <p className="text-xs sm:text-sm md:text-base font-bold text-black/60 min-h-[3rem] sm:min-h-[3.5rem] break-words text-center leading-relaxed px-2">
@@ -130,28 +218,38 @@ export default function OrbitingSection() {
                 </div>
               </div>
             </div>
+
             {/* Orbiting Food Items */}
             {FOOD_ITEMS.map((item, index) => {
-              const delay = -(60 / FOOD_ITEMS.length) * index;
-
+              const itemAngle = orbitAngle + (360 / FOOD_ITEMS.length) * index;
               return (
                 <div
                   key={item.name}
-                  className="absolute top-1/2 left-1/2 w-0 h-0 animate-orbit"
-                  style={{ animationDelay: `${delay}s` }}>
+                  className="absolute top-1/2 left-1/2 w-0 h-0"
+                  style={{ transform: `rotate(${itemAngle}deg)` }}>
                   <div
                     style={{
                       transform: `translate(-50%, -50%) translateX(var(--orbit-radius))`,
                     }}
                     className="absolute -translate-x-1/2 -translate-y-1/2 
-                  [--orbit-radius:180px] 
-    
-                  md:[--orbit-radius:300px]
-                  lg:[--orbit-radius:300px]
-                  xl:![transform:translate(-50%,-50%)_translateX(400px)]">
+                      [--orbit-radius:180px] 
+                      md:[--orbit-radius:300px]
+                      lg:[--orbit-radius:300px]
+                      xl:![transform:translate(-50%,-50%)_translateX(400px)]">
                     <div
-                      className="w-13.75 h-13.75 sm:w-16.25 sm:h-16.25 md:w-25 md:h-25 lg:w-21.25 lg:h-21.25  xl:h-32 xl:w-32 2xl:!w:32 2xl:!h:40 bg-white rounded-lg shadow-lg border border-gray-100 flex items-center justify-center p-1.5 sm:p-2 md:p-2.5 transition-transform hover:scale-110 animate-counter-orbit "
-                      style={{ animationDelay: `${delay}s` }}>
+                      className="w-13.75 h-13.75 sm:w-16.25 sm:h-16.25 md:w-25 md:h-25 lg:w-21.25 lg:h-21.25 xl:h-32 xl:w-32 2xl:!w:32 2xl:!h:40 bg-white rounded-lg shadow-lg border border-gray-100 flex items-center justify-center p-1.5 sm:p-2 md:p-2.5 hover:scale-110"
+                      style={{
+                        transform: `rotate(${-itemAngle}deg) scale(var(--hover-scale, 1))`,
+                      }}
+                      onMouseEnter={(e) =>
+                        e.currentTarget.style.setProperty(
+                          "--hover-scale",
+                          "1.1",
+                        )
+                      }
+                      onMouseLeave={(e) =>
+                        e.currentTarget.style.setProperty("--hover-scale", "1")
+                      }>
                       <img
                         src={item.src}
                         alt={item.name}
@@ -165,11 +263,23 @@ export default function OrbitingSection() {
           </div>
         </div>
 
+        {/* Drag overlay */}
+        <div
+          className="absolute inset-0 z-10"
+          style={{ cursor: "grab" }}
+          onMouseDown={onDragStart}
+          onTouchStart={onDragStart}
+          onTouchMove={(e) => {
+            e.preventDefault();
+            onDragMove(e);
+          }}
+          onTouchEnd={onDragEnd}
+        />
+
         {/* Fade Gradients */}
         <div className="absolute top-0 left-0 w-full h-32 bg-linear-to-b from-slate-50 to-transparent pointer-events-none z-20" />
         <div className="absolute bottom-0 left-0 w-full h-32 bg-linear-to-t from-slate-50 to-transparent pointer-events-none z-20" />
       </section>
-
       {/* How It Works Section */}
       <section className="py-10 sm:py-16 md:py-20 bg-white bg-pattern ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -178,7 +288,7 @@ export default function OrbitingSection() {
             <span className="text-xs sm:text-sm font-bold text-red-400 uppercase tracking-wider">
               SIMPLE PROCESS
             </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mt-2">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mt-2 font-[Geom]">
               From Our Home to Yours
             </h2>
           </div>
@@ -219,7 +329,7 @@ export default function OrbitingSection() {
         </div>
       </section>
 
-      {/* Styles */}
+      {/* Styles — unchanged */}
       <style jsx>{`
         @keyframes orbit {
           from {
