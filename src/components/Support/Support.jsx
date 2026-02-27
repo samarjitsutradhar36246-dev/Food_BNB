@@ -1020,9 +1020,6 @@ export const Support = () => {
               Our dedicated support team is available 24/7 to assist you with
               any questions or concerns about your food orders.
             </p>
-            <p className="text-gray-400 text-sm sm:text-base max-w-xl mx-auto">
-              Contact us at: +91 25463987746
-            </p>
           </div>
           <div className="py-5 sm:py-6 px-4 sm:px-6">
             <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4">
