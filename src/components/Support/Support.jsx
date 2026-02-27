@@ -136,7 +136,7 @@ export const Support = () => {
       token: "",
     });
     setSelectedIssue(null);
-    toast.info("👋 Signed out successfully.", {
+    toast.info(" 🔐 Signed out successfully.", {
       position: "top-right",
       autoClose: 2000,
     });
