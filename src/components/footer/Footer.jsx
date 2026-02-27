@@ -175,14 +175,14 @@ function Footer() {
                 onMouseLeave={(e) => (e.currentTarget.style.color = "#888")}>
                 Partner With Us
               </Link>
-              <a
-                href="#"
-                className="text-sm no-underline transition-colors duration-200 select-none pointer-events-auto"
+              <button
+                type="button"
+                className="text-sm bg-transparent border-none p-0 text-left transition-colors duration-200 select-none pointer-events-auto cursor-default cursor-pointer"
                 style={{ color: "#888" }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "#f5c842")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "#888")}>
                 Apps For You
-              </a>
+              </button>
             </div>
           </div>
 
