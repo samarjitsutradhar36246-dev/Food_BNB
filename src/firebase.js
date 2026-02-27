@@ -1,15 +1,16 @@
-// src/firebase.js
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBnOMUqbAdM8yS2TPR5G_jwPR_sdYusm4w",
-  authDomain: "foodbnb-b6993.firebaseapp.com",
-  projectId: "foodbnb-b6993",
-  storageBucket: "foodbnb-b6993.firebasestorage.app",
-  messagingSenderId: "553828899686",
-  appId: "1:553828899686:web:dbdfd741d94f64095686a7"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
+export const auth = getAuth(app);
