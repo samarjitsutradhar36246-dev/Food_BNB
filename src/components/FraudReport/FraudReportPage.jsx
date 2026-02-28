@@ -173,7 +173,7 @@ const FraudReportPage = () => {
         {/* Page Header */}
         <div className="mb-6 sm:mb-10">
           <h1 className="text-3xl sm:text-4xl font-black text-gray-900 mb-3">
-            Report an <span className="text-orange-500">Issue</span>
+            Report a <span className="text-orange-500">Fraud</span>
           </h1>
           <p className="text-gray-500 text-sm sm:text-base max-w-lg">
             Your safety and trust are our top priorities. If you've encountered

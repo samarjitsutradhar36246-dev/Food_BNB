@@ -9,11 +9,11 @@ import {
   ThumbsDown,
   BadgeAlert,
   HelpCircle,
-  RefreshCw,
   CalendarDays,
   LogOut,
   Eye,
   EyeOff,
+  Sparkles,
 } from "lucide-react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -25,7 +25,6 @@ import {
   query,
   where,
   getDocs,
-  Timestamp,
 } from "firebase/firestore";
 import {
   getAuth,
@@ -38,6 +37,9 @@ import {
 
 const auth = getAuth();
 const googleProvider = new GoogleAuthProvider();
+
+// ── Configurable daily limit ───────────────────────────────────────────────
+const DAILY_REQUEST_LIMIT = 3;
 
 export const Support = () => {
   const [selectedIssue, setSelectedIssue] = useState(null);
@@ -59,9 +61,13 @@ export const Support = () => {
   const [authSubmitting, setAuthSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
+  // Per-session salt keeps tokens unique across sessions for the same name+email
+  const sessionSalt = useRef(Date.now().toString(36).toUpperCase());
+
   const contactRef = useRef(null);
   const navigate = useNavigate();
 
+  // ── Auth listener ──────────────────────────────────────────────────────────
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (u) => {
       setUser(u);
@@ -77,6 +83,32 @@ export const Support = () => {
     return () => unsub();
   }, []);
 
+  // ── Auto-generate token when both name AND email are filled ────────────────
+  useEffect(() => {
+    const name = formData.name.trim();
+    const email = formData.email.trim();
+
+    if (name.length > 0 && email.length > 0) {
+      const seed = name + email + sessionSalt.current;
+      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+      let hash = 0;
+      for (let i = 0; i < seed.length; i++) {
+        hash = (hash * 31 + seed.charCodeAt(i)) >>> 0;
+      }
+      let token = "";
+      let n = hash;
+      for (let i = 0; i < 8; i++) {
+        token += chars[n % chars.length];
+        n = ((n >>> 3) + hash + i * 17) >>> 0 || i + 1;
+      }
+      setFormData((prev) => ({ ...prev, token }));
+      if (errors.token) setErrors((prev) => ({ ...prev, token: "" }));
+    } else {
+      setFormData((prev) => ({ ...prev, token: "" }));
+    }
+  }, [formData.name, formData.email]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // ── Auth handlers ──────────────────────────────────────────────────────────
   const handleEmailLogin = async () => {
     const newErrors = {};
     if (!authData.email.trim()) newErrors.email = "Email is required.";
@@ -115,7 +147,7 @@ export const Support = () => {
         position: "top-right",
         autoClose: 3000,
       });
-    } catch (err) {
+    } catch {
       toast.error("❌ Google sign-in failed. Please try again.", {
         position: "top-right",
         autoClose: 4000,
@@ -136,36 +168,29 @@ export const Support = () => {
       token: "",
     });
     setSelectedIssue(null);
-    toast.info(" 🔐 Signed out successfully.", {
+    toast.info("🔐 Signed out successfully.", {
       position: "top-right",
       autoClose: 2000,
     });
   };
 
+  // ── Form helpers ───────────────────────────────────────────────────────────
   const handleIssueSelect = (id) => {
     setSelectedIssue(id);
-    setTimeout(() => {
-      contactRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }, 100);
+    setTimeout(
+      () =>
+        contactRef.current?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        }),
+      100,
+    );
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: "" }));
-  };
-
-  const generateToken = () => {
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    let token = "";
-    for (let i = 0; i < 8; i++) {
-      token += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    setFormData((prev) => ({ ...prev, token }));
-    if (errors.token) setErrors((prev) => ({ ...prev, token: "" }));
   };
 
   const validate = () => {
@@ -175,13 +200,15 @@ export const Support = () => {
     if (!formData.date.trim()) newErrors.date = "Date is required.";
     if (!formData.time.trim()) newErrors.time = "Time is required.";
     if (!formData.token.trim())
-      newErrors.token = "Please generate a token number.";
+      newErrors.token =
+        "Token could not be generated — please fill in your name and email.";
     if (!selectedIssue) newErrors.issue = "Please select an issue type above.";
     if (!formData.message.trim()) newErrors.message = "Message is required.";
     return newErrors;
   };
 
-  const hasSubmittedToday = async (email) => {
+  // ── Rate-limit: count today's submissions for this email ──────────────────
+  const getSubmissionsToday = async (email) => {
     const startOfToday = new Date();
     startOfToday.setHours(0, 0, 0, 0);
     const q = query(
@@ -190,12 +217,13 @@ export const Support = () => {
     );
     const snapshot = await getDocs(q);
     const todayStart = startOfToday.getTime();
-    return snapshot.docs.some((doc) => {
+    return snapshot.docs.filter((doc) => {
       const docTime = doc.data().time?.toDate?.();
       return docTime && docTime.getTime() >= todayStart;
-    });
+    }).length;
   };
 
+  // ── Submit ─────────────────────────────────────────────────────────────────
   const handleSendMessage = async () => {
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
@@ -204,19 +232,21 @@ export const Support = () => {
     }
     setIsSubmitting(true);
     try {
-      const alreadySubmitted = await hasSubmittedToday(formData.email);
-      if (alreadySubmitted) {
+      const submissionsToday = await getSubmissionsToday(formData.email);
+
+      if (submissionsToday >= DAILY_REQUEST_LIMIT) {
         toast.error(
-          "⚠️ You've already submitted a support request today. Please come back tomorrow — we're working on your request!",
+          `⚠️ You've reached the daily limit of ${DAILY_REQUEST_LIMIT} support requests. Please come back tomorrow — we're working on your requests!`,
           { position: "top-right", autoClose: 7000, hideProgressBar: false },
         );
         setIsSubmitting(false);
         return;
       }
+
       const issueTitle =
         issues.find((i) => i.id === selectedIssue)?.title || "";
       await addDoc(collection(db, "supportRequest"), {
-        requestId: `SR-${formData.token}`,
+        requestId: `SN-${formData.token}`,
         customerName: formData.name,
         email: formData.email.toLowerCase().trim(),
         uid: user.uid,
@@ -227,13 +257,15 @@ export const Support = () => {
         status: false,
         time: serverTimestamp(),
       });
+
+      const remaining = DAILY_REQUEST_LIMIT - submissionsToday - 1;
       toast.success(
-        "✅ Your request has been submitted! We'll get back to you soon.",
-        {
-          position: "top-right",
-          autoClose: 4000,
-        },
+        remaining > 0
+          ? `✅ Request submitted! You have ${remaining} request${remaining > 1 ? "s" : ""} remaining today.`
+          : "✅ Request submitted! You've used all your requests for today.",
+        { position: "top-right", autoClose: 5000 },
       );
+
       setFormData({
         name: "",
         email: "",
@@ -258,6 +290,7 @@ export const Support = () => {
     }
   };
 
+  // ── Static data ────────────────────────────────────────────────────────────
   const issues = [
     {
       id: "food-quality",
@@ -330,6 +363,29 @@ export const Support = () => {
     "Rate your experience to help us improve our service",
   ];
 
+  // ── Reusable spinner ───────────────────────────────────────────────────────
+  const Spinner = ({ className = "w-4 h-4" }) => (
+    <svg
+      className={`animate-spin ${className}`}
+      fill="none"
+      viewBox="0 0 24 24">
+      <circle
+        className="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        strokeWidth="4"
+      />
+      <path
+        className="opacity-75"
+        fill="currentColor"
+        d="M4 12a8 8 0 018-8v8z"
+      />
+    </svg>
+  );
+
+  // ── Render ─────────────────────────────────────────────────────────────────
   return (
     <div className="select-none">
       <div className="min-h-screen bg-gray-100">
@@ -340,7 +396,6 @@ export const Support = () => {
           className="text-white"
           style={{ background: "linear-gradient(135deg, #c90900, #ff865a)" }}>
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-16">
-            {/* Back button */}
             <div className="flex justify-start mb-5 sm:mb-6">
               <button
                 onClick={() => navigate(-1)}
@@ -361,7 +416,6 @@ export const Support = () => {
               </button>
             </div>
 
-            {/* Title */}
             <div className="text-center px-2">
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 leading-tight">
                 How Can We Help You?
@@ -372,9 +426,7 @@ export const Support = () => {
               </p>
             </div>
 
-            {/* Contact cards */}
             <div className="mt-8 sm:mt-10 lg:mt-12 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
-              {/* Phone */}
               <div className="hover:bg-red-600 border-2 border-white/20 hover:scale-105 transition duration-300 rounded-2xl p-4 sm:p-5 lg:p-6 text-left shadow-lg text-white">
                 <div className="flex items-center gap-2 mb-2 sm:mb-3">
                   <span className="text-lg sm:text-xl rounded-l border-2 border-black bg-white leading-none px-0.5">
@@ -392,7 +444,6 @@ export const Support = () => {
                 </p>
               </div>
 
-              {/* Email */}
               <div className="hover:bg-red-600 border-2 border-white/20 hover:scale-105 transition duration-300 rounded-2xl p-4 sm:p-5 lg:p-6 text-left shadow-lg backdrop-blur-lg">
                 <div className="flex items-center gap-2 mb-2 sm:mb-3">
                   <Mail className="w-6 h-5 sm:w-8 sm:h-6 text-slate-600 rounded-l border-2 border-slate-500 bg-white flex-shrink-0" />
@@ -408,7 +459,6 @@ export const Support = () => {
                 </p>
               </div>
 
-              {/* Live Chat */}
               <div className="hover:bg-red-600 border-2 border-white/20 hover:scale-105 transition duration-300 rounded-2xl p-4 sm:p-5 lg:p-6 text-left shadow-lg">
                 <div className="flex items-center gap-2 mb-2 sm:mb-3">
                   <MessagesSquare className="w-6 h-5 sm:w-8 sm:h-6 rounded-l border-2 border-slate-500 bg-white text-slate-500 flex-shrink-0" />
@@ -496,7 +546,6 @@ export const Support = () => {
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
-              {/* Info Cards */}
               <div className="flex flex-col gap-4 sm:gap-5">
                 {infoCards.map((card, index) => (
                   <div
@@ -512,7 +561,6 @@ export const Support = () => {
                 ))}
               </div>
 
-              {/* Quick Tips */}
               <div className="bg-white rounded-2xl p-4 sm:p-5 lg:p-6 shadow-sm h-fit">
                 <h3 className="font-bold text-gray-900 text-lg sm:text-xl mb-4 sm:mb-5">
                   Quick Tips
@@ -555,27 +603,10 @@ export const Support = () => {
                 Contact Us
               </h2>
 
-              {/* Auth Loading */}
+              {/* Auth loading */}
               {authLoading && (
                 <div className="flex items-center justify-center py-12 sm:py-16">
-                  <svg
-                    className="animate-spin w-5 h-5 sm:w-6 sm:h-6 text-orange-400 mr-3"
-                    fill="none"
-                    viewBox="0 0 24 24">
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                    />
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8v8z"
-                    />
-                  </svg>
+                  <Spinner className="w-5 h-5 sm:w-6 sm:h-6 text-orange-400 mr-3" />
                   <span className="text-gray-400 text-sm">Loading...</span>
                 </div>
               )}
@@ -611,11 +642,7 @@ export const Support = () => {
                             setAuthErrors((p) => ({ ...p, email: "" }));
                         }}
                         placeholder="you@example.com"
-                        className={`w-full border rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-300 ${
-                          authErrors.email
-                            ? "border-red-400 bg-red-50"
-                            : "border-gray-300"
-                        }`}
+                        className={`w-full border rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-300 ${authErrors.email ? "border-red-400 bg-red-50" : "border-gray-300"}`}
                       />
                       {authErrors.email && (
                         <p className="text-red-500 text-xs mt-1">
@@ -644,11 +671,7 @@ export const Support = () => {
                             e.key === "Enter" && handleEmailLogin()
                           }
                           placeholder="••••••••"
-                          className={`w-full border rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 pr-10 sm:pr-11 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-300 ${
-                            authErrors.password
-                              ? "border-red-400 bg-red-50"
-                              : "border-gray-300"
-                          }`}
+                          className={`w-full border rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 pr-10 sm:pr-11 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-300 ${authErrors.password ? "border-red-400 bg-red-50" : "border-gray-300"}`}
                         />
                         <button
                           type="button"
@@ -671,37 +694,15 @@ export const Support = () => {
                     <button
                       onClick={handleEmailLogin}
                       disabled={authSubmitting}
-                      className={`w-full flex items-center justify-center gap-2 py-2.5 sm:py-3 rounded-xl text-white font-semibold text-xs sm:text-sm transition duration-200 mb-3 sm:mb-4 ${
-                        authSubmitting
-                          ? "bg-orange-300 cursor-not-allowed"
-                          : "bg-orange-400 hover:bg-orange-500"
-                      }`}>
+                      className={`w-full flex items-center justify-center gap-2 py-2.5 sm:py-3 rounded-xl text-white font-semibold text-xs sm:text-sm transition duration-200 mb-3 sm:mb-4 ${authSubmitting ? "bg-orange-300 cursor-not-allowed" : "bg-orange-400 hover:bg-orange-500"}`}>
                       {authSubmitting ? (
                         <>
-                          <svg
-                            className="animate-spin w-3.5 h-3.5 sm:w-4 sm:h-4"
-                            fill="none"
-                            viewBox="0 0 24 24">
-                            <circle
-                              className="opacity-25"
-                              cx="12"
-                              cy="12"
-                              r="10"
-                              stroke="currentColor"
-                              strokeWidth="4"
-                            />
-                            <path
-                              className="opacity-75"
-                              fill="currentColor"
-                              d="M4 12a8 8 0 018-8v8z"
-                            />
-                          </svg>
-                          Signing in...
+                          <Spinner /> Signing in...
                         </>
                       ) : (
                         <>
-                          <Mail className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                          Sign In with Email
+                          <Mail className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> Sign In
+                          with Email
                         </>
                       )}
                     </button>
@@ -747,7 +748,7 @@ export const Support = () => {
               {/* ── CONTACT FORM (logged in) ── */}
               {!authLoading && user && (
                 <div className="mt-2">
-                  {/* Logged in banner */}
+                  {/* Logged-in banner */}
                   <div className="flex items-center justify-between bg-green-50 border border-green-200 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 mb-6 sm:mb-8 max-w-md mx-auto gap-2">
                     <div className="flex items-center gap-2 min-w-0">
                       <div className="flex-shrink-0 w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-green-400 flex items-center justify-center text-white text-xs font-bold">
@@ -792,11 +793,7 @@ export const Support = () => {
                         value={formData.name}
                         onChange={handleInputChange}
                         placeholder="John Doe"
-                        className={`w-full border rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-300 ${
-                          errors.name
-                            ? "border-red-400 bg-red-50"
-                            : "border-gray-300"
-                        }`}
+                        className={`w-full border rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-300 ${errors.name ? "border-red-400 bg-red-50" : "border-gray-300"}`}
                       />
                       {errors.name && (
                         <p className="text-red-500 text-xs mt-1">
@@ -814,11 +811,7 @@ export const Support = () => {
                         value={formData.email}
                         onChange={handleInputChange}
                         placeholder="john@example.com"
-                        className={`w-full border rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-300 bg-gray-50 ${
-                          errors.email
-                            ? "border-red-400 bg-red-50"
-                            : "border-gray-300"
-                        }`}
+                        className={`w-full border rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-300 bg-gray-50 ${errors.email ? "border-red-400 bg-red-50" : "border-gray-300"}`}
                       />
                       {errors.email && (
                         <p className="text-red-500 text-xs mt-1">
@@ -842,11 +835,7 @@ export const Support = () => {
                         name="date"
                         value={formData.date}
                         onChange={handleInputChange}
-                        className={`w-full border rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-300 bg-white ${
-                          errors.date
-                            ? "border-red-400 bg-red-50"
-                            : "border-gray-300"
-                        }`}
+                        className={`w-full border rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-300 bg-white ${errors.date ? "border-red-400 bg-red-50" : "border-gray-300"}`}
                       />
                       {errors.date && (
                         <p className="text-red-500 text-xs mt-1">
@@ -866,11 +855,7 @@ export const Support = () => {
                         name="time"
                         value={formData.time}
                         onChange={handleInputChange}
-                        className={`w-full border rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-300 bg-white ${
-                          errors.time
-                            ? "border-red-400 bg-red-50"
-                            : "border-gray-300"
-                        }`}
+                        className={`w-full border rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-300 bg-white ${errors.time ? "border-red-400 bg-red-50" : "border-gray-300"}`}
                       />
                       {errors.time && (
                         <p className="text-red-500 text-xs mt-1">
@@ -880,44 +865,55 @@ export const Support = () => {
                     </div>
                   </div>
 
-                  {/* Token */}
+                  {/* ── Token — auto-generated, fully read-only ── */}
                   <div className="text-left mb-4 sm:mb-6">
                     <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1">
                       Token Number <span className="text-red-500">*</span>
+                      <span className="ml-2 text-xs font-normal text-gray-400 italic">
+                        — auto-generated
+                      </span>
                     </label>
-                    <div className="flex items-stretch">
-                      <span className="flex items-center px-2.5 sm:px-4 py-2.5 sm:py-3 bg-gray-100 border border-r-0 border-gray-300 rounded-l-xl text-xs sm:text-sm font-bold text-gray-500 select-none tracking-widest cursor-default whitespace-nowrap">
+
+                    <div
+                      className={`flex items-stretch rounded-xl border overflow-hidden ${errors.token ? "border-red-400" : "border-gray-300"}`}>
+                      {/* Static prefix */}
+                      <span className="flex items-center px-2.5 sm:px-4 py-2.5 sm:py-3 bg-gray-100 border-r border-gray-300 text-xs sm:text-sm font-bold text-gray-500 select-none tracking-widest cursor-default whitespace-nowrap">
                         SR-
                       </span>
+                      {/* Token value */}
                       <input
                         type="text"
                         readOnly
                         value={formData.token}
-                        placeholder="Click Generate →"
-                        className={`flex-1 min-w-0 border border-r-0 px-2 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm bg-gray-50 text-gray-800 font-mono tracking-widest focus:outline-none cursor-default ${
-                          errors.token
-                            ? "border-red-400 bg-red-50"
-                            : "border-gray-300"
-                        }`}
+                        placeholder="Fill in name & email above…"
+                        className={`flex-1 min-w-0 px-2 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm font-mono tracking-widest focus:outline-none cursor-default ${formData.token ? "text-gray-800 bg-gray-50" : "text-gray-400 bg-gray-50"} ${errors.token ? "bg-red-50" : ""}`}
                       />
-                      <button
-                        type="button"
-                        onClick={generateToken}
-                        className="flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2.5 sm:py-3 bg-orange-400 hover:bg-orange-500 active:scale-95 text-white text-xs sm:text-sm font-semibold rounded-r-xl transition-all duration-200 whitespace-nowrap">
-                        <RefreshCw className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-                        <span className="hidden xs:inline sm:inline">
-                          Generate
-                        </span>
-                        <span className="xs:hidden sm:hidden">Gen</span>
-                      </button>
+                      {/* Status badge */}
+                      <span
+                        className={`flex items-center gap-1 px-3 sm:px-4 border-l text-xs font-semibold whitespace-nowrap transition-all duration-300 ${formData.token ? "border-teal-200 bg-teal-50 text-teal-600" : "border-gray-200 bg-gray-50 text-gray-400"}`}>
+                        {formData.token ? (
+                          <>
+                            <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5" />{" "}
+                            Generated
+                          </>
+                        ) : (
+                          "Pending"
+                        )}
+                      </span>
                     </div>
-                    {formData.token && (
+
+                    {formData.token ? (
                       <p className="text-teal-600 text-xs mt-1.5 font-medium">
                         ✓ Your token:{" "}
                         <span className="font-mono font-bold">
                           SR-{formData.token}
                         </span>{" "}
                         — please save this for reference
+                      </p>
+                    ) : (
+                      <p className="text-gray-400 text-xs mt-1.5">
+                        Token will appear automatically once you fill in your
+                        name and email.
                       </p>
                     )}
                     {errors.token && (
@@ -942,11 +938,7 @@ export const Support = () => {
                           ? `Describe your ${issues.find((i) => i.id === selectedIssue)?.title.toLowerCase()} issue...`
                           : "Describe your issue..."
                       }
-                      className={`w-full border rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-300 resize-none ${
-                        errors.message
-                          ? "border-red-400 bg-red-50"
-                          : "border-gray-300"
-                      }`}
+                      className={`w-full border rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-orange-300 resize-none ${errors.message ? "border-red-400 bg-red-50" : "border-gray-300"}`}
                     />
                     {errors.message && (
                       <p className="text-red-500 text-xs mt-1">
@@ -955,36 +947,23 @@ export const Support = () => {
                     )}
                   </div>
 
+                  {/* Daily limit notice */}
+                  <p className="text-gray-400 text-xs mb-4">
+                    You may submit up to{" "}
+                    <span className="font-semibold text-orange-400">
+                      {DAILY_REQUEST_LIMIT} support requests
+                    </span>{" "}
+                    per day.
+                  </p>
+
                   {/* Submit */}
                   <button
                     onClick={handleSendMessage}
                     disabled={isSubmitting}
-                    className={`${
-                      isSubmitting
-                        ? "bg-orange-300 cursor-not-allowed"
-                        : "bg-orange-400 hover:bg-orange-500"
-                    } text-white font-semibold px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl transition duration-200 flex items-center gap-2 mx-auto text-xs sm:text-sm`}>
+                    className={`${isSubmitting ? "bg-orange-300 cursor-not-allowed" : "bg-orange-400 hover:bg-orange-500"} text-white font-semibold px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl transition duration-200 flex items-center gap-2 mx-auto text-xs sm:text-sm`}>
                     {isSubmitting ? (
                       <>
-                        <svg
-                          className="animate-spin w-3.5 h-3.5 sm:w-4 sm:h-4"
-                          fill="none"
-                          viewBox="0 0 24 24">
-                          <circle
-                            className="opacity-25"
-                            cx="12"
-                            cy="12"
-                            r="10"
-                            stroke="currentColor"
-                            strokeWidth="4"
-                          />
-                          <path
-                            className="opacity-75"
-                            fill="currentColor"
-                            d="M4 12a8 8 0 018-8v8z"
-                          />
-                        </svg>
-                        Submitting...
+                        <Spinner /> Submitting...
                       </>
                     ) : (
                       <>

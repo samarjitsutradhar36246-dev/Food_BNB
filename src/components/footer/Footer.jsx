@@ -198,7 +198,7 @@ function Footer() {
                 style={{ color: "#888" }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = "#f5c842")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "#888")}>
-                Report an issue
+                Report a fraud
               </Link>
               <Link
                 to="/blog"
